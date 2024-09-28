@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from "react";
-import { Permanent } from "@/interfaces/permanent";
+import { Provider } from "@/interfaces/provider";
 import { useProviderStore } from "@/store/providerStore";
 import { apiService } from "@/services/api";
 
@@ -7,7 +7,7 @@ export const useCreateProvider = () => {
     const { addProviderCollection, setIsLoading, setError, isLoading, error } = useProviderStore();
 
     const createProvider = useCallback(
-        async (data: Permanent) => {
+        async (data: Provider) => {
             setIsLoading(true);
             setError(null);
             try {

@@ -1,5 +1,3 @@
-import { Show } from "./show";
-
 export interface Keyword {
     id: number;
     name: string;
@@ -12,11 +10,10 @@ export interface KeywordResponse {
     id: number;
     name: string;
     original_name?: string;
-    rank?: number;
-    shows: Show[];
+    rank: number;
 }
 
 export interface ShowKeywords {
     id: string;
-    results: Keyword[];
+    results: KeywordResponse[];
 }

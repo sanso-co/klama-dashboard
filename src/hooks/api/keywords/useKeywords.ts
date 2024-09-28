@@ -117,6 +117,7 @@ export const useGetKeywordsForShow = (showId: number) => {
         setError(null);
         try {
             const fetchedKeywords = await apiService.getKeywordsForShow(showId);
+            console.log("use", fetchedKeywords);
             setKeywords(fetchedKeywords);
             return fetchedKeywords;
         } catch (err) {

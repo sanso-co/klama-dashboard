@@ -18,7 +18,7 @@ const ShowDetails = () => {
 
     if (!show) return <div>Loading drama details...</div>;
     if (error) return <div>Failed to load drama detils</div>;
-    console.log(show);
+
     return (
         <div>
             <Helmet>

@@ -26,6 +26,7 @@ export interface TMDBShowDetails {
         {
             id: number;
             name: string;
+            original_name: string;
         }
     ];
     homepage: string;

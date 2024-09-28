@@ -4,7 +4,7 @@ import { debounce } from "lodash";
 
 import { useAddShowToKeyword, useGetKeywordsForShow } from "@/hooks/api/keywords/useKeywords";
 
-import { Keyword } from "@/interfaces/keyword";
+import { Keyword, KeywordResponse } from "@/interfaces/keyword";
 import { Chip } from "@/components/global/Chip";
 
 import styles from "./keywords.module.scss";
@@ -15,9 +15,9 @@ interface Props {
 
 export const Keywords = ({ showId }: Props) => {
     const [query, setQuery] = useState("");
-    const [suggestions, setSuggestions] = useState<Keyword[]>([]);
+    const [suggestions, setSuggestions] = useState<KeywordResponse[]>([]);
     const { keywords } = useGetKeywordsForShow(showId);
-    const [selectedKeywords, setSelectedKeywords] = useState<Keyword[]>([]);
+    const [selectedKeywords, setSelectedKeywords] = useState<KeywordResponse[]>([]);
 
     useEffect(() => {
         if (keywords?.results) {
@@ -32,6 +32,7 @@ export const Keywords = ({ showId }: Props) => {
                     `${import.meta.env.VITE_API_URL}/keyword/search?query=${searchQuery}`
                 );
                 setSuggestions(response.data);
+                console.log(response.data);
             } catch (error) {
                 console.error("Error fetching suggestions:", error);
             }
@@ -47,7 +48,7 @@ export const Keywords = ({ showId }: Props) => {
 
     const { addShowToKeyword } = useAddShowToKeyword();
 
-    const handleKeywordClick = async (keyword: Keyword) => {
+    const handleKeywordClick = async (keyword: KeywordResponse) => {
         if (!selectedKeywords.some((g) => g.id === keyword.id)) {
             setSelectedKeywords((prevKeywords) => [...prevKeywords, keyword]);
         }
@@ -100,7 +101,6 @@ export const Keywords = ({ showId }: Props) => {
                     />
                 ))}
             </div>
-            {/* <Button label="Save Keywords" variant="primary" onClick={handleSave} /> */}
         </section>
     );
 };

@@ -4,7 +4,7 @@ import { debounce } from "lodash";
 
 import styles from "./credit.module.scss";
 import { Chip } from "@/components/global/Chip";
-import { Credit } from "@/interfaces/credit";
+import { Credit, CreditResponse } from "@/interfaces/credit";
 import { useAddShowToCredit, useGetCreditForShow } from "@/hooks/api/credit/useCredit";
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 
 export const Credits = ({ showId }: Props) => {
     const [query, setQuery] = useState("");
-    const [suggestions, setSuggestions] = useState<Credit[]>([]);
+    const [suggestions, setSuggestions] = useState<CreditResponse[]>([]);
     const { credits } = useGetCreditForShow(showId);
     const [selectedCredits, setSelectedCredits] = useState<Credit[]>([]);
 
@@ -45,7 +45,7 @@ export const Credits = ({ showId }: Props) => {
 
     const { addShowToCredit } = useAddShowToCredit();
 
-    const handleCreditClick = async (credit: Credit) => {
+    const handleCreditClick = async (credit: CreditResponse) => {
         if (!selectedCredits.some((g) => g.id === credit.id)) {
             setSelectedCredits((prevCredit) => [...prevCredit, credit]);
         }
