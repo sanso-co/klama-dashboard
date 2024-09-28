@@ -4,7 +4,7 @@ import { debounce } from "lodash";
 
 import { useAddShowToKeyword, useGetKeywordsForShow } from "@/hooks/api/keywords/useKeywords";
 
-import { Keyword, KeywordResponse } from "@/interfaces/keyword";
+import { KeywordResponse } from "@/interfaces/keyword";
 import { Chip } from "@/components/global/Chip";
 
 import styles from "./keywords.module.scss";
