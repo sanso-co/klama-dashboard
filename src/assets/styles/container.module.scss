@@ -1,0 +1,13 @@
+.showList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+
+    @media (min-width: 640px) {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(8, 1fr);
+    }
+}

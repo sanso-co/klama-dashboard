@@ -1,0 +1,26 @@
+.casts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+}
+
+.item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow: hidden;
+}
+
+.role {
+    font-size: 0.75rem;
+}
+
+.checkContainer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 100%;
+    background-color: aquamarine;
+    padding: 0.25rem;
+}

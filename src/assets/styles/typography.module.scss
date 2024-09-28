@@ -1,0 +1,28 @@
+.header {
+    h1 {
+        font-size: 2rem;
+        line-height: 1.5;
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+    }
+
+    .body {
+        font-size: 1rem;
+        line-height: 1.5;
+        color: var(--neutral-80);
+    }
+
+    .caption {
+        font-size: 0.875rem;
+        line-height: 1.5;
+        color: var(--neutral-80);
+        margin-top: 0.5rem;
+    }
+}
+
+.listHeader {
+    font-size: 1.125rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+}

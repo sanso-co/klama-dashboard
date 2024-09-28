@@ -1,0 +1,13 @@
+.nav {
+    display: none;
+
+    @media (min-width: 1024px) {
+        display: block;
+        min-width: 250px;
+        padding: 0 1rem;
+    }
+}
+
+.item {
+    margin-bottom: 0.5rem;
+}

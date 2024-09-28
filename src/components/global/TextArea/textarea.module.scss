@@ -1,0 +1,18 @@
+.container {
+    label {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    textarea {
+        font-family: inherit;
+        font-size: 0.875rem;
+        line-height: 1.4;
+        width: 100%;
+        padding: 0.5rem 1rem;
+        border: 1px solid #e8e8e8;
+        border-radius: 0.375rem;
+    }
+}

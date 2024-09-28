@@ -1,0 +1,1 @@
+export { CreateNewPermanent } from "./CreateNewPermanent";

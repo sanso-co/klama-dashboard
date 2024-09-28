@@ -1,0 +1,110 @@
+import { useCallback, useEffect } from "react";
+import { List, Periodic } from "@/interfaces/periodic";
+import { usePeriodicStore } from "@/store/periodicStore";
+import { apiService } from "@/services/api";
+
+export const useCreatePeriodic = () => {
+    const { addPeriodicCollection, setIsLoading, setError, isLoading, error } = usePeriodicStore();
+
+    const createPeriodic = useCallback(
+        async (data: Periodic) => {
+            setIsLoading(true);
+            setError(null);
+            try {
+                const newCollection = await apiService.createPeriodicCollection(data);
+                addPeriodicCollection(newCollection);
+                return newCollection;
+            } catch (err) {
+                setError(err instanceof Error ? err : new Error("An unknown error occurred"));
+                throw err;
+            } finally {
+                setIsLoading(false);
+            }
+        },
+        [addPeriodicCollection, setIsLoading, setError]
+    );
+
+    return { createPeriodic, isLoading, error };
+};
+
+export const useGetAllPeriodic = () => {
+    const { setPeriodicCollections, setIsLoading, setError, isLoading, error, collections } =
+        usePeriodicStore();
+
+    const getAllPeriodic = useCallback(async () => {
+        setIsLoading(true);
+        setError(null);
+        try {
+            const fetchedCollections = await apiService.getAllPeriodicCollections();
+            setPeriodicCollections(fetchedCollections);
+            return fetchedCollections;
+        } catch (err) {
+            setError(err instanceof Error ? err : new Error("An unknown error occurred"));
+            throw err;
+        } finally {
+            setIsLoading(false);
+        }
+    }, [setPeriodicCollections, setIsLoading, setError]);
+
+    useEffect(() => {
+        getAllPeriodic();
+    }, [getAllPeriodic]);
+
+    return { getAllPeriodic, isLoading, error, collections };
+};
+
+export const useGetPeriodicDetails = (id: string) => {
+    const { setPeriodicDetails, setIsLoading, setError, isLoading, error, details } =
+        usePeriodicStore();
+
+    const getPeriodicDetails = useCallback(async () => {
+        if (!id) return;
+        setIsLoading(true);
+        setError(null);
+        try {
+            const fetchedDetails = await apiService.getPeriodicCollectionDetails(id);
+            setPeriodicDetails(fetchedDetails);
+            return fetchedDetails;
+        } catch (err) {
+            setError(err instanceof Error ? err : new Error("An unknown error occurred"));
+            throw err;
+        } finally {
+            setIsLoading(false);
+        }
+    }, [id, setPeriodicDetails, setIsLoading, setError]);
+
+    useEffect(() => {
+        getPeriodicDetails();
+    }, [getPeriodicDetails]);
+
+    return { getPeriodicDetails, isLoading, error, details };
+};
+
+export const useAddListToPeriodicCollection = (id: string) => {
+    const { setPeriodicDetails, setIsLoading, setError, isLoading, error, details } =
+        usePeriodicStore();
+
+    const addListToPeriodic = useCallback(
+        async (data: List) => {
+            if (!id) return;
+            setIsLoading(true);
+            setError(null);
+            try {
+                const updatedCollection = await apiService.addListToPeriodicCollection({
+                    id,
+                    data,
+                });
+                setPeriodicDetails(updatedCollection);
+                return updatedCollection;
+            } catch (err) {
+                setError(err instanceof Error ? err : new Error("An unknown error occurred"));
+                throw err;
+            } finally {
+                setIsLoading(false);
+            }
+        },
+        [id, setPeriodicDetails, setIsLoading, setError]
+    );
+
+    return { addListToPeriodic, isLoading, error, details };
+};

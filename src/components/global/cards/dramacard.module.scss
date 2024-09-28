@@ -1,0 +1,29 @@
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 68px;
+
+    p {
+        height: 50%;
+    }
+}
+
+.remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+}

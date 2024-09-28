@@ -1,0 +1,28 @@
+.container {
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.keyword {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+}
+
+.id {
+    width: 100px;
+}
+
+.name {
+    flex: 1;
+}
+
+.action {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}

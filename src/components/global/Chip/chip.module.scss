@@ -1,0 +1,33 @@
+.container {
+    display: inline-flex;
+    gap: 0.5rem;
+    border-radius: 2rem;
+    background-color: var(--gray-10);
+    font-size: 0.75rem;
+    letter-spacing: 0.015rem;
+    text-transform: capitalize;
+    padding: 0.5rem 0.75rem;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dismiss {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 100%;
+    background-color: var(--gray-30);
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--gray-20);
+    }
+}

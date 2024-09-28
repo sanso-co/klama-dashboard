@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+:root {
+    --neutral-100: #010b12;
+    --neutral-90: #1a2329;
+    --neutral-80: #323a3f;
+    --neutral-70: #4b5257;
+    --neutral-60: #63696d;
+    --mobile-mx: 1rem;
+    --tablet-mx: 2.5rem;
+    --gray-100: #0e0f12;
+    --gray-90: #26272a;
+    --gray-80: #3e3f41;
+    --gray-70: #565759;
+    --gray-60: #6e6f71;
+    --gray-50: #868788;
+    --gray-40: #9f9fa0;
+    --gray-30: #b7b7b8;
+    --gray-20: #cfcfd0;
+    --gray-10: #e7e7e7;
+    --gray-5: #f3f3f3;
+    --gray-2: #f9f9f9;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    font-family: "Manrope", sans-serif;
+    color: var(--neutral-100);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    font-weight: 500;
+    color: var(--gray-90);
+    text-decoration: none;
+
+    &:visited {
+        color: var(--gray-90);
+    }
+
+    &:hover {
+        color: var(--gray-60);
+        text-decoration: underline;
+    }
+}
+
+ul {
+    list-style-type: none;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.grid-cols-8 {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-gap: 1rem;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.header-container {
+    width: 100%;
+    margin-bottom: 3rem;
+}

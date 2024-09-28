@@ -1,0 +1,45 @@
+.container {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border-bottom);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    p {
+        font-size: 0.75rem;
+    }
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 260px;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    img {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+    }
+
+    p {
+        font-size: 0.75rem;
+    }
+}
+
+.admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}

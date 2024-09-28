@@ -1,0 +1,23 @@
+.container {
+    width: 100%;
+    padding: 1rem 0;
+}
+
+.form {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    svg {
+        position: absolute;
+        left: 10px;
+    }
+}
+
+.input {
+    all: unset;
+    font-size: 18px;
+    width: 100%;
+    padding-left: 3rem;
+}
