@@ -1,4 +1,4 @@
-import { Show } from "./show";
+import { LeanShowType, Show } from "./show";
 
 export interface List {
     _id?: string;
@@ -11,6 +11,6 @@ export interface Permanent {
     name: string;
     description?: string;
     shows?: {
-        result: Show[];
+        result: LeanShowType[];
     };
 }

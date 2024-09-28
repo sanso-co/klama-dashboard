@@ -1,7 +1,6 @@
 import { Show } from "./show";
 
 export interface Keyword {
-    _id: string;
     id: number;
     name: string;
     original_name?: string;
