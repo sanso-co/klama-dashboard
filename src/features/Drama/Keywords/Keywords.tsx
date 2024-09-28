@@ -16,7 +16,7 @@ interface Props {
 export const Keywords = ({ showId }: Props) => {
     const [query, setQuery] = useState("");
     const [suggestions, setSuggestions] = useState<Keyword[]>([]);
-    const { keywords, refreshKeywords } = useGetKeywordsForShow(showId);
+    const { keywords } = useGetKeywordsForShow(showId);
     const [selectedKeywords, setSelectedKeywords] = useState<Keyword[]>([]);
 
     useEffect(() => {
@@ -29,7 +29,7 @@ export const Keywords = ({ showId }: Props) => {
         if (searchQuery.length > 0) {
             try {
                 const response = await axios.get(
-                    `http://localhost:3500/keyword/search?query=${searchQuery}`
+                    `${import.meta.env.VITE_API_URL}/keyword/search?query=${searchQuery}`
                 );
                 setSuggestions(response.data);
             } catch (error) {

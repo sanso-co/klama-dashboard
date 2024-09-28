@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import { useCreditStore } from "@/store/creditStore";
 import { apiService } from "@/services/api";
 import { Credit, ShowCredits } from "@/interfaces/credit";
-import { ShowKeywords } from "@/interfaces/keyword";
 
 export const useCreateCredit = () => {
     const [isLoading, setIsLoading] = useState(false);

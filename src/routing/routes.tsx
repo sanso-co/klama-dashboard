@@ -8,7 +8,6 @@ import PeriodicCollectionDetails from "../pages/PeriodicDetails";
 import PermanentCollection from "@/pages/PermanentCollection/PermanentCollection";
 import PermanentCollectionDetails from "../pages/PermanentDetails";
 import ShowDetails from "@/pages/ShowDetails";
-import RecommendationsDetails from "../pages/RecommendationsDetails";
 import ProviderCollection from "@/pages/ProviderCollection";
 import Credit from "@/pages/Credit";
 import TMDB from "@/pages/TMDB";
@@ -26,7 +25,6 @@ const router = createBrowserRouter([
             { path: "/periodic-collection/:id", element: <PeriodicCollectionDetails /> },
             { path: "/permanent-collection/:id", element: <PermanentCollectionDetails /> },
             { path: "/dramas/:id", element: <ShowDetails /> },
-            { path: "/recommendations/:id", element: <RecommendationsDetails /> },
             { path: "/keywords", element: <Keywords /> },
             { path: "/credit", element: <Credit /> },
             { path: "/shows", element: <Show /> },

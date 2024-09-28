@@ -10,7 +10,6 @@ import { Info } from "@/features/Drama/Info";
 import { Credits } from "@/features/Drama/Credit";
 import { Original } from "@/features/Drama/Original";
 import { Recommendations } from "@/features/Drama/Recommendations";
-import { Cast } from "@/features/Drama/Cast";
 import { DraggableCast } from "@/features/Drama/DraggableCast";
 
 const ShowDetails = () => {
@@ -19,7 +18,7 @@ const ShowDetails = () => {
 
     if (!show) return <div>Loading drama details...</div>;
     if (error) return <div>Failed to load drama detils</div>;
-
+    console.log(show);
     return (
         <div>
             <Helmet>
@@ -31,7 +30,6 @@ const ShowDetails = () => {
             <Genres id={Number(id)} genres={show?.genres} />
             <Keywords showId={Number(id)} />
             <Credits showId={Number(id)} />
-            {/* <Cast showId={Number(id)} /> */}
             <DraggableCast showId={Number(id)} />
             <Recommendations showId={Number(id)} />
         </div>

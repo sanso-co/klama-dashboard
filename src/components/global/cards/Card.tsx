@@ -22,8 +22,6 @@ interface StringProps {
 
 interface HeaderProps {
     title?: string;
-    label?: string;
-    onClick: () => void;
 }
 
 interface OverlayProps {
@@ -31,7 +29,7 @@ interface OverlayProps {
     onClick?: () => void;
 }
 
-const Header = ({ title, label, onClick }: HeaderProps) => {
+const Header = ({ title }: HeaderProps) => {
     return (
         <div className="flex justify-between">
             <Heading variant="h3">{title}</Heading>

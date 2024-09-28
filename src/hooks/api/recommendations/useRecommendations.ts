@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { apiService } from "@/services/api";
-import { RecommendationsResponse, RecommendationsShow } from "@/interfaces/recommendations";
+import { RecommendationsResponse } from "@/interfaces/recommendations";
 import { useRecommendationsStore } from "@/store/recommendationsStore";
 
 export const useAddShowToRecommendations = () => {

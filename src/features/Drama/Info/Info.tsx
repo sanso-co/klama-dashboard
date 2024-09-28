@@ -1,7 +1,6 @@
-import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-import { Drama } from "@/interfaces/show";
+import { ShowDetailsResponse } from "@/interfaces/show";
 
 import { Input } from "@/components/global/Input";
 import { TextArea } from "@/components/global/TextArea";
@@ -12,7 +11,7 @@ import { useUpdateShow } from "@/hooks/api/drama/useShow";
 
 interface Props {
     id: number;
-    drama: Drama;
+    drama: ShowDetailsResponse;
 }
 
 export const Info = ({ id, drama }: Props) => {

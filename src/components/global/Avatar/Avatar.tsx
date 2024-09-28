@@ -4,8 +4,8 @@ import styles from "./avatar.module.scss";
 
 interface Props {
     url: string;
-    disabled: boolean;
-    selected: boolean;
+    disabled?: boolean;
+    selected?: boolean;
 }
 
 export const Avatar = ({ url, disabled, selected }: Props) => {

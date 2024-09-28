@@ -17,9 +17,6 @@ const Show = () => {
 
     const { query, setQuery, suggestions } = useSearch();
 
-    const onSave = () => {
-        console.log("saved");
-    };
     return (
         <div className={styles.container}>
             <Helmet>

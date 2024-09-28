@@ -2,7 +2,6 @@ import { useCallback, useEffect } from "react";
 import { Permanent } from "@/interfaces/permanent";
 import { useProviderStore } from "@/store/providerStore";
 import { apiService } from "@/services/api";
-import { TMDBShow } from "@/interfaces/search";
 
 export const useCreateProvider = () => {
     const { addProviderCollection, setIsLoading, setError, isLoading, error } = useProviderStore();
@@ -83,35 +82,6 @@ export const useGetProviderDetails = (id: string) => {
     }, [getProviderDetails]);
 
     return { refetch: getProviderDetails, isLoading, error, details };
-};
-
-export const useAddShowToProviderCollection = (id: string) => {
-    const { setProviderDetails, setIsLoading, setError, isLoading, error, details } =
-        useProviderStore();
-
-    const addShowToProvider = useCallback(
-        async (show: TMDBShow) => {
-            if (!id) return;
-            setIsLoading(true);
-            setError(null);
-            try {
-                const updatedCollection = await apiService.addShowToProviderCollection({
-                    id,
-                    show,
-                });
-                setProviderDetails(updatedCollection);
-                return updatedCollection;
-            } catch (err) {
-                setError(err instanceof Error ? err : new Error("An unknown error occurred"));
-                throw err;
-            } finally {
-                setIsLoading(false);
-            }
-        },
-        [id, setProviderDetails, setIsLoading, setError]
-    );
-
-    return { addShowToProvider, isLoading, error, details };
 };
 
 export const useRemoveShowFromProviderCollection = (id: string) => {

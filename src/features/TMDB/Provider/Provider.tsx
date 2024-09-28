@@ -11,7 +11,7 @@ interface Props {
 
 const excludeProviders = [2100, 1796, 1968];
 
-export const AdminProvider = ({ showId }: Props) => {
+export const Provider = ({ showId }: Props) => {
     const { providers, isLoading, error } = useProviders(showId);
 
     const usData = providers?.results?.US?.flatrate || [];

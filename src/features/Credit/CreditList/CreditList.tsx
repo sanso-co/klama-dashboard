@@ -1,4 +1,4 @@
-import { FieldValues, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { useGetAllCredits, useUpdateCredit } from "@/hooks/api/credit/useCredit";
 
@@ -40,7 +40,6 @@ export const CreditList = () => {
                     <div key={credit.id} className={styles.item}>
                         <div className={styles.keyword}>
                             <div className={styles.id}>{credit.id}</div>
-                            {/* <div className={styles.name}>{credit.original_name}</div> */}
                             <TextInput
                                 name={`${credit.id}_original_name`}
                                 register={register}

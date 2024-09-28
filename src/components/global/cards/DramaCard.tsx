@@ -2,13 +2,13 @@ import { getCroppedImageUrl } from "../../../services/image-url";
 import { Card } from "./Card";
 import { Body } from "../Typography";
 import { ratio } from "../token";
-import { Drama } from "../../../interfaces/show";
 import { DismissIcon } from "@/assets/icons/DismissIcon";
 
 import styles from "./dramacard.module.scss";
+import { LeanShowType } from "@/interfaces/show";
 
 interface Props {
-    show: Drama;
+    show: LeanShowType;
     showRemoveButton?: boolean;
     overlayclick?: () => void;
     titleClick?: () => void;

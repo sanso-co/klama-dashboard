@@ -1,6 +1,3 @@
-import { Credit } from "./credit";
-import { Keyword } from "./keyword";
-
 export interface CustomShow {
     id: string;
     name: string;
@@ -21,8 +18,57 @@ export interface Show {
     genres: {
         id: number;
         name: string;
+        original_name: string;
     }[];
     overview: string;
+    first_air_date: string;
+    number_of_episodes: number;
+    homepage: string;
+    networks: {
+        id: number;
+        name: string;
+        logo_path: string;
+        origin_country: string;
+    }[];
+    production_companies: {
+        id: number;
+        name: string;
+        logo_path: string;
+        origin_country: string;
+    }[];
+    created_by: {
+        id: number;
+        name: string;
+        original_name: string;
+    }[];
+    original_story?: {
+        title: {
+            title: string;
+            korean_title: string;
+        };
+        author: {
+            name: string;
+            korean_name: string;
+        };
+    };
+}
+
+export interface ShowDetailsResponse {
+    _id?: string;
+    id: number;
+    name: string;
+    original_name: string;
+    poster_path: {
+        [key: string]: {
+            path: string;
+        };
+    };
+    genres: {
+        id: number;
+        name: string;
+    }[];
+    overview: string;
+    original_overview?: string;
     first_air_date: string;
     number_of_episodes: number;
     homepage: string;

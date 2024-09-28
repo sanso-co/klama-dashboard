@@ -5,7 +5,7 @@ import { useGetShowDetails } from "@/hooks/api/TMDB/useTMDB";
 import { useAddShow } from "@/hooks/api/drama/useShow";
 import { getCroppedImageUrl } from "@/services/image-url";
 
-import { AdminProvider } from "@/features/TMDB/Provider/AdminProvider";
+import { Provider } from "@/features/TMDB/Provider";
 import { Button } from "@/components/global/Button";
 import { ImageContainer } from "@/components/global/containers/ImageContainer";
 import { Show } from "@/interfaces/show";
@@ -68,7 +68,7 @@ const TMDB = () => {
                     <Button label="Add Show" variant="primary" onClick={handleDramaAdd} />
                 </div>
             </div>
-            <AdminProvider showId={data.id} />
+            <Provider showId={data.id} />
         </div>
     );
 };

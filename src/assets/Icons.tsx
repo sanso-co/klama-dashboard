@@ -44,7 +44,7 @@ export const File = ({ width, height, stroke, color }: Props) => {
     );
 };
 
-export const SearchIcon = ({ width, height, stroke, color, fill }: Props) => {
+export const SearchIcon = ({ width, height, stroke, color }: Props) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"

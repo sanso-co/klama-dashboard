@@ -1,4 +1,5 @@
 export interface Credit {
+    _id: string;
     id: number;
     name: string;
     original_name?: string;

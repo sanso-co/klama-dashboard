@@ -25,7 +25,7 @@ const reorder = (list: Cast[], startIndex: number, endIndex: number) => {
 };
 
 export const DraggableCast = ({ showId }: Props) => {
-    const { cast, refreshCasts } = useGetCastForShow(showId);
+    const { cast } = useGetCastForShow(showId);
 
     const [selectedCasts, setSelectedCasts] = useState<Cast[]>([]);
 

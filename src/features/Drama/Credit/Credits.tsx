@@ -14,7 +14,7 @@ interface Props {
 export const Credits = ({ showId }: Props) => {
     const [query, setQuery] = useState("");
     const [suggestions, setSuggestions] = useState<Credit[]>([]);
-    const { credits, refreshCredits } = useGetCreditForShow(showId);
+    const { credits } = useGetCreditForShow(showId);
     const [selectedCredits, setSelectedCredits] = useState<Credit[]>([]);
 
     useEffect(() => {
@@ -27,7 +27,7 @@ export const Credits = ({ showId }: Props) => {
         if (searchQuery.length > 0) {
             try {
                 const response = await axios.get(
-                    `http://localhost:3500/credit/search?query=${searchQuery}`
+                    `${import.meta.env.VITE_API_URL}/credit/search?query=${searchQuery}`
                 );
                 setSuggestions(response.data);
             } catch (error) {

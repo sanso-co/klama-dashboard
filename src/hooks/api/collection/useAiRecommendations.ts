@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { apiService } from "@/services/api";
-import { RecommendationsResponse } from "@/interfaces/recommendations";
 
 export const useGetAiRecommendations = () => {
     const [show, setShow] = useState();
