@@ -3,26 +3,85 @@
 
 .item {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    gap: 1rem;
     padding: 1rem 0;
+
+    @media (min-width: 740px) {
+        flex-direction: row;
+        align-items: center;
+    }
 }
 
-.keyword {
+.credit {
     display: flex;
     gap: 1rem;
     flex: 1;
+    font-size: 0.875rem;
 }
 
 .id {
-    width: 100px;
+    width: 60px;
+
+    @media (min-width: 740px) {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    @media (min-width: 740px) {
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+}
+
+.names {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+
+    // div:first-of-type {
+    //     width: 300px;
+    // }
+
+    input {
+        font-size: 0.875rem;
+        padding: 0.5rem;
+    }
+
+    @media (min-width: 740px) {
+        flex-direction: row;
+        align-items: center;
+    }
 }
 
 .name {
-    flex: 1;
+    @media (min-width: 740px) {
+        flex: 1;
+    }
+}
+
+.originalName {
 }
 
 .action {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+
+    @media (min-width: 740px) {
+        flex-direction: row;
+        align-items: center;
+        flex: 2;
+        margin-top: 0;
+    }
 }

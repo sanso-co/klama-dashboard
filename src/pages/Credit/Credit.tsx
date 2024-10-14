@@ -32,18 +32,28 @@ const Credit = () => {
             <Helmet>
                 <title>Credit</title>
             </Helmet>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <TextInput label="Id" name="id" register={register} />
-                <TextInput label="Name" name="name" register={register} />
-                <TextInput label="Original Name" name="original_name" register={register} />
-                <RadioInput
-                    label="Job"
-                    name="job"
-                    options={["Director", "Screenwriter", "Producer"]}
-                    register={register}
-                />
-                <Button label="Create" disabled={isLoading} />
-            </form>
+            <div className={styles.create}>
+                <h2 className={styles.listHeader}>Create New</h2>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className={styles.input}>
+                        <TextInput placeholder="Id" name="id" register={register} />
+                        <TextInput placeholder="Name" name="name" register={register} />
+                        <TextInput
+                            placeholder="Original Name"
+                            name="original_name"
+                            register={register}
+                        />
+                        <div className={styles.radio}>
+                            <RadioInput
+                                name="job"
+                                options={["Director", "Screenwriter", "Producer", "Original Story"]}
+                                register={register}
+                            />
+                        </div>
+                    </div>
+                    <Button label="Create" variant="primary" disabled={isLoading} />
+                </form>
+            </div>
             <CreditList />
         </div>
     );
