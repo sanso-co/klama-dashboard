@@ -33,6 +33,36 @@ export const useAddShowToRecommendations = () => {
     return { addShowToRecommendation, show, isLoading, error };
 };
 
+export const useUpdateRecommendations = () => {
+    const [show, setShow] = useState();
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<Error | null>(null);
+
+    const updateRecommendations = useCallback(
+        async (showId: number, shows: string[]) => {
+            if (!showId) return;
+            setIsLoading(true);
+            setError(null);
+            try {
+                const updatedRecommendation = await apiService.updateRecommendations({
+                    showId,
+                    shows,
+                });
+                setShow(updatedRecommendation);
+                return updatedRecommendation;
+            } catch (err) {
+                setError(err instanceof Error ? err : new Error("An unknown error occurred"));
+                throw err;
+            } finally {
+                setIsLoading(false);
+            }
+        },
+        [setIsLoading, setError]
+    );
+
+    return { updateRecommendations, show, isLoading, error };
+};
+
 export const useGetsRecommendationsDetails = (showId: number) => {
     const { setRecommendationDetails, setIsLoading, setError, isLoading, error, details } =
         useRecommendationsStore();

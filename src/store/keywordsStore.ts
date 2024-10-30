@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import { Keyword } from "@/interfaces/keyword";
+import { KeywordType } from "@/interfaces/keyword";
 
 interface CollectionProps {
-    keywords: Keyword[];
-    keywordDetails: Keyword | null;
-    setKeywords: (keywords: Keyword[]) => void;
-    setKeywordDetails: (details: Keyword | null) => void;
+    keywords: KeywordType[];
+    keywordDetails: KeywordType | null;
+    setKeywords: (keywords: KeywordType[]) => void;
+    setKeywordDetails: (details: KeywordType | null) => void;
     isLoading: boolean;
     setIsLoading: (loading: boolean) => void;
     error: Error | null;

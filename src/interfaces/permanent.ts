@@ -6,11 +6,11 @@ export interface List {
     shows: Show[];
 }
 
-export interface Permanent {
-    _id?: string;
+export interface PermanentType {
+    _id: string;
     name: string;
     description?: string;
-    shows?: {
+    shows: {
         result: LeanShowType[];
     };
 }

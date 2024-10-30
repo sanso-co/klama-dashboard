@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { debounce } from "lodash";
+import axios from "axios";
 
 import { LeanShowType } from "@/interfaces/show";
 

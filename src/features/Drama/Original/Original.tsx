@@ -5,13 +5,13 @@ import { useUpdateShow } from "@/hooks/api/drama/useShow";
 import { Input } from "@/components/global/Input";
 import { Button } from "@/components/global/Button";
 
-import { Show } from "@/interfaces/show";
+import { ShowType } from "@/interfaces/show";
 
 import styles from "./original.module.scss";
 
 interface Props {
     id: number;
-    show: Show;
+    show: ShowType;
 }
 
 export const Original = ({ id, show }: Props) => {

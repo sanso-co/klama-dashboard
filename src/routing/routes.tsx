@@ -4,14 +4,17 @@ import Home from "../pages/Home";
 import Keywords from "../pages/Keywords";
 import Show from "../pages/Show";
 import PeriodicCollection from "../pages/PeriodicCollection/PeriodicCollection";
-import PeriodicCollectionDetails from "../pages/PeriodicDetails";
+import PeriodicDetails from "../pages/PeriodicDetails";
+import PeriodicDetailsSub from "../pages/PeriodicDetailsSub";
 import PermanentCollection from "@/pages/PermanentCollection/PermanentCollection";
-import PermanentCollectionDetails from "../pages/PermanentDetails";
+import PermanentDetails from "../pages/PermanentDetails";
 import ShowDetails from "@/pages/ShowDetails";
-import ProviderCollection from "@/pages/ProviderCollection";
 import Credit from "@/pages/Credit";
-import TMDB from "@/pages/TMDB";
-import TMDBDetails from "@/pages/TMDB/TMDBDetails";
+import Provider from "@/pages/Provider";
+import AddShow from "@/pages/AddShow";
+import TMDB from "@/pages/AddShow/TMDB";
+import AddNew from "@/pages/AddShow/AddNew";
+import Marketing from "@/pages/Marketing";
 
 const router = createBrowserRouter([
     {
@@ -21,15 +24,21 @@ const router = createBrowserRouter([
             { path: "/", element: <Home /> },
             { path: "/periodic-collection", element: <PeriodicCollection /> },
             { path: "/permanent-collection", element: <PermanentCollection /> },
-            { path: "/provider-collection", element: <ProviderCollection /> },
-            { path: "/periodic-collection/:id", element: <PeriodicCollectionDetails /> },
-            { path: "/permanent-collection/:id", element: <PermanentCollectionDetails /> },
+            { path: "/periodic-collection/:id", element: <PeriodicDetails /> },
+            {
+                path: "/periodic-collection/:collectionId/sub/:listId",
+                element: <PeriodicDetailsSub />,
+            },
+            { path: "/permanent-collection/:id", element: <PermanentDetails /> },
             { path: "/dramas/:id", element: <ShowDetails /> },
             { path: "/keywords", element: <Keywords /> },
             { path: "/credit", element: <Credit /> },
+            { path: "/provider", element: <Provider /> },
             { path: "/shows", element: <Show /> },
-            { path: "/tmdb", element: <TMDB /> },
-            { path: "/tmdb/:id", element: <TMDBDetails /> },
+            { path: "/add", element: <AddShow /> },
+            { path: "/add/new", element: <AddNew /> },
+            { path: "/tmdb/:id", element: <TMDB /> },
+            { path: "/marketing", element: <Marketing /> },
         ],
     },
 ]);

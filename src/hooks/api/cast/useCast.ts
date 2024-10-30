@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { apiService } from "@/services/api";
-import { Cast } from "@/interfaces/cast";
+import { CastType } from "@/interfaces/cast";
 
 export const useGetCastForShow = (showId: number) => {
-    const [cast, setCast] = useState<Cast[] | null>(null);
+    const [cast, setCast] = useState<CastType[] | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
 
@@ -36,7 +36,7 @@ export const useAddCast = () => {
     const [error, setError] = useState<Error | null>(null);
 
     const addCastForShow = useCallback(
-        async (showId: number, mainCast: Cast[]) => {
+        async (showId: number, mainCast: CastType[]) => {
             if (!showId) return;
             setIsLoading(true);
             setError(null);
@@ -66,7 +66,7 @@ export const useAddAdditionalCasts = () => {
     const [error, setError] = useState<Error | null>(null);
 
     const addAddtionalCasts = useCallback(
-        async (showId: number, additionalCasts: Cast[]) => {
+        async (showId: number, additionalCasts: CastType[]) => {
             if (!showId) return;
             setIsLoading(true);
             setError(null);

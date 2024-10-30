@@ -1,1 +1,0 @@
-export { CreateNewCollection } from "./CreateNewCollection";

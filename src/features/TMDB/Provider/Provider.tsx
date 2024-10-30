@@ -1,7 +1,9 @@
-import { useProviders, useAddShowToProviderCollection } from "@/hooks/api/TMDB/useProviders";
+import { useProviders } from "@/hooks/api/TMDB/useProviders";
+import { useAddShowToProvider } from "@/hooks/api/provider/useProvider";
 
 import { Button } from "@/components/global/Button";
-import { ProviderInfo } from "@/interfaces/tmdb";
+
+import { TMDBProviderType } from "@/interfaces/tmdb";
 
 import styles from "./provider.module.scss";
 
@@ -17,14 +19,14 @@ export const Provider = ({ showId }: Props) => {
     const usData = providers?.results?.US?.flatrate || [];
 
     const filteredProviders = usData.filter(
-        (provider: ProviderInfo) => !excludeProviders.includes(provider.provider_id)
+        (provider: TMDBProviderType) => !excludeProviders.includes(provider.provider_id)
     );
 
-    const { addShowToProvider } = useAddShowToProviderCollection();
+    const { addShowToProvider } = useAddShowToProvider();
 
-    const handleProviderAdd = async (provider: ProviderInfo) => {
+    const handleProviderAdd = async (provider: TMDBProviderType) => {
         try {
-            await addShowToProvider(provider.provider_id, provider.provider_name, showId);
+            await addShowToProvider(provider.provider_id, showId);
             alert("successfully added");
         } catch (error) {
             console.error(error);
@@ -41,7 +43,7 @@ export const Provider = ({ showId }: Props) => {
                 <h3>Providers</h3>
             </div>
             <div className={styles.list}>
-                {filteredProviders.map((provider: ProviderInfo) => {
+                {filteredProviders.map((provider: TMDBProviderType) => {
                     const providerPath = provider.logo_path;
                     const providerName = provider.provider_name;
 

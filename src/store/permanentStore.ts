@@ -1,12 +1,12 @@
 import { create } from "zustand";
-import { Permanent } from "@/interfaces/permanent";
+import { PermanentType } from "@/interfaces/permanent";
 
 interface PermanentProps {
-    collections: Permanent[];
-    details: Permanent | null;
-    addPermanentCollection: (collection: Permanent) => void;
-    setPermanentCollections: (collections: Permanent[]) => void;
-    setPermanentDetails: (details: Permanent | null) => void;
+    collections: PermanentType[];
+    details: PermanentType | null;
+    addPermanentCollection: (collection: PermanentType) => void;
+    setPermanentCollections: (collections: PermanentType[]) => void;
+    setPermanentDetails: (details: PermanentType | null) => void;
     isLoading: boolean;
     setIsLoading: (loading: boolean) => void;
     error: Error | null;

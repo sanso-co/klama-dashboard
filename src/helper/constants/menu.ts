@@ -8,10 +8,6 @@ export const MENU = [
         url: "/permanent-collection",
     },
     {
-        name: "Provider Collection",
-        url: "/provider-collection",
-    },
-    {
         name: "Keywords",
         url: "/keywords",
     },
@@ -20,11 +16,30 @@ export const MENU = [
         url: "/credit",
     },
     {
+        name: "Provider",
+        url: "/provider",
+    },
+    {
         name: "Shows",
         url: "/shows",
     },
     {
-        name: "TMDB Show",
-        url: "/tmdb",
+        name: "Add Show",
+        url: "/add",
+    },
+    {
+        name: "Marketing",
+        url: "/marketing",
+    },
+];
+
+export const SORT = [
+    {
+        name: "Alphabetical",
+        value: "alphabetical",
+    },
+    {
+        name: "Newest",
+        value: "newest",
     },
 ];

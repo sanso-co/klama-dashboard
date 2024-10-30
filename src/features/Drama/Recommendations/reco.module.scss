@@ -35,7 +35,22 @@
 
 .cardsContainer {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 1rem;
     margin: 1.5rem 0;
+
+    @media (min-width: 740px) {
+        grid-template-columns: repeat(8, 1fr);
+    }
+}
+
+.suggestions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+    padding-top: 1rem;
+
+    @media (min-width: 740px) {
+        grid-template-columns: repeat(8, 1fr);
+    }
 }

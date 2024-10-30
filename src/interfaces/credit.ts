@@ -1,19 +1,12 @@
-export interface Credit {
-    id: number;
-    name: string;
-    original_name?: string;
-    job: string;
-}
-
-export interface CreditResponse {
+export interface CreditType {
     _id: string;
     id: number;
     name: string;
-    original_name?: string;
+    original_name: string;
     job: string;
 }
 
-export interface ShowCredits {
+export interface CreditsForShowType {
     id: string;
-    results: Credit[];
+    results: CreditType[];
 }

@@ -4,10 +4,11 @@ import { SearchIcon } from "../../../assets/Icons";
 import styles from "./search.module.scss";
 
 interface Props {
+    placeholder?: string;
     onSearch: (searchTerm: string) => void;
 }
 
-const Search = ({ onSearch }: Props) => {
+const Search = ({ placeholder, onSearch }: Props) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -26,7 +27,11 @@ const Search = ({ onSearch }: Props) => {
         <div className={styles.container}>
             <form className={styles.form} onSubmit={handleSearchSubmit}>
                 <SearchIcon width={20} height={20} color="#000" stroke={2} />
-                <input ref={inputRef} placeholder="Search Shows" className={styles.input} />
+                <input
+                    ref={inputRef}
+                    placeholder={placeholder || "Search Shows"}
+                    className={styles.input}
+                />
             </form>
         </div>
     );

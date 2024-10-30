@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { apiService } from "@/services/api";
-import { Show } from "@/interfaces/show";
+import { ShowType } from "@/interfaces/show";
 
 export const useUpdateShow = (id: number) => {
     const [show, setShow] = useState();
@@ -8,7 +8,7 @@ export const useUpdateShow = (id: number) => {
     const [error, setError] = useState<Error | null>(null);
 
     const updateShow = useCallback(
-        async (data: Partial<Show>) => {
+        async (data: Partial<ShowType>) => {
             if (!id) return;
             setIsLoading(true);
             setError(null);
@@ -31,7 +31,7 @@ export const useUpdateShow = (id: number) => {
 };
 
 export const useGetShowDetails = (id: number) => {
-    const [show, setShow] = useState<Show>();
+    const [show, setShow] = useState<ShowType>();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
 
@@ -42,7 +42,6 @@ export const useGetShowDetails = (id: number) => {
 
         try {
             const dramaDetails = await apiService.getShowDetails(id);
-
             setShow(dramaDetails);
             return dramaDetails;
         } catch (err) {
@@ -66,12 +65,41 @@ export const useAddShow = () => {
     const [error, setError] = useState<Error | null>(null);
 
     const addShow = useCallback(
-        async (show: Show) => {
+        async (show: Partial<ShowType>) => {
             if (!show) return;
             setIsLoading(true);
             setError(null);
             try {
                 const response = await apiService.addShow({
+                    show,
+                });
+                setData(response);
+                return response;
+            } catch (err) {
+                setError(err instanceof Error ? err : new Error("An unknown error occurred"));
+                throw err;
+            } finally {
+                setIsLoading(false);
+            }
+        },
+        [setIsLoading, setError]
+    );
+
+    return { addShow, isLoading, error, data };
+};
+
+export const useAddNewShow = () => {
+    const [data, setData] = useState();
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<Error | null>(null);
+
+    const addShow = useCallback(
+        async (show: ShowType) => {
+            if (!show) return;
+            setIsLoading(true);
+            setError(null);
+            try {
+                const response = await apiService.addNewShow({
                     show,
                 });
                 setData(response);

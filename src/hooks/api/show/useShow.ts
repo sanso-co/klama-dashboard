@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { apiService } from "@/services/api";
-import { ShowResponse } from "@/interfaces/show";
+import { ShowResponseType } from "@/interfaces/show";
 
-export const useGetAllShow = (page: number) => {
-    const [shows, setShows] = useState<ShowResponse>();
+export const useGetAllShow = (page: number, sort: string) => {
+    const [shows, setShows] = useState<ShowResponseType>();
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
 
     useEffect(() => {
         const fetchShows = async () => {
             try {
-                const fetchedShows = await apiService.getShow(page);
+                const fetchedShows = await apiService.getShow(page, sort);
                 setShows(fetchedShows);
                 return fetchedShows;
             } catch (error) {
@@ -21,7 +21,7 @@ export const useGetAllShow = (page: number) => {
         };
 
         fetchShows();
-    }, [page]);
+    }, [page, sort]);
 
     return { shows, isLoading, error };
 };

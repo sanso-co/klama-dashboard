@@ -1,19 +1,12 @@
-export interface Keyword {
-    id: number;
-    name: string;
-    original_name?: string;
-    rank: number;
-}
-
-export interface KeywordResponse {
+export interface KeywordType {
     _id: string;
     id: number;
     name: string;
-    original_name?: string;
+    original_name: string;
     rank: number;
 }
 
-export interface ShowKeywords {
+export interface KeywordsForShowType {
     id: string;
-    results: KeywordResponse[];
+    results: KeywordType[];
 }

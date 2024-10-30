@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { useCreditStore } from "@/store/creditStore";
 import { apiService } from "@/services/api";
-import { Credit, ShowCredits } from "@/interfaces/credit";
+import { CreditType, CreditsForShowType } from "@/interfaces/credit";
 
 export const useCreateCredit = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
 
     const createCredit = useCallback(
-        async (credit: Credit) => {
+        async (credit: Partial<CreditType>) => {
             setIsLoading(true);
             setError(null);
             try {
@@ -53,7 +53,7 @@ export const useGetAllCredits = () => {
 };
 
 export const useGetCreditForShow = (showId: number) => {
-    const [credits, setCredits] = useState<ShowCredits>();
+    const [credits, setCredits] = useState<CreditsForShowType>();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
 
@@ -112,7 +112,7 @@ export const useUpdateCredit = () => {
         useCreditStore();
 
     const updateCredit = useCallback(
-        async (data: Credit) => {
+        async (data: CreditType) => {
             if (!data) return;
             setIsLoading(true);
             setError(null);

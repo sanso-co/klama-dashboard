@@ -49,7 +49,7 @@ export interface TMDBShowDetails {
     }[];
 }
 
-export interface ProviderInfo {
+export interface TMDBProviderType {
     provider_name: string;
     provider_id: number;
     logo_path: string;
@@ -59,7 +59,7 @@ export interface ProviderInfo {
 export interface ProviderType {
     [key: string]: {
         link: string;
-        flatrate: ProviderInfo[];
+        flatrate: TMDBProviderType[];
     };
 }
 
@@ -68,7 +68,7 @@ export interface ProviderResponse {
     results: ProviderType;
 }
 
-export interface CastType {
+export interface TMDBCastType {
     id: number;
     known_for_department: string;
     name: string;

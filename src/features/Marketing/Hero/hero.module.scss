@@ -1,0 +1,87 @@
+.section {
+    border-bottom: 1px solid var(--gray-10);
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+}
+
+.sectionTitle {
+    margin-bottom: 1.5rem;
+
+    h2 {
+        font-size: 1rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.heroItem {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    @media (min-width: 1024px) {
+        flex-direction: row;
+        gap: 1rem;
+    }
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 0;
+
+    input {
+        width: 100%;
+        border-radius: 0.25rem;
+        border: 1px solid var(--gray-10);
+        padding: 0.75rem;
+    }
+
+    @media (min-width: 1024px) {
+        padding-top: 0;
+    }
+}
+
+.flex {
+    display: flex;
+    gap: 1rem;
+
+    div {
+        flex: 1;
+    }
+}
+
+.tagInputs {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex: 1;
+
+    input[type="color"] {
+        width: 50px;
+        height: 38px;
+        padding: 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+}
+
+.url {
+    flex: 1;
+}
+
+.action {
+    margin-top: 1rem;
+}
+
+.buttonContainer {
+    margin-top: 1rem;
+}

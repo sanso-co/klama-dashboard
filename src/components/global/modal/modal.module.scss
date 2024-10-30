@@ -44,16 +44,21 @@
     h1 {
         font-size: 1.125rem;
     }
+}
 
-    button {
-        background-color: transparent;
-        border: none;
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+    background-color: var(--gray-10);
 
-        .closeIcon {
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-        }
+    &:hover {
+        background-color: var(--gray-20);
+        cursor: pointer;
     }
 }
 

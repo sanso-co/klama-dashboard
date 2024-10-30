@@ -6,16 +6,16 @@ import {
     useAddShowToPermanentCollection,
     useRemoveShowFromPermanentCollection,
 } from "@/hooks/api/collection/usePermanentCollection.ts";
+import { isAxiosError } from "@/helper/axiosError";
 
 import { Header } from "@/components/global/Header/Header.tsx";
 import { AddShow } from "@/features/PermanentCollection/AddShow/AddShow.tsx";
 import { IconButton } from "@/components/global/IconButton";
 import { PlusIcon } from "@/assets/icons/PlusIcon";
-import Modal from "@/components/global/modal";
+import { Modal } from "@/components/global/modal";
+import { DramaCard } from "@/components/global/cards/DramaCard";
 
 import styles from "./permanentdetails.module.scss";
-import { DramaCard } from "@/components/global/cards/DramaCard";
-import { isAxiosError } from "@/helper/axiosError";
 
 const PermanentDetails = () => {
     const { id } = useParams<{ id: string }>();
@@ -64,7 +64,7 @@ const PermanentDetails = () => {
             </Header>
 
             <Modal
-                header="Add a new collection"
+                header="Add a show to the collection"
                 open={showModal}
                 size="lg"
                 handleClose={() => {
