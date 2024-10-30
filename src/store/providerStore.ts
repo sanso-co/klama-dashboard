@@ -1,12 +1,12 @@
 import { create } from "zustand";
-import { ProviderResponseType } from "@/interfaces/provider";
+import { ProviderType } from "@/interfaces/provider";
 
 interface ProviderProps {
-    collections: ProviderResponseType[];
-    details: ProviderResponseType | null;
-    addProviderCollection: (collection: ProviderResponseType) => void;
-    setProviderCollections: (collections: ProviderResponseType[]) => void;
-    setProviderDetails: (details: ProviderResponseType | null) => void;
+    collections: ProviderType[];
+    details: ProviderType | null;
+    addProviderCollection: (collection: ProviderType) => void;
+    setProviderCollections: (collections: ProviderType[]) => void;
+    setProviderDetails: (details: ProviderType | null) => void;
     isLoading: boolean;
     setIsLoading: (loading: boolean) => void;
     error: Error | null;

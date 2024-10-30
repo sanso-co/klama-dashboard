@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
 import { apiService } from "@/services/tmdbApi";
-import { CastType } from "@/interfaces/tmdb";
+import { TMDBCastType } from "@/interfaces/tmdb";
 
 export const useTMDBCast = (id: number) => {
-    const [cast, setCast] = useState<CastType[] | null>(null);
+    const [cast, setCast] = useState<TMDBCastType[] | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
 

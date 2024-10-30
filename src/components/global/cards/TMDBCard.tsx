@@ -16,7 +16,7 @@ interface Props {
 
 export const TMDBCard = ({ show, showRemoveButton, overlayclick, titleClick }: Props) => {
     return (
-        <Card col>
+        <Card>
             <Card.OverlayAction onClick={overlayclick}>
                 {showRemoveButton && (
                     <div className={styles.remove}>
