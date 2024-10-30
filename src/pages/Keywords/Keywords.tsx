@@ -3,19 +3,19 @@ import _ from "lodash";
 
 import { useCreateKeyword } from "@/hooks/api/keywords/useKeywords";
 
+import { Header } from "@/components/global/Header";
 import { KeywordsList } from "@/features/Keywords/KeywordsList";
 import { TextInput } from "@/components/global/TextInput";
 import { Button } from "@/components/global/Button";
 
 import styles from "./keywords.module.scss";
-import { Header } from "@/components/global/Header";
 
 const Keywords = () => {
     const { register, handleSubmit, reset } = useForm();
 
     const { createKeyword, isLoading } = useCreateKeyword();
 
-    const onSubmit = (data: FieldValues) => {
+    const handleCreate = (data: FieldValues) => {
         createKeyword({
             id: parseInt(data.id),
             name: data.name,
@@ -31,7 +31,7 @@ const Keywords = () => {
             <Header title="Keywords" description="Keywords that describe show" />
             <div className={styles.create}>
                 <h2 className={styles.listHeader}>Create New</h2>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(handleCreate)}>
                     <div className={styles.input}>
                         <TextInput placeholder="Id" name="id" register={register} />
                         <TextInput placeholder="Name" name="name" register={register} />

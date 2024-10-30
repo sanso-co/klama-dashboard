@@ -2,11 +2,13 @@ import { useForm } from "react-hook-form";
 
 import { useGetAllCredits, useUpdateCredit } from "@/hooks/api/credit/useCredit";
 
-import styles from "./creditlist.module.scss";
 import { RadioInput } from "@/components/global/RadioInput";
 import { Button } from "@/components/global/Button";
-import { Credit } from "@/interfaces/credit";
 import { TextInput } from "@/components/global/TextInput";
+
+import { CreditType } from "@/interfaces/credit";
+
+import styles from "./creditlist.module.scss";
 
 export const CreditList = () => {
     const { register, handleSubmit, getValues } = useForm();
@@ -14,12 +16,12 @@ export const CreditList = () => {
 
     const { updateCredit } = useUpdateCredit();
 
-    const onSubmit = async (credit: Credit) => {
+    const handleUpdate = async (credit: CreditType) => {
         const updatedOriginalName = getValues(`${credit.id}_original_name`);
         const updatedJob = getValues(`${credit.id}_job`);
 
         try {
-            const updatedData: Credit = {
+            const updatedData: CreditType = {
                 ...credit,
                 original_name: updatedOriginalName,
                 job: updatedJob,
@@ -66,7 +68,7 @@ export const CreditList = () => {
                                     />
                                     <Button
                                         label="Update"
-                                        onClick={handleSubmit(() => onSubmit(credit))}
+                                        onClick={handleSubmit(() => handleUpdate(credit))}
                                     />
                                 </div>
                             </div>

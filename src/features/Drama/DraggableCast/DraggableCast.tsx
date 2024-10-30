@@ -4,11 +4,12 @@ import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautif
 import { useGetCastForShow, useAddCast } from "@/hooks/api/cast/useCast";
 import { getProfileImage } from "@/services/image-url";
 
+import { Modal } from "@/components/global/modal";
 import { AddCast } from "./Components/AddCast";
-import Modal from "@/components/global/modal";
 import { Avatar } from "@/components/global/Avatar";
 import { Button } from "@/components/global/Button";
-import { Cast } from "@/interfaces/cast";
+
+import { CastType } from "@/interfaces/cast";
 
 import styles from "./draggable.module.scss";
 
@@ -17,7 +18,7 @@ interface Props {
 }
 
 // a little function to help us with reordering the result
-const reorder = (list: Cast[], startIndex: number, endIndex: number) => {
+const reorder = (list: CastType[], startIndex: number, endIndex: number) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
@@ -27,7 +28,7 @@ const reorder = (list: Cast[], startIndex: number, endIndex: number) => {
 export const DraggableCast = ({ showId }: Props) => {
     const { cast } = useGetCastForShow(showId);
 
-    const [selectedCasts, setSelectedCasts] = useState<Cast[]>([]);
+    const [selectedCasts, setSelectedCasts] = useState<CastType[]>([]);
 
     useEffect(() => {
         if (cast) {

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
 
 :root {
     --neutral-100: #010b12;
@@ -28,12 +28,22 @@
     padding: 0;
 }
 
+html {
+    font-family: "Manrope", sans-serif;
+}
+
 body {
     margin: 0;
-    font-family: "Manrope", sans-serif;
     color: var(--neutral-100);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
 }
 
 a {

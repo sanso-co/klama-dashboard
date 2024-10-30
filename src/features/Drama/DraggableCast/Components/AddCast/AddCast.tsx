@@ -1,25 +1,30 @@
-import { useTMDBCast } from "@/hooks/api/cast/useTMDBCast";
-import { Avatar } from "@/components/global/Avatar";
-import { getProfileImage } from "@/services/image-url";
+import { useState } from "react";
 
+import { getProfileImage } from "@/services/image-url";
+import { formatShowId } from "@/helper/showId";
+
+import { useTMDBCast } from "@/hooks/api/cast/useTMDBCast";
 import { useAddAdditionalCasts } from "@/hooks/api/cast/useCast";
 
-import styles from "./addcast.module.scss";
-import { useState } from "react";
-import { CastType } from "@/interfaces/tmdb";
-import { Cast } from "@/interfaces/cast";
+import { Avatar } from "@/components/global/Avatar";
 import { Button } from "@/components/global/Button";
+
+import { TMDBCastType } from "@/interfaces/tmdb";
+import { CastType } from "@/interfaces/cast";
+
+import styles from "./addcast.module.scss";
 
 interface Props {
     showId: number;
-    existingCasts: Cast[];
+    existingCasts: CastType[];
 }
 
 export const AddCast = ({ showId, existingCasts }: Props) => {
-    const { cast, isLoading, error } = useTMDBCast(showId);
-    const [additionalCast, setAdditionalCast] = useState<CastType[]>([]);
+    const formattedId = formatShowId(showId);
+    const { cast, isLoading, error } = useTMDBCast(formattedId);
+    const [additionalCast, setAdditionalCast] = useState<TMDBCastType[]>([]);
 
-    const onShowClick = (castMember: CastType) => {
+    const onShowClick = (castMember: TMDBCastType) => {
         if (isCastSelected(castMember.id)) {
             setAdditionalCast((prev) => prev.filter((existing) => existing.id !== castMember.id));
         } else if (!isCastInExistingCasts(castMember.id)) {
@@ -38,7 +43,7 @@ export const AddCast = ({ showId, existingCasts }: Props) => {
     const { addAddtionalCasts } = useAddAdditionalCasts();
 
     const hanldeAdditionalCastsSubmit = async () => {
-        const updatedMainCast: Cast[] = additionalCast?.map((cast) => {
+        const updatedMainCast: CastType[] = additionalCast?.map((cast) => {
             return {
                 id: cast.id,
                 name: cast.name,

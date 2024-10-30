@@ -19,7 +19,6 @@ export const Header = () => {
                 </div>
             </div>
             <div className={`${styles.menuContent} ${isOpen ? styles.open : ""}`}>
-                <div onClick={() => setIsOpen(!isOpen)}>close</div>
                 <nav>
                     <ul>
                         {MENU.map((item) => (

@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { debounce } from "lodash";
+import axios from "axios";
+
+import { useAddShowToCredit, useGetCreditForShow } from "@/hooks/api/credit/useCredit";
+
+import { Chip } from "@/components/global/Chip";
+
+import { CreditType } from "@/interfaces/credit";
 
 import styles from "./credit.module.scss";
-import { Chip } from "@/components/global/Chip";
-import { Credit, CreditResponse } from "@/interfaces/credit";
-import { useAddShowToCredit, useGetCreditForShow } from "@/hooks/api/credit/useCredit";
 
 interface Props {
     showId: number;
@@ -13,9 +16,10 @@ interface Props {
 
 export const Credits = ({ showId }: Props) => {
     const [query, setQuery] = useState("");
-    const [suggestions, setSuggestions] = useState<CreditResponse[]>([]);
+    const [suggestions, setSuggestions] = useState<CreditType[]>([]);
+    const [selectedCredits, setSelectedCredits] = useState<CreditType[]>([]);
+
     const { credits } = useGetCreditForShow(showId);
-    const [selectedCredits, setSelectedCredits] = useState<Credit[]>([]);
 
     useEffect(() => {
         if (credits?.results) {
@@ -45,7 +49,7 @@ export const Credits = ({ showId }: Props) => {
 
     const { addShowToCredit } = useAddShowToCredit();
 
-    const handleCreditClick = async (credit: CreditResponse) => {
+    const handleCreditClick = async (credit: CreditType) => {
         if (!selectedCredits.some((g) => g.id === credit.id)) {
             setSelectedCredits((prevCredit) => [...prevCredit, credit]);
         }
@@ -79,25 +83,27 @@ export const Credits = ({ showId }: Props) => {
                 className={styles.input}
             />
             {suggestions.length > 0 && (
-                <ul>
+                <ul className={styles.suggestedList}>
                     {suggestions.map((credit) => (
                         <li key={credit.id} onClick={() => handleCreditClick(credit)}>
-                            <h3>
+                            <p>
                                 {credit.id} {credit.name} ({credit.original_name})
-                            </h3>
+                            </p>
                         </li>
                     ))}
                 </ul>
             )}
-            <div className={styles.genre}>
-                {selectedCredits.map((credit) => (
-                    <Chip
-                        key={credit.id}
-                        label={`${credit.name} ${credit.original_name}`}
-                        onRemove={() => handleCreditRemove(credit.id)}
-                    />
-                ))}
-            </div>
+            {selectedCredits?.length > 0 && (
+                <div className={styles.genre}>
+                    {selectedCredits.map((credit) => (
+                        <Chip
+                            key={credit.id}
+                            label={`${credit.name} ${credit.original_name}`}
+                            onRemove={() => handleCreditRemove(credit.id)}
+                        />
+                    ))}
+                </div>
+            )}
         </section>
     );
 };

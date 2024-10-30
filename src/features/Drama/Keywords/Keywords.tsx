@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { debounce } from "lodash";
+import axios from "axios";
 
 import { useAddShowToKeyword, useGetKeywordsForShow } from "@/hooks/api/keywords/useKeywords";
 
-import { KeywordResponse } from "@/interfaces/keyword";
 import { Chip } from "@/components/global/Chip";
+
+import { KeywordType } from "@/interfaces/keyword";
 
 import styles from "./keywords.module.scss";
 
@@ -15,9 +16,10 @@ interface Props {
 
 export const Keywords = ({ showId }: Props) => {
     const [query, setQuery] = useState("");
-    const [suggestions, setSuggestions] = useState<KeywordResponse[]>([]);
+    const [suggestions, setSuggestions] = useState<KeywordType[]>([]);
+    const [selectedKeywords, setSelectedKeywords] = useState<KeywordType[]>([]);
+
     const { keywords } = useGetKeywordsForShow(showId);
-    const [selectedKeywords, setSelectedKeywords] = useState<KeywordResponse[]>([]);
 
     useEffect(() => {
         if (keywords?.results) {
@@ -48,13 +50,13 @@ export const Keywords = ({ showId }: Props) => {
 
     const { addShowToKeyword } = useAddShowToKeyword();
 
-    const handleKeywordClick = async (keyword: KeywordResponse) => {
+    const handleKeywordClick = async (keyword: KeywordType) => {
         if (!selectedKeywords.some((g) => g.id === keyword.id)) {
             setSelectedKeywords((prevKeywords) => [...prevKeywords, keyword]);
         }
 
         try {
-            await addShowToKeyword(keyword._id, showId);
+            await addShowToKeyword(keyword._id || "", showId);
 
             setSuggestions([]);
             setQuery("");
@@ -82,12 +84,12 @@ export const Keywords = ({ showId }: Props) => {
                 className={styles.input}
             />
             {suggestions.length > 0 && (
-                <ul>
+                <ul className={styles.suggestedList}>
                     {suggestions.map((keyword) => (
                         <li key={keyword.id} onClick={() => handleKeywordClick(keyword)}>
-                            <h3>
+                            <p>
                                 {keyword.id} {keyword.name} ({keyword.original_name})
-                            </h3>
+                            </p>
                         </li>
                     ))}
                 </ul>

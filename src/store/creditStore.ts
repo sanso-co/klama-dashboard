@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import { Credit } from "@/interfaces/credit";
+import { CreditType } from "@/interfaces/credit";
 
 interface CollectionProps {
-    credits: Credit[];
-    creditDetails: Credit | null;
-    setCredit: (credit: Credit[]) => void;
-    setCreditDetails: (details: Credit | null) => void;
+    credits: CreditType[];
+    creditDetails: CreditType | null;
+    setCredit: (credit: CreditType[]) => void;
+    setCreditDetails: (details: CreditType | null) => void;
     isLoading: boolean;
     setIsLoading: (loading: boolean) => void;
     error: Error | null;

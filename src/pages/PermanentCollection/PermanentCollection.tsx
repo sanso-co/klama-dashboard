@@ -3,8 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 
 import { useGetAllPermanent } from "@/hooks/api/collection/usePermanentCollection";
 
-import { CreateNewPermanent } from "@/features/PermanentCollection/CreateNewPermanent";
-import Modal from "@/components/global/modal";
+import { CreateNew } from "@/features/PermanentCollection/CreateNew";
+import { Modal } from "@/components/global/modal";
 import { IconButton } from "@/components/global/IconButton";
 import { Header } from "@/components/global/Header";
 import { PlusIcon } from "@/assets/icons/PlusIcon";
@@ -41,7 +41,7 @@ const PermanentCollection = () => {
                         setShowModal!(false);
                     }}
                 >
-                    <CreateNewPermanent onSuccess={(id) => onGroupSubmit(id)} />
+                    <CreateNew onSuccess={(id) => onGroupSubmit(id)} />
                 </Modal>
             </Header>
             <div className={styles.list}>

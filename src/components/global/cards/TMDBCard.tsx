@@ -1,5 +1,5 @@
 import { getCroppedImageUrl } from "../../../services/image-url";
-import { Card } from "./Card";
+import { Card } from "./Card/Card";
 import { Body } from "../Typography";
 import { ratio } from "../token";
 import { TMDBShowLean } from "@/interfaces/tmdb";

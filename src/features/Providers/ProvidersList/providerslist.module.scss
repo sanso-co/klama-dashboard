@@ -1,0 +1,66 @@
+.container {
+    width: 100%;
+    max-width: 900px;
+}
+
+.item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    font-size: 0.875rem;
+
+    @media (min-width: 740px) {
+        align-items: center;
+    }
+}
+
+.id {
+    width: 40px;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    width: 100%;
+
+    @media (min-width: 740px) {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.names {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    // div:first-of-type {
+    //     width: 300px;
+    // }
+}
+
+.action {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    > div {
+        flex: 1;
+    }
+
+    input {
+        font-size: 0.875rem;
+    }
+
+    button {
+        flex: 1;
+        height: 36px;
+    }
+}

@@ -3,10 +3,10 @@ import { useNavigate, Link } from "react-router-dom";
 
 import { useGetAllPeriodic } from "@/hooks/api/collection/usePeriodicCollection";
 
-import CreateNewPeriodic from "../../features/PeriodicCollection/CreateNewPeriodic";
-import Modal from "@/components/global/modal";
-import { IconButton } from "@/components/global/IconButton";
+import { CreateNew } from "@/features/PeriodicCollection/CreateNew";
+import { Modal } from "@/components/global/modal";
 import { Header } from "@/components/global/Header";
+import { IconButton } from "@/components/global/IconButton";
 import { PlusIcon } from "@/assets/icons/PlusIcon";
 
 import styles from "./periodiccollection.module.scss";
@@ -36,13 +36,13 @@ const PeriodicCollection = () => {
                     <PlusIcon />
                 </IconButton>
                 <Modal
-                    header="Create Collection"
+                    header="Create a Periodic Collection"
                     open={showModal}
                     handleClose={() => {
                         setShowModal!(false);
                     }}
                 >
-                    <CreateNewPeriodic onSuccess={(id) => onGroupSubmit(id)} />
+                    <CreateNew onSuccess={(id) => onGroupSubmit(id)} />
                 </Modal>
             </Header>
             <div className={styles.list}>

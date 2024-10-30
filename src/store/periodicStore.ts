@@ -1,12 +1,12 @@
 import { create } from "zustand";
-import { Periodic } from "@/interfaces/periodic";
+import { PeriodicType } from "@/interfaces/periodic";
 
 interface PeriodicProps {
-    collections: Periodic[];
-    details: Periodic | null;
-    addPeriodicCollection: (collection: Periodic) => void;
-    setPeriodicCollections: (collections: Periodic[]) => void;
-    setPeriodicDetails: (details: Periodic | null) => void;
+    collections: PeriodicType[];
+    details: PeriodicType | null;
+    addPeriodicCollection: (collection: PeriodicType) => void;
+    setPeriodicCollections: (collections: PeriodicType[]) => void;
+    setPeriodicDetails: (details: PeriodicType | null) => void;
     isLoading: boolean;
     setIsLoading: (loading: boolean) => void;
     error: Error | null;

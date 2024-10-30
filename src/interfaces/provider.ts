@@ -1,10 +1,10 @@
-import { Show } from "./show";
+import { ShowType } from "./show";
 
-export interface Provider {
-    _id?: string;
+export interface ProviderType {
+    _id: string;
+    id: number;
     name: string;
-    description?: string;
-    shows?: {
-        result: Show[];
-    };
+    logo_path: string;
+    display_priority: number;
+    shows: ShowType[];
 }

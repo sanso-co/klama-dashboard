@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import {
     useGetPeriodicDetails,
@@ -7,12 +7,13 @@ import {
 } from "@/hooks/api/collection/usePeriodicCollection.ts";
 import { formatDate } from "@/helper/date";
 
-import { CreateNewCollection } from "../../features/PeriodicCollection/CreateNewCollection";
-import Modal from "@/components/global/modal";
+import { CreateList } from "@/features/PeriodicCollection/CreateList";
+import { Modal } from "@/components/global/modal";
 import { Header } from "@/components/global/Header";
 import { IconButton } from "@/components/global/IconButton";
 import { PlusIcon } from "@/assets/icons/PlusIcon";
-import { List } from "@/interfaces/periodic.ts";
+
+import { CollectionListType } from "@/interfaces/periodic";
 
 import styles from "./periodicdetails.module.scss";
 
@@ -23,7 +24,7 @@ const PeriodicDetails = () => {
     const { details, isLoading, error } = useGetPeriodicDetails(id as string);
     const { addListToPeriodic } = useAddListToPeriodicCollection(id as string);
 
-    const onNewListSubmit = async (data: List) => {
+    const onNewListSubmit = async (data: CollectionListType) => {
         try {
             await addListToPeriodic(data);
             setShowModal!(false);
@@ -34,7 +35,7 @@ const PeriodicDetails = () => {
 
     if (isLoading) return <div>Loading ...</div>;
     if (error) return <div>Failed to load</div>;
-    if (!details || details.lists?.length === 0) return null;
+    if (!details) return null;
 
     return (
         <div className="w-full">
@@ -50,16 +51,19 @@ const PeriodicDetails = () => {
                         setShowModal!(false);
                     }}
                 >
-                    <CreateNewCollection onSubmit={onNewListSubmit} />
+                    <CreateList onSubmit={onNewListSubmit} />
                 </Modal>
             </Header>
             <div className={styles.list}>
                 <h2 className={styles.listHeader}>Past List</h2>
                 <ul>
                     {details.lists?.map((list) => (
-                        <li key={list.releaseDate} className={styles.listItem}>
-                            {formatDate(list.releaseDate)}
-                        </li>
+                        <Link
+                            to={`/periodic-collection/${id}/sub/${list._id}`}
+                            key={list.releaseDate}
+                        >
+                            <li className={styles.listItem}>{formatDate(list.releaseDate)}</li>
+                        </Link>
                     ))}
                 </ul>
             </div>

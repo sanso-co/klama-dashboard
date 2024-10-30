@@ -1,29 +1,28 @@
-import { Helmet } from "react-helmet";
 import { FieldValues, useForm } from "react-hook-form";
+import { Helmet } from "react-helmet";
 import _ from "lodash";
 
 import { useCreateCredit } from "@/hooks/api/credit/useCredit";
 
+import { CreditList } from "@/features/Credit/CreditList";
 import { TextInput } from "@/components/global/TextInput";
+import { RadioInput } from "@/components/global/RadioInput";
 import { Button } from "@/components/global/Button";
 
 import styles from "./credit.module.scss";
-import { RadioInput } from "@/components/global/RadioInput";
-import { CreditList } from "@/features/Credit/CreditList";
 
 const Credit = () => {
     const { register, handleSubmit, reset } = useForm();
 
     const { createCredit, isLoading } = useCreateCredit();
 
-    const onSubmit = (data: FieldValues) => {
+    const handleCreate = (data: FieldValues) => {
         createCredit({
             id: parseInt(data.id),
             name: data.name,
             original_name: data.original_name,
             job: data.job,
         });
-
         reset();
     };
 
@@ -34,7 +33,7 @@ const Credit = () => {
             </Helmet>
             <div className={styles.create}>
                 <h2 className={styles.listHeader}>Create New</h2>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(handleCreate)}>
                     <div className={styles.input}>
                         <TextInput placeholder="Id" name="id" register={register} />
                         <TextInput placeholder="Name" name="name" register={register} />

@@ -1,15 +1,15 @@
-import { Show } from "./show";
+import { LeanShowType } from "./show";
 
-export interface List {
-    _id?: string;
+export interface CollectionListType {
+    _id: string;
     releaseDate: string;
-    shows: Show[];
+    shows: LeanShowType[];
 }
 
-export interface Periodic {
-    _id?: string;
+export interface PeriodicType {
+    _id: string;
     name: string;
     description?: string;
     frequency: string;
-    lists?: List[];
+    lists: CollectionListType[];
 }

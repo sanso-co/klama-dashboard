@@ -4,7 +4,8 @@ import { useGetAllKeywords, useUpdateKeyword } from "@/hooks/api/keywords/useKey
 
 import { TextInput } from "@/components/global/TextInput";
 import { Button } from "@/components/global/Button";
-import { Keyword } from "@/interfaces/keyword";
+
+import { KeywordType } from "@/interfaces/keyword";
 
 import styles from "./keywordslist.module.scss";
 
@@ -13,11 +14,11 @@ export const KeywordsList = () => {
     const { updateKeyword } = useUpdateKeyword();
     const { register, handleSubmit, getValues } = useForm();
 
-    const onSubmit = (keyword: Keyword) => {
+    const onUpdateSubmit = (keyword: KeywordType) => {
         return async () => {
             const inputValue = getValues(keyword.id.toString());
             try {
-                const updatedData: Keyword = {
+                const updatedData: KeywordType = {
                     ...keyword,
                     rank: inputValue,
                 };
@@ -52,7 +53,7 @@ export const KeywordsList = () => {
                                     />
                                     <Button
                                         label="Update"
-                                        onClick={handleSubmit(onSubmit(keyword))}
+                                        onClick={handleSubmit(onUpdateSubmit(keyword))}
                                     />
                                 </div>
                             </div>

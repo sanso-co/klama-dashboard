@@ -1,6 +1,5 @@
-import { getCroppedImageUrl } from "../../../services/image-url";
-import { Card } from "./Card";
-import { Body } from "../Typography";
+import { getCroppedImageUrl, getKrImageUrl } from "@/services/image-url";
+import { Card } from "./Card/Card";
 import { ratio } from "../token";
 import { DismissIcon } from "@/assets/icons/DismissIcon";
 
@@ -15,8 +14,18 @@ interface Props {
 }
 
 export const DramaCard = ({ show, showRemoveButton, overlayclick, titleClick }: Props) => {
+    const getImageUrl = () => {
+        if (show.poster_path?.US?.path ?? "" !== "") {
+            return getCroppedImageUrl(show.poster_path.US.path);
+        } else if (show.poster_path?.KR?.path ?? "" !== "") {
+            return getKrImageUrl(show.poster_path.KR.path);
+        } else {
+            return "";
+        }
+    };
+
     return (
-        <Card col>
+        <Card>
             <Card.OverlayAction onClick={overlayclick}>
                 {showRemoveButton && (
                     <div className={styles.remove}>
@@ -24,15 +33,9 @@ export const DramaCard = ({ show, showRemoveButton, overlayclick, titleClick }: 
                     </div>
                 )}
             </Card.OverlayAction>
-            <Card.Image
-                src={getCroppedImageUrl(show.poster_path.US.path)}
-                ratio={ratio.portrait_23}
-                rounded="0.75rem"
-            />
+            <Card.Image src={getImageUrl()} ratio={ratio.portrait_23} rounded="0.75rem" />
             <div className={styles.details} onClick={titleClick}>
-                <Body variant="small" strong>
-                    {show.original_name}
-                </Body>
+                <p>{show.original_name}</p>
             </div>
         </Card>
     );

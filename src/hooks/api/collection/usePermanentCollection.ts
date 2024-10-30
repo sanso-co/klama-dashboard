@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from "react";
-import { Permanent } from "@/interfaces/permanent";
+import { PermanentType } from "@/interfaces/permanent";
 import { usePermanentStore } from "@/store/permanentStore";
 import { apiService } from "@/services/api";
 
@@ -8,7 +8,7 @@ export const useCreatePermanent = () => {
         usePermanentStore();
 
     const createPermanent = useCallback(
-        async (data: Permanent) => {
+        async (data: Partial<PermanentType>) => {
             setIsLoading(true);
             setError(null);
             try {
@@ -54,17 +54,17 @@ export const useGetAllPermanent = () => {
     return { getAllPermanent, isLoading, error, collections };
 };
 
-export const useGetPermanentDetails = (id: string) => {
+export const useGetPermanentDetails = (collectionId: string) => {
     const { setPermanentDetails, setIsLoading, setError, isLoading, error, details } =
         usePermanentStore();
 
     const getPermanentDetails = useCallback(async () => {
-        if (!id) return;
+        if (!collectionId) return;
         setIsLoading(true);
         setError(null);
         try {
             const fetchedDetails = await apiService.getPermanentCollectionDetails({
-                id,
+                collectionId,
                 page: 1,
                 limit: 40,
             });
@@ -76,7 +76,7 @@ export const useGetPermanentDetails = (id: string) => {
         } finally {
             setIsLoading(false);
         }
-    }, [id, setPermanentDetails, setIsLoading, setError]);
+    }, [collectionId, setPermanentDetails, setIsLoading, setError]);
 
     useEffect(() => {
         getPermanentDetails();

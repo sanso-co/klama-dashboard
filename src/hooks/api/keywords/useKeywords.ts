@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { useKeywordsStore } from "@/store/keywordsStore";
 import { apiService } from "@/services/api";
-import { Keyword, ShowKeywords } from "@/interfaces/keyword";
+import { KeywordType, KeywordsForShowType } from "@/interfaces/keyword";
 
 export const useCreateKeyword = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
 
     const createKeyword = useCallback(
-        async (keyword: Keyword) => {
+        async (keyword: Partial<KeywordType>) => {
             setIsLoading(true);
             setError(null);
             try {
@@ -57,7 +57,7 @@ export const useUpdateKeyword = () => {
         useKeywordsStore();
 
     const updateKeyword = useCallback(
-        async (data: Keyword) => {
+        async (data: KeywordType) => {
             if (!data) return;
             setIsLoading(true);
             setError(null);
@@ -108,7 +108,7 @@ export const useAddShowToKeyword = () => {
 };
 
 export const useGetKeywordsForShow = (showId: number) => {
-    const [keywords, setKeywords] = useState<ShowKeywords>();
+    const [keywords, setKeywords] = useState<KeywordsForShowType>();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
 
@@ -117,7 +117,6 @@ export const useGetKeywordsForShow = (showId: number) => {
         setError(null);
         try {
             const fetchedKeywords = await apiService.getKeywordsForShow(showId);
-            console.log("use", fetchedKeywords);
             setKeywords(fetchedKeywords);
             return fetchedKeywords;
         } catch (err) {

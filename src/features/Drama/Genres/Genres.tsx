@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { debounce } from "lodash";
+import axios from "axios";
 
 import { useUpdateShow } from "@/hooks/api/drama/useShow";
 
-import { Genre } from "@/interfaces/genre";
 import { Button } from "@/components/global/Button";
+import { Chip } from "@/components/global/Chip";
+
+import { GenreType } from "@/interfaces/genre";
 
 import styles from "./genres.module.scss";
-import { Chip } from "@/components/global/Chip";
 
 interface Props {
     id: number;
-    genres: Genre[];
+    genres: GenreType[];
 }
 
 export const Genres = ({ id, genres }: Props) => {
     const [query, setQuery] = useState("");
-    const [suggestions, setSuggestions] = useState<Genre[]>([]);
-    const [selectedGenres, setSelectedGenres] = useState<Genre[]>(genres || []);
+    const [suggestions, setSuggestions] = useState<GenreType[]>([]);
+    const [selectedGenres, setSelectedGenres] = useState<GenreType[]>(genres || []);
 
     const debouncedSearch = debounce(async (searchQuery) => {
         if (searchQuery.length > 0) {
@@ -40,7 +41,7 @@ export const Genres = ({ id, genres }: Props) => {
         return () => debouncedSearch.cancel();
     }, [query]);
 
-    const handleGenreClick = (genre: Genre) => {
+    const handleGenreClick = (genre: GenreType) => {
         if (!selectedGenres.some((g) => g.id === genre.id)) {
             setSelectedGenres((prevGenres) => [...prevGenres, genre]);
         }
@@ -78,12 +79,12 @@ export const Genres = ({ id, genres }: Props) => {
                 className={styles.input}
             />
             {suggestions.length > 0 && (
-                <ul>
+                <ul className={styles.suggestedList}>
                     {suggestions.map((genre) => (
                         <li key={genre.id} onClick={() => handleGenreClick(genre)}>
-                            <h3>
+                            <p>
                                 {genre.id} {genre.name} ({genre.original_name})
-                            </h3>
+                            </p>
                         </li>
                     ))}
                 </ul>

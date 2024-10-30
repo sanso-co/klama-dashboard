@@ -1,0 +1,23 @@
+.added {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-gap: 1rem;
+    border-radius: 0.75rem;
+    background-color: var(--gray-2);
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.suggestions {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-gap: 1rem;
+}
+
+.search {
+    margin: 1rem 0;
+}
+
+.cardContainer {
+    cursor: pointer;
+}

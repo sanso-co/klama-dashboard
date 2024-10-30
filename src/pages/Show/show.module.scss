@@ -2,17 +2,72 @@
     padding-bottom: 5rem;
 }
 
+.noScroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.subHeader {
+    input {
+        width: 100%;
+        border: 1px solid var(--gray-20);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        margin-top: 0.5rem;
+    }
+}
+
+.subTop {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sort {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.suggestedList {
+    padding: 1rem 0;
+}
+
+.suggestedItem {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--gray-5);
+    }
+}
+
+.sortList {
+    li {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding-bottom: 2rem;
+
+        &:last-child {
+            padding-bottom: 0.5rem;
+        }
+    }
+}
+
 .listHeader {
     font-size: 1.125rem;
     font-weight: 600;
     text-transform: capitalize;
-    margin-bottom: 1rem;
 }
 
 .showList {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1rem;
+    margin-top: 1rem;
 
     @media (min-width: 640px) {
         grid-template-columns: repeat(6, 1fr);

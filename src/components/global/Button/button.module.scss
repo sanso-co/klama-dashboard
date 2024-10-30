@@ -32,4 +32,43 @@
         color: #fff;
         padding: 0.75rem;
     }
+
+    &[data-variant="secondary"] {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: -0.15px;
+        border: 1px solid var(--gray-10);
+        background-color: transparent;
+        padding: 0.75rem;
+        white-space: nowrap;
+
+        &:hover {
+            border: 1px solid var(--gray-2);
+            background-color: var(--gray-2);
+        }
+    }
+
+    &[data-variant="tertiary"] {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: -0.15px;
+        background-color: var(--gray-2);
+        padding: 0.35rem 0.5rem;
+        white-space: nowrap;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &[data-width="full"] {
+        width: 100%;
+    }
 }
