@@ -1,10 +1,4 @@
-import { LeanShowType, Show } from "./show";
-
-export interface List {
-    _id?: string;
-    releaseDate: string;
-    shows: Show[];
-}
+import { LeanShowType } from "./show";
 
 export interface PermanentType {
     _id: string;
