@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useKeywordsStore } from "@/store/keywordsStore";
 import { apiService } from "@/services/api";
-import { KeywordType, KeywordsForShowType } from "@/interfaces/keyword";
+import { KeywordType } from "@/interfaces/keyword";
 
 export const useCreateKeyword = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -77,59 +77,4 @@ export const useUpdateKeyword = () => {
     );
 
     return { updateKeyword, isLoading, error, keywordDetails };
-};
-
-export const useAddShowToKeyword = () => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState<Error | null>(null);
-
-    const addShowToKeyword = useCallback(
-        async (id: string, showId: number) => {
-            if (!id) return;
-            setIsLoading(true);
-            setError(null);
-            try {
-                const updatedCollection = await apiService.addShowToKeyword({
-                    id,
-                    showId,
-                });
-                return updatedCollection;
-            } catch (err) {
-                setError(err instanceof Error ? err : new Error("An unknown error occurred"));
-                throw err;
-            } finally {
-                setIsLoading(false);
-            }
-        },
-        [setIsLoading, setError]
-    );
-
-    return { addShowToKeyword, isLoading, error };
-};
-
-export const useGetKeywordsForShow = (showId: number) => {
-    const [keywords, setKeywords] = useState<KeywordsForShowType>();
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState<Error | null>(null);
-
-    const getKeywordsForShow = useCallback(async () => {
-        setIsLoading(true);
-        setError(null);
-        try {
-            const fetchedKeywords = await apiService.getKeywordsForShow(showId);
-            setKeywords(fetchedKeywords);
-            return fetchedKeywords;
-        } catch (err) {
-            setError(err instanceof Error ? err : new Error("An unknown error occurred"));
-            throw err;
-        } finally {
-            setIsLoading(false);
-        }
-    }, [setKeywords, setIsLoading, setError]);
-
-    useEffect(() => {
-        getKeywordsForShow();
-    }, [getKeywordsForShow]);
-
-    return { keywords, refreshKeywords: getKeywordsForShow, isLoading, error };
 };
