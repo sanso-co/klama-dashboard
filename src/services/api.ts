@@ -378,6 +378,16 @@ class ApiService {
     }
 
     // recommendations
+    async getRecommendationDetails(showId: number) {
+        try {
+            const response = await this.api.get(
+                `recommendations/details/${showId}`
+            );
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching permanent collection details", error);
+        }
+    }
 
     async addShowToRecommendation({
         showId,
@@ -421,23 +431,17 @@ class ApiService {
         }
     }
 
-    async getRecommendationDetails(showId: number) {
+    async getSimilarRecommendations(showId: number) {
         try {
             const response = await this.api.get(
-                `recommendations/details/${showId}`
+                `recommendations/similar/${showId}`
             );
             return response.data;
         } catch (error) {
-            console.error("Error fetching permanent collection details", error);
-        }
-    }
-
-    async getAllShowsForRecommendations() {
-        try {
-            const response = await this.api.get("recommendations");
-            return response.data;
-        } catch (error) {
-            console.error("Error fetching shows for recommendations", error);
+            console.error(
+                "Error fetching similar recommendations details",
+                error
+            );
         }
     }
 
