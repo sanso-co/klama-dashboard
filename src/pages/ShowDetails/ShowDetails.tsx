@@ -13,6 +13,7 @@ import { Provider } from "@/features/Drama/Provider";
 import { Credits } from "@/features/Drama/Credit";
 import { DraggableCast } from "@/features/Drama/DraggableCast";
 import { Recommendations } from "@/features/Drama/Recommendations";
+import { Similar } from "@/features/Drama/Similar";
 
 const ShowDetails = () => {
     const { id } = useParams();
@@ -39,6 +40,7 @@ const ShowDetails = () => {
             <Credits showId={Number(id)} />
             <DraggableCast showId={Number(id)} />
             <Recommendations showId={Number(id)} />
+            <Similar showId={Number(id)} />
         </div>
     );
 };

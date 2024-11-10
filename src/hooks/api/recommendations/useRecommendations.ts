@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import { apiService } from "@/services/api";
-import { RecommendationsResponse } from "@/interfaces/recommendations";
 import { useRecommendationsStore } from "@/store/recommendationsStore";
 
 export const useAddShowToRecommendations = () => {
@@ -88,31 +87,4 @@ export const useGetsRecommendationsDetails = (showId: number) => {
     }, [getRecommendationDetails]);
 
     return { refetch: getRecommendationDetails, isLoading, error, details };
-};
-
-export const useGetAllShows = () => {
-    const [shows, setShows] = useState<RecommendationsResponse[]>();
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState<Error | null>(null);
-
-    const getAllShows = useCallback(async () => {
-        setIsLoading(true);
-        setError(null);
-        try {
-            const fetchedShows = await apiService.getAllShowsForRecommendations();
-            setShows(fetchedShows);
-            return fetchedShows;
-        } catch (err) {
-            setError(err instanceof Error ? err : new Error("An unknown error occurred"));
-            throw err;
-        } finally {
-            setIsLoading(false);
-        }
-    }, [setIsLoading, setError]);
-
-    useEffect(() => {
-        getAllShows();
-    }, [getAllShows]);
-
-    return { getAllShows, isLoading, error, shows };
 };

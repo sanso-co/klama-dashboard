@@ -10,6 +10,7 @@ import styles from "./add.module.scss";
 
 const AddNew = () => {
     const defaultValues = {
+        id: "",
         name: "",
         original_name: "",
         overview: "",
@@ -29,17 +30,16 @@ const AddNew = () => {
     const { addShow } = useAddNewShow();
 
     const onSubmit = async (data: any) => {
-        const generateTemporaryId = (date: string): number => {
-            const numericDate = date.replace(/-/g, "");
-            return Number(`99${numericDate}`);
+        const generateTemporaryId = (id: string, season: string) => {
+            return Number(`99${season}${id}`);
         };
 
         const show = {
             ...data,
+            id: generateTemporaryId(data.id, data.season_number),
             season_number: Number(data.season_number),
             number_of_episodes: Number(data.number_of_episodes),
             related_seasons: data.related_seasons.split(",").map(Number).filter(Boolean),
-            id: generateTemporaryId(data.first_air_date),
         };
 
         try {
@@ -55,6 +55,7 @@ const AddNew = () => {
         <div>
             <FormProvider {...methods}>
                 <form className={styles.form} onSubmit={methods.handleSubmit(onSubmit)}>
+                    <Input name="id" label="ID" />
                     <div className={styles.flex}>
                         <Input name="original_name" label="Original Name" />
                         <Input name="name" label="Name" />
