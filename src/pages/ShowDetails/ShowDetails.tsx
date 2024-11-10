@@ -8,6 +8,7 @@ import { Info } from "@/features/Drama/Info";
 import { Original } from "@/features/Drama/Original";
 import { Genres } from "@/features/Drama/Genres";
 import { Keywords } from "@/features/Drama/Keywords";
+import { Tone } from "@/features/Drama/Tone";
 import { Provider } from "@/features/Drama/Provider";
 import { Credits } from "@/features/Drama/Credit";
 import { DraggableCast } from "@/features/Drama/DraggableCast";
@@ -25,11 +26,15 @@ const ShowDetails = () => {
             <Helmet>
                 <title>{show.original_name}</title>
             </Helmet>
-            <Header title={show.original_name || ""} description={show.id.toString()} />
+            <Header
+                title={show.original_name || ""}
+                description={show.id.toString()}
+            />
             <Info id={Number(id)} show={show} />
             <Original id={Number(id)} show={show} />
             <Genres id={Number(id)} genres={show?.genres} />
-            <Keywords showId={Number(id)} />
+            <Keywords showId={Number(id)} keywords={show?.keywords} />
+            <Tone showId={Number(id)} tones={show?.tones} />
             <Provider showId={Number(id)} />
             <Credits showId={Number(id)} />
             <DraggableCast showId={Number(id)} />

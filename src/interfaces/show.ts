@@ -1,4 +1,6 @@
 import { GenreType } from "./genre";
+import { KeywordType } from "./keyword";
+import { ToneType } from "./tone";
 
 export interface MinimalShowType {
     _id: string;
@@ -34,6 +36,8 @@ export interface ShowType {
         };
     };
     genres: GenreType[];
+    keywords: KeywordType[];
+    tones: ToneType[];
     overview: string;
     original_overview?: string;
     first_air_date: string;

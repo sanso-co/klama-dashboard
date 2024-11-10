@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "../components/layout";
 import Home from "../pages/Home";
 import Keywords from "../pages/Keywords";
+import Tone from "../pages/Tone";
 import Show from "../pages/Show";
 import PeriodicCollection from "../pages/PeriodicCollection/PeriodicCollection";
 import PeriodicDetails from "../pages/PeriodicDetails";
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
             { path: "/permanent-collection/:id", element: <PermanentDetails /> },
             { path: "/dramas/:id", element: <ShowDetails /> },
             { path: "/keywords", element: <Keywords /> },
+            { path: "/tone", element: <Tone /> },
             { path: "/credit", element: <Credit /> },
             { path: "/provider", element: <Provider /> },
             { path: "/shows", element: <Show /> },

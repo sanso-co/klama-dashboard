@@ -7,25 +7,25 @@ import { useUpdateShow } from "@/hooks/api/drama/useShow";
 import { Chip } from "@/components/global/Chip";
 import { Button } from "@/components/global/Button";
 
-import { KeywordType } from "@/interfaces/keyword";
+import { ToneType } from "@/interfaces/tone";
 
-import styles from "./keywords.module.scss";
+import styles from "./tone.module.scss";
 
 interface Props {
     showId: number;
-    keywords: KeywordType[];
+    tones: ToneType[];
 }
 
-export const Keywords = ({ showId, keywords }: Props) => {
+export const Tone = ({ showId, tones }: Props) => {
     const [query, setQuery] = useState("");
-    const [suggestions, setSuggestions] = useState<KeywordType[]>([]);
-    const [selectedKeywords, setSelectedKeywords] = useState<KeywordType[]>(keywords || []);
+    const [suggestions, setSuggestions] = useState<ToneType[]>([]);
+    const [selectedTones, setSelectedTones] = useState<ToneType[]>(tones || []);
 
     const debouncedSearch = debounce(async (searchQuery) => {
         if (searchQuery.length > 0) {
             try {
                 const response = await axios.get(
-                    `${import.meta.env.VITE_API_URL}/keyword/search?query=${searchQuery}`
+                    `${import.meta.env.VITE_API_URL}/tone/search?query=${searchQuery}`
                 );
                 setSuggestions(response.data);
             } catch (error) {
@@ -41,9 +41,9 @@ export const Keywords = ({ showId, keywords }: Props) => {
         return () => debouncedSearch.cancel();
     }, [query]);
 
-    const handleKeywordClick = async (keyword: KeywordType) => {
-        if (!selectedKeywords.some((g) => g.id === keyword.id)) {
-            setSelectedKeywords((prevKeywords) => [...prevKeywords, keyword]);
+    const handleToneClick = async (tone: ToneType) => {
+        if (!selectedTones.some((g) => g.id === tone.id)) {
+            setSelectedTones((prevTones) => [...prevTones, tone]);
         }
 
         setSuggestions([]);
@@ -51,14 +51,14 @@ export const Keywords = ({ showId, keywords }: Props) => {
     };
 
     const handleKeywordRemove = (keywordId: number) => {
-        setSelectedKeywords((prevKeywords) => prevKeywords.filter((k) => k.id !== keywordId));
+        setSelectedTones((prevTones) => prevTones.filter((k) => k.id !== keywordId));
     };
 
     const { updateShow } = useUpdateShow(showId);
 
     const handleSave = async () => {
         try {
-            await updateShow({ keywords: selectedKeywords });
+            await updateShow({ tones: selectedTones });
             alert("succesfully saved");
         } catch (error) {
             console.error(error);
@@ -68,20 +68,20 @@ export const Keywords = ({ showId, keywords }: Props) => {
     return (
         <section className={styles.section}>
             <div className={styles.sectionTitle}>
-                <h2>Keywords</h2>
+                <h2>Tone</h2>
             </div>
             <input
                 id="search"
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search keywords"
+                placeholder="Search tones"
                 className={styles.input}
             />
             {suggestions.length > 0 && (
                 <ul className={styles.suggestedList}>
                     {suggestions.map((keyword) => (
-                        <li key={keyword.id} onClick={() => handleKeywordClick(keyword)}>
+                        <li key={keyword.id} onClick={() => handleToneClick(keyword)}>
                             <p>
                                 {keyword.id} {keyword.name} ({keyword.original_name})
                             </p>
@@ -90,15 +90,15 @@ export const Keywords = ({ showId, keywords }: Props) => {
                 </ul>
             )}
             <div className={styles.genre}>
-                {selectedKeywords.map((keyword) => (
+                {selectedTones.map((tone) => (
                     <Chip
-                        key={keyword.id}
-                        label={`${keyword.name} ${keyword.original_name}`}
-                        onRemove={() => handleKeywordRemove(keyword.id)}
+                        key={tone.id}
+                        label={`${tone.name} ${tone.original_name}`}
+                        onRemove={() => handleKeywordRemove(tone.id)}
                     />
                 ))}
             </div>
-            <Button label="Save Keywords" variant="primary" onClick={handleSave} />
+            <Button label="Save Tone" variant="primary" onClick={handleSave} />
         </section>
     );
 };
