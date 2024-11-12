@@ -112,6 +112,27 @@ class ApiService {
         }
     }
 
+    async removeShowFromPeriodicList({
+        collectionId,
+        listId,
+        showId,
+    }: {
+        collectionId: string;
+        listId: string;
+        showId: string;
+    }) {
+        try {
+            const response = await this.api.patch(
+                `periodic-collection/${collectionId}/remove/${listId}`,
+                { showId }
+            );
+            return response.data;
+        } catch (error) {
+            console.error("Error removing a show to periodic collection", error);
+            throw error;
+        }
+    }
+
     // PERMANENT COLLECTION
     async createPermanentCollection(data: Partial<PermanentType>) {
         try {

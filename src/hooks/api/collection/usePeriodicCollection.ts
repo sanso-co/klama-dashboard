@@ -170,3 +170,33 @@ export const useAddShowToPeriodicList = (collectionId: string, listId: string) =
 
     return { addShowToPeriodicList, isLoading, error, details };
 };
+
+export const useRemoveShowFromPeriodicList = (collectionId: string, listId: string) => {
+    const [details, setDetails] = useState();
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<Error | null>(null);
+
+    const removeShowFromPeriodicList = useCallback(
+        async (showId: string) => {
+            setIsLoading(true);
+            setError(null);
+            try {
+                const updatedCollection = await apiService.removeShowFromPeriodicList({
+                    collectionId,
+                    listId,
+                    showId,
+                });
+                setDetails(updatedCollection);
+                return updatedCollection;
+            } catch (err) {
+                setError(err instanceof Error ? err : new Error("An unknown error occurred"));
+                throw err;
+            } finally {
+                setIsLoading(false);
+            }
+        },
+        [collectionId, listId]
+    );
+
+    return { removeShowFromPeriodicList, isLoading, error, details };
+};

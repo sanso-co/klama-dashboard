@@ -17,7 +17,7 @@ import TMDB from "@/pages/AddShow/TMDB";
 import AddNew from "@/pages/AddShow/AddNew";
 import Marketing from "@/pages/Marketing";
 import Auth from "@/pages/Auth";
-import AdminRoute from "./adminRoute";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
     {
