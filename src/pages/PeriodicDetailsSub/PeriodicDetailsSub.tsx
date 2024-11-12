@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import {
     useGetPeriodicSubDetails,
     useAddShowToPeriodicList,
+    useRemoveShowFromPeriodicList,
 } from "@/hooks/api/collection/usePeriodicCollection.ts";
 
 import { formatMonth } from "@/helper/date";
@@ -30,6 +31,10 @@ const PeriodicDetailsSub = () => {
     const updatedMonth = formatMonth(list?.releaseDate);
 
     const { addShowToPeriodicList } = useAddShowToPeriodicList(collectionId || "", listId || "");
+    const { removeShowFromPeriodicList } = useRemoveShowFromPeriodicList(
+        collectionId || "",
+        listId || ""
+    );
 
     const onShowSubmit = async (showId: string) => {
         try {
@@ -45,6 +50,15 @@ const PeriodicDetailsSub = () => {
                 alert("An unknown error occurred");
             }
             console.error("front error", error);
+        }
+    };
+
+    const onRemove = async (showId: string) => {
+        try {
+            await removeShowFromPeriodicList(showId);
+            await refetch();
+        } catch (error) {
+            console.error(error);
         }
     };
 
@@ -73,7 +87,12 @@ const PeriodicDetailsSub = () => {
                 <h2 className={styles.listHeader}>Shows</h2>
                 <div className={styles.showList}>
                     {list?.shows.map((show) => (
-                        <DramaCard key={show.id} show={show} showRemoveButton />
+                        <DramaCard
+                            key={show.id}
+                            show={show}
+                            showRemoveButton
+                            overlayclick={() => onRemove(show._id)}
+                        />
                     ))}
                 </div>
                 <div>pagination</div>
