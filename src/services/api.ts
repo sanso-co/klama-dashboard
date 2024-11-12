@@ -8,6 +8,8 @@ import { PermanentType } from "@/interfaces/permanent";
 import { ProviderType } from "@/interfaces/provider";
 import { ShowType } from "@/interfaces/show";
 import axios, { AxiosInstance } from "axios";
+import { LoginType } from "@/interfaces/auth";
+import { useAuthStore } from "@/store/authStore";
 
 class ApiService {
     private api: AxiosInstance;
@@ -18,6 +20,21 @@ class ApiService {
         this.api = axios.create({
             baseURL: LOCALURL,
         });
+
+        // attach token
+        this.api.interceptors.request.use(
+            (config) => {
+                const token = useAuthStore.getState().user?.token;
+
+                if (token) {
+                    config.headers.Authorization = `Bearer ${token}`;
+                }
+                return config;
+            },
+            (error) => {
+                return Promise.reject(error);
+            }
+        );
     }
 
     // PERIODIC COLLECITON
@@ -41,27 +58,16 @@ class ApiService {
 
     async getPeriodicCollectionDetails(id: string) {
         try {
-            const response = await this.api.get(
-                `periodic-collection/${id}/all`
-            );
+            const response = await this.api.get(`periodic-collection/${id}/all`);
             return response.data;
         } catch (error) {
             console.error("Error fetching periodic collection details", error);
         }
     }
 
-    async addListToPeriodicCollection({
-        id,
-        data,
-    }: {
-        id: string;
-        data: CollectionListType;
-    }) {
+    async addListToPeriodicCollection({ id, data }: { id: string; data: CollectionListType }) {
         try {
-            const response = await this.api.patch(
-                `periodic-collection/${id}`,
-                data
-            );
+            const response = await this.api.patch(`periodic-collection/${id}`, data);
             return response.data;
         } catch (error) {
             console.error("Error fetching periodic collection details", error);
@@ -140,18 +146,9 @@ class ApiService {
         }
     }
 
-    async addShowToPermanentCollection({
-        id,
-        showObjId,
-    }: {
-        id: string;
-        showObjId: string;
-    }) {
+    async addShowToPermanentCollection({ id, showObjId }: { id: string; showObjId: string }) {
         try {
-            const response = await this.api.patch(
-                `permanent-collection/add/${id}`,
-                { showObjId }
-            );
+            const response = await this.api.patch(`permanent-collection/add/${id}`, { showObjId });
             return response.data;
         } catch (error) {
             console.error("Error adding a show to permanent collection", error);
@@ -159,18 +156,9 @@ class ApiService {
         }
     }
 
-    async removeShowFromPermanentCollection({
-        id,
-        showId,
-    }: {
-        id: number;
-        showId: number;
-    }) {
+    async removeShowFromPermanentCollection({ id, showId }: { id: number; showId: number }) {
         try {
-            const response = await this.api.patch(
-                `permanent-collection/remove/${id}`,
-                { showId }
-            );
+            const response = await this.api.patch(`permanent-collection/remove/${id}`, { showId });
             return response.data;
         } catch (error) {
             console.error("Error adding a show to permanent collection", error);
@@ -219,10 +207,7 @@ class ApiService {
 
     async updateProvider(data: ProviderType) {
         try {
-            const response = await this.api.patch(
-                `provider/modify/${data.id}`,
-                data
-            );
+            const response = await this.api.patch(`provider/modify/${data.id}`, data);
             return response.data;
         } catch (error) {
             console.error("Error updating keyword", error);
@@ -250,10 +235,7 @@ class ApiService {
 
     async updateKeyword(data: KeywordType) {
         try {
-            const response = await this.api.patch(
-                `keyword/modify/${data.id}`,
-                data
-            );
+            const response = await this.api.patch(`keyword/modify/${data.id}`, data);
             return response.data;
         } catch (error) {
             console.error("Error updating keyword", error);
@@ -289,13 +271,7 @@ class ApiService {
         }
     }
 
-    async addCastForShow({
-        showId,
-        mainCast,
-    }: {
-        showId: number;
-        mainCast: CastType[];
-    }) {
+    async addCastForShow({ showId, mainCast }: { showId: number; mainCast: CastType[] }) {
         try {
             const response = await this.api.patch(`cast/add/${showId}`, {
                 mainCast,
@@ -367,10 +343,7 @@ class ApiService {
 
     async updateCredit(data: CreditType) {
         try {
-            const response = await this.api.patch(
-                `credit/modify/${data.id}`,
-                data
-            );
+            const response = await this.api.patch(`credit/modify/${data.id}`, data);
             return response.data;
         } catch (error) {
             console.error("Error updating credit", error);
@@ -380,29 +353,18 @@ class ApiService {
     // recommendations
     async getRecommendationDetails(showId: number) {
         try {
-            const response = await this.api.get(
-                `recommendations/details/${showId}`
-            );
+            const response = await this.api.get(`recommendations/details/${showId}`);
             return response.data;
         } catch (error) {
             console.error("Error fetching permanent collection details", error);
         }
     }
 
-    async addShowToRecommendation({
-        showId,
-        recoShowId,
-    }: {
-        showId: number;
-        recoShowId: number;
-    }) {
+    async addShowToRecommendation({ showId, recoShowId }: { showId: number; recoShowId: number }) {
         try {
-            const response = await this.api.patch(
-                `recommendations/add/${showId}`,
-                {
-                    recoShowId,
-                }
-            );
+            const response = await this.api.patch(`recommendations/add/${showId}`, {
+                recoShowId,
+            });
             return response.data;
         } catch (error) {
             console.error("Error adding a show to recommendations", error);
@@ -410,20 +372,11 @@ class ApiService {
         }
     }
 
-    async updateRecommendations({
-        showId,
-        shows,
-    }: {
-        showId: number;
-        shows: string[];
-    }) {
+    async updateRecommendations({ showId, shows }: { showId: number; shows: string[] }) {
         try {
-            const response = await this.api.patch(
-                `recommendations/reorder/${showId}`,
-                {
-                    shows,
-                }
-            );
+            const response = await this.api.patch(`recommendations/reorder/${showId}`, {
+                shows,
+            });
             return response.data;
         } catch (error) {
             console.error("Error adding a show to recommendations", error);
@@ -433,15 +386,10 @@ class ApiService {
 
     async getSimilarRecommendations(showId: number) {
         try {
-            const response = await this.api.get(
-                `recommendations/similar/${showId}`
-            );
+            const response = await this.api.get(`recommendations/similar/${showId}`);
             return response.data;
         } catch (error) {
-            console.error(
-                "Error fetching similar recommendations details",
-                error
-            );
+            console.error("Error fetching similar recommendations details", error);
         }
     }
 
@@ -458,9 +406,7 @@ class ApiService {
 
     async getShow(page: number, sort: string) {
         try {
-            const response = await this.api.get(
-                `show?page=${page}&sort=${sort}`
-            );
+            const response = await this.api.get(`show?page=${page}&sort=${sort}`);
             return response.data;
         } catch (error) {
             console.error("Error fetching shows", error);
@@ -521,6 +467,17 @@ class ApiService {
             return response.data;
         } catch (error) {
             console.error("Error fetching heroes", error);
+        }
+    }
+
+    // ADMIN
+    async login({ email, password }: LoginType) {
+        try {
+            const response = await this.api.post("auth/login", { email, password });
+            return response.data;
+        } catch (error) {
+            console.error("Error loggin in", error);
+            throw error;
         }
     }
 }

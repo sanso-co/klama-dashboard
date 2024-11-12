@@ -16,11 +16,21 @@ import AddShow from "@/pages/AddShow";
 import TMDB from "@/pages/AddShow/TMDB";
 import AddNew from "@/pages/AddShow/AddNew";
 import Marketing from "@/pages/Marketing";
+import Auth from "@/pages/Auth";
+import AdminRoute from "./adminRoute";
 
 const router = createBrowserRouter([
     {
+        path: "/login",
+        element: <Auth />,
+    },
+    {
         path: "/",
-        element: <Layout />,
+        element: (
+            <AdminRoute>
+                <Layout />
+            </AdminRoute>
+        ),
         children: [
             { path: "/", element: <Home /> },
             { path: "/periodic-collection", element: <PeriodicCollection /> },
