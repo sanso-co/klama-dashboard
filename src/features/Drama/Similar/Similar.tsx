@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const Similar = ({ showId }: Props) => {
-    const { similar, refetch } = useGetSimilarRecommendations(showId);
+    const { similar } = useGetSimilarRecommendations(showId);
 
     return (
         <section className={styles.section}>
