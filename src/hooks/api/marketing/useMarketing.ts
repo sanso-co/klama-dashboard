@@ -26,6 +26,54 @@ export const useCreateHero = () => {
     return { createHero, isLoading, error };
 };
 
+export const useRemoveHero = () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<Error | null>(null);
+
+    const removeHero = useCallback(
+        async (id: string) => {
+            setIsLoading(true);
+            setError(null);
+            try {
+                const response = await apiService.removeHero(id);
+                return response;
+            } catch (err) {
+                setError(err instanceof Error ? err : new Error("An unknown error occurred"));
+                throw err;
+            } finally {
+                setIsLoading(false);
+            }
+        },
+        [setIsLoading, setError]
+    );
+
+    return { removeHero, isLoading, error };
+};
+
+export const useUpdateHero = () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<Error | null>(null);
+
+    const updateHero = useCallback(
+        async (id: string, data: HeroType) => {
+            setIsLoading(true);
+            setError(null);
+            try {
+                const response = await apiService.updateHero(id, data);
+                return response;
+            } catch (err) {
+                setError(err instanceof Error ? err : new Error("An unknown error occurred"));
+                throw err;
+            } finally {
+                setIsLoading(false);
+            }
+        },
+        [setIsLoading, setError]
+    );
+
+    return { updateHero, isLoading, error };
+};
+
 export const useGetAllHero = () => {
     const [heroes, setHeroes] = useState<HeroType[]>();
     const [isLoading, setIsLoading] = useState(false);

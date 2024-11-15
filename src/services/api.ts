@@ -21,6 +21,19 @@ class ApiService {
             baseURL: LOCALURL,
         });
 
+        // validate token
+        this.api.interceptors.response.use(
+            (response) => response,
+            (error) => {
+                if (error.response?.status === 401) {
+                    // Clear user data and redirect to login
+                    useAuthStore.getState().logout();
+                    window.location.href = "/login";
+                }
+                return Promise.reject(error);
+            }
+        );
+
         // attach token
         this.api.interceptors.request.use(
             (config) => {
@@ -476,6 +489,24 @@ class ApiService {
     async createHero(data: HeroType) {
         try {
             const response = await this.api.post(`hero`, data);
+            return response.data;
+        } catch (error) {
+            console.error("Error creating hero", error);
+        }
+    }
+
+    async removeHero(id: string) {
+        try {
+            const response = await this.api.delete(`hero/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error("Error creating hero", error);
+        }
+    }
+
+    async updateHero(id: string, data: HeroType) {
+        try {
+            const response = await this.api.patch(`hero/${id}`, data);
             return response.data;
         } catch (error) {
             console.error("Error creating hero", error);
