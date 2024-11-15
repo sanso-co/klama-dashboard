@@ -1,4 +1,5 @@
 export interface HeroType {
+    _id?: string;
     order: number;
     title: string;
     tag?: {

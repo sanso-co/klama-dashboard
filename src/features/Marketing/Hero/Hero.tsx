@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { useCreateHero, useGetAllHero } from "@/hooks/api/marketing/useMarketing";
+import {
+    useCreateHero,
+    useGetAllHero,
+    useRemoveHero,
+    useUpdateHero,
+} from "@/hooks/api/marketing/useMarketing";
 
 import { ImageUpload } from "@/components/global/ImageUpload";
 import { Button } from "@/components/global/Button";
@@ -11,6 +16,7 @@ import styles from "./hero.module.scss";
 
 export const Hero = () => {
     const { heroes } = useGetAllHero();
+
     const [heroItems, setHeroItems] = useState<HeroType[]>([
         {
             img: null,
@@ -35,6 +41,7 @@ export const Hero = () => {
                 },
                 url: hero.url,
                 order: hero.order,
+                _id: hero._id,
             }));
             setHeroItems(existingHeroes);
         }
@@ -78,22 +85,43 @@ export const Hero = () => {
         ]);
     };
 
-    const removeItem = (order: number) => {
-        setHeroItems((prevItems) => {
-            const newItems = prevItems.filter((item) => item.order !== order);
-            return newItems.map((item, index) => ({ ...item, order: index + 1 }));
-        });
-    };
-
     const { createHero } = useCreateHero();
 
-    const handleSubmit = (item: HeroType) => {
+    const handleSave = async (item: HeroType) => {
         try {
-            createHero(item);
+            await createHero(item);
             alert("Successfully Created");
         } catch (error) {
             console.error("Error adding hero item:", error);
             alert("Error adding hero item");
+        }
+    };
+
+    const { removeHero } = useRemoveHero();
+
+    const removeItem = async (heroItem: HeroType) => {
+        try {
+            setHeroItems((prevItems) => {
+                const newItems = prevItems.filter((item) => item.order !== heroItem.order);
+                return newItems.map((item, index) => ({ ...item, order: index + 1 }));
+            });
+            await removeHero(heroItem._id || "");
+            alert("Hero item removed succesfully");
+        } catch (error) {
+            console.error("Error removing hero item:", error);
+            alert("Error removing hero item");
+        }
+    };
+
+    const { updateHero } = useUpdateHero();
+
+    const handleUpdate = async (item: HeroType) => {
+        try {
+            await updateHero(item._id || "", item);
+            alert("Successfully Updated");
+        } catch (error) {
+            console.error("Error updating hero item:", error);
+            alert("Error updating hero item");
         }
     };
 
@@ -155,14 +183,14 @@ export const Hero = () => {
                                 type="button"
                                 label="Remove"
                                 variant="tertiary"
-                                onClick={() => removeItem(item.order)}
+                                onClick={() => removeItem(item)}
                             />
                         )}
                         <Button
                             type="button"
-                            label="Save"
+                            label={item._id ? "Update" : "Save"}
                             variant="primary"
-                            onClick={() => handleSubmit(item)}
+                            onClick={() => (item._id ? handleUpdate(item) : handleSave(item))}
                         />
                     </div>
                 </div>
