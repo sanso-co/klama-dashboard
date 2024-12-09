@@ -18,6 +18,7 @@ import AddNew from "@/pages/AddShow/AddNew";
 import Marketing from "@/pages/Marketing";
 import Auth from "@/pages/Auth";
 import AdminRoute from "./AdminRoute";
+import Genre from "@/pages/Genre";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +43,7 @@ const router = createBrowserRouter([
             },
             { path: "/permanent-collection/:id", element: <PermanentDetails /> },
             { path: "/dramas/:id", element: <ShowDetails /> },
+            { path: "/genre", element: <Genre /> },
             { path: "/keywords", element: <Keywords /> },
             { path: "/tone", element: <Tone /> },
             { path: "/credit", element: <Credit /> },

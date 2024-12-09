@@ -10,6 +10,7 @@ import { ShowType } from "@/interfaces/show";
 import axios, { AxiosInstance } from "axios";
 import { LoginType } from "@/interfaces/auth";
 import { useAuthStore } from "@/store/authStore";
+import { GenreType } from "@/interfaces/genre";
 
 class ApiService {
     private api: AxiosInstance;
@@ -245,6 +246,34 @@ class ApiService {
             return response.data;
         } catch (error) {
             console.error("Error updating keyword", error);
+        }
+    }
+
+    // GENRE
+    async createGenre(data: Partial<GenreType>) {
+        try {
+            const response = await this.api.post(`genre`, data);
+            return response.data;
+        } catch (error) {
+            console.error("Error creating genre", error);
+        }
+    }
+
+    async getAllGenre() {
+        try {
+            const response = await this.api.get("genre");
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching genre", error);
+        }
+    }
+
+    async updateGenre(data: GenreType) {
+        try {
+            const response = await this.api.patch(`genre/modify/${data.id}`, data);
+            return response.data;
+        } catch (error) {
+            console.error("Error updating genre", error);
         }
     }
 

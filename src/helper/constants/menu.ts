@@ -8,6 +8,10 @@ export const MENU = [
         url: "/permanent-collection",
     },
     {
+        name: "Genre",
+        url: "/genre",
+    },
+    {
         name: "Keywords",
         url: "/keywords",
     },
