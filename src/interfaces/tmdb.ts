@@ -1,3 +1,5 @@
+import { GenreType } from "./genre";
+
 export interface TMDBShowLean {
     id: number;
     name: string;
@@ -22,13 +24,7 @@ export interface TMDBShowDetails {
     first_air_date: string;
     overview: string;
     number_of_episodes?: number;
-    genres: [
-        {
-            id: number;
-            name: string;
-            original_name: string;
-        }
-    ];
+    genres: GenreType[];
     homepage: string;
     networks?: {
         id: number;

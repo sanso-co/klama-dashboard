@@ -1,7 +1,19 @@
 .main {
     display: flex;
-    margin-top: 56px;
-    padding: 2rem 0;
+    padding: 2rem var(--mobile-mx);
+    margin-top: 64px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width: 768px) {
+        padding-left: var(--tablet-mx);
+        padding-right: var(--tablet-mx);
+    }
+
+    @media (min-width: 1024px) {
+        padding-left: var(--tablet-lg-mx);
+        padding-right: var(--tablet-lg-mx);
+    }
 }
 
 .outlet {
