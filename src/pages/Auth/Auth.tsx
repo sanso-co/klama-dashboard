@@ -36,18 +36,20 @@ const Auth = () => {
     };
 
     return (
-        <div>
-            <div>
-                <Header title="Login" description="List of providers" />
+        <div className={styles.container}>
+            <div className={styles.auth}>
+                <Header
+                    title="Login"
+                    description="If you are an authorized content manager, please sign in here"
+                />
+                <FormProvider {...methods}>
+                    <form className={styles.form} onSubmit={methods.handleSubmit(onSubmit)}>
+                        <Input label="Username" name="username" />
+                        <Input label="Password" name="password" type="password" />
+                        <Button type="submit" label="Save" variant="primary" />
+                    </form>
+                </FormProvider>
             </div>
-
-            <FormProvider {...methods}>
-                <form className={styles.form} onSubmit={methods.handleSubmit(onSubmit)}>
-                    <Input label="Username" name="username" />
-                    <Input label="Password" name="password" type="password" />
-                    <Button type="submit" label="Save" variant="primary" />
-                </form>
-            </FormProvider>
         </div>
     );
 };

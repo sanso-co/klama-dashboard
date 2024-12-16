@@ -21,6 +21,7 @@ export const Hero = () => {
         {
             img: null,
             title: "",
+            tagline: "",
             tag: {
                 label: "",
                 color: "#000000",
@@ -35,6 +36,7 @@ export const Hero = () => {
             const existingHeroes = heroes.map((hero) => ({
                 img: hero.img,
                 title: hero.title,
+                tagline: hero.tagline,
                 tag: hero.tag || {
                     label: "",
                     color: "#000000",
@@ -75,6 +77,7 @@ export const Hero = () => {
             {
                 img: null,
                 title: "",
+                tagline: "",
                 tag: {
                     label: "",
                     color: "#000000",
@@ -176,6 +179,16 @@ export const Hero = () => {
                                 }
                                 placeholder="URL"
                                 className={styles.url}
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="text"
+                                value={item.tagline}
+                                onChange={(e) =>
+                                    handleInputChange(item.order, "tagline", e.target.value)
+                                }
+                                placeholder="Tagline"
                             />
                         </div>
                         {item.order > 1 && (

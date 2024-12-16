@@ -8,12 +8,12 @@ export const Layout = () => {
     return (
         <>
             <Header />
-            <div className={styles.main}>
+            <main className={styles.main}>
                 <Sidenav />
                 <div className={styles.outlet}>
                     <Outlet />
                 </div>
-            </div>
+            </main>
         </>
     );
 };
