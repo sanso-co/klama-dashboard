@@ -552,9 +552,9 @@ class ApiService {
     }
 
     // ADMIN
-    async login({ email, password }: LoginType) {
+    async login({ username, password }: LoginType) {
         try {
-            const response = await this.api.post("auth/login", { email, password });
+            const response = await this.api.post("auth/login", { username, password });
             return response.data;
         } catch (error) {
             console.error("Error loggin in", error);

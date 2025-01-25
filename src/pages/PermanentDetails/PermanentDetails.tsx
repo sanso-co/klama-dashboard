@@ -76,7 +76,7 @@ const PermanentDetails = () => {
             <div className={styles.list}>
                 <h2 className={styles.listHeader}>Shows</h2>
                 <div className={styles.showList}>
-                    {details?.shows?.result?.map((show) => (
+                    {details?.results.map((show) => (
                         <DramaCard
                             key={show.id}
                             show={show}

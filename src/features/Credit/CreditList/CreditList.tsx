@@ -17,8 +17,8 @@ export const CreditList = () => {
     const { updateCredit } = useUpdateCredit();
 
     const handleUpdate = async (credit: CreditType) => {
-        const updatedOriginalName = getValues(`${credit.id}_original_name`);
-        const updatedJob = getValues(`${credit.id}_job`);
+        const updatedOriginalName = getValues(`${credit._id}_original_name`);
+        const updatedJob = getValues(`${credit._id}_job`);
 
         try {
             const updatedData: CreditType = {
@@ -39,7 +39,7 @@ export const CreditList = () => {
             {credits &&
                 credits.length &&
                 credits.map((credit) => (
-                    <div key={credit.id} className={styles.item}>
+                    <div key={credit._id} className={styles.item}>
                         <div className={styles.credit}>
                             <div className={styles.id}>{credit.id}</div>
                             <div className={styles.main}>
@@ -47,7 +47,7 @@ export const CreditList = () => {
                                     <div className={styles.name}>{credit.name}</div>
                                     <div className={styles.originalName}>
                                         <TextInput
-                                            name={`${credit.id}_original_name`}
+                                            name={`${credit._id}_original_name`}
                                             register={register}
                                             defaultValue={credit.original_name}
                                         />
@@ -56,7 +56,7 @@ export const CreditList = () => {
 
                                 <div className={styles.action}>
                                     <RadioInput
-                                        name={`${credit.id}_job`}
+                                        name={`${credit._id}_job`}
                                         options={[
                                             "Director",
                                             "Screenwriter",

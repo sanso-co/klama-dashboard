@@ -28,22 +28,24 @@ export const useCreateCredit = () => {
 };
 
 export const useGetAllCredits = () => {
-    const { setCredit, setIsLoading, setError, isLoading, error, credits } = useCreditStore();
+    const [credits, setCredits] = useState<CreditType[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<Error | null>(null);
 
     const getAllCredits = useCallback(async () => {
         setIsLoading(true);
         setError(null);
         try {
-            const fetchedKeywords = await apiService.getAllCredits();
-            setCredit(fetchedKeywords);
-            return fetchedKeywords;
+            const fetchedCredits = await apiService.getAllCredits();
+            setCredits(fetchedCredits);
+            return fetchedCredits;
         } catch (err) {
             setError(err instanceof Error ? err : new Error("An unknown error occurred"));
             throw err;
         } finally {
             setIsLoading(false);
         }
-    }, [setCredit, setIsLoading, setError]);
+    }, [setCredits, setIsLoading, setError]);
 
     useEffect(() => {
         getAllCredits();

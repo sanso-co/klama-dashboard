@@ -4,7 +4,5 @@ export interface PermanentType {
     _id: string;
     name: string;
     description?: string;
-    shows: {
-        result: LeanShowType[];
-    };
+    results: LeanShowType[];
 }

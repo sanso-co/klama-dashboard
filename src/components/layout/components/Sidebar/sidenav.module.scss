@@ -1,3 +1,12 @@
+.container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100vh - 64px);
+    padding: 64px 0;
+}
+
 .nav {
     display: none;
 
@@ -10,4 +19,28 @@
 
 .item {
     margin-bottom: 0.5rem;
+}
+
+.searchContainer {
+    width: 80%;
+
+    input {
+        width: 100%;
+        border: 1px solid var(--gray-20);
+        border-radius: 0.375rem;
+        font-size: 0.875rem;
+        padding: 0.5rem;
+    }
+}
+
+.suggestedItem {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--gray-70);
+    padding: 0.5rem;
+
+    &:hover {
+        cursor: pointer;
+        color: var(--gray-100);
+    }
 }

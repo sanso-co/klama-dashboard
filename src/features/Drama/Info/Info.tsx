@@ -27,6 +27,10 @@ export const Info = ({ id, show }: Props) => {
             US: { path: show.poster_path?.US?.path || "" },
             KR: { path: show.poster_path?.KR?.path || "" },
         },
+        trailer: {
+            site: show.trailer[0]?.site || "Youtube",
+            key: show.trailer[0]?.key || "",
+        },
         first_air_date: show.first_air_date || "",
         number_of_episodes: show.number_of_episodes || "",
         homepage: show.homepage || "",
@@ -110,6 +114,10 @@ export const Info = ({ id, show }: Props) => {
                     <div className={styles.flex}>
                         <Input name="poster_path.US.path" label="US Poster Path" />
                         <Input name="poster_path.KR.path" label="KR Poster Path" />
+                    </div>
+                    <div className={styles.flex}>
+                        <Input name="trailer.site" label="Trailer Site" />
+                        <Input name="trailer.key" label="Trailer Key" />
                     </div>
                     <Input name="homepage" label="Homepage" />
                     <div className={styles.flex}>

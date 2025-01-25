@@ -6,12 +6,12 @@ export const useAuth = () => {
     const { setUser, setError, setIsLoading } = useAuthStore();
 
     const loginAdmin = useCallback(
-        async (email: string, password: string) => {
+        async (username: string, password: string) => {
             setIsLoading(true);
             setError(null);
             try {
                 const userData = await apiService.login({
-                    email,
+                    username,
                     password,
                 });
                 setUser(userData);

@@ -35,6 +35,10 @@ export interface ShowType {
             path: string;
         };
     };
+    trailer: {
+        site: string;
+        key: string;
+    }[];
     genres: GenreType[];
     keywords: KeywordType[];
     tones: ToneType[];
