@@ -79,15 +79,15 @@ export const Credits = ({ showId }: Props) => {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search genres"
+                placeholder="Search credits"
                 className={styles.input}
             />
             {suggestions.length > 0 && (
                 <ul className={styles.suggestedList}>
                     {suggestions.map((credit) => (
-                        <li key={credit.id} onClick={() => handleCreditClick(credit)}>
+                        <li key={credit._id} onClick={() => handleCreditClick(credit)}>
                             <p>
-                                {credit.id} {credit.name} ({credit.original_name})
+                                {credit.id} {credit.original_name} ({credit.job})
                             </p>
                         </li>
                     ))}
@@ -97,8 +97,8 @@ export const Credits = ({ showId }: Props) => {
                 <div className={styles.genre}>
                     {selectedCredits.map((credit) => (
                         <Chip
-                            key={credit.id}
-                            label={`${credit.name} ${credit.original_name}`}
+                            key={credit._id}
+                            label={`${credit.original_name} (${credit.job})`}
                             onRemove={() => handleCreditRemove(credit.id)}
                         />
                     ))}

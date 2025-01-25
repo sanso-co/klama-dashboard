@@ -11,7 +11,6 @@ export const useGetShowDetails = (id: string) => {
         const fetchDetails = async () => {
             try {
                 const response = await apiService.getShowDetails(id);
-                console.log(response);
                 setData(response);
             } catch (error) {
                 setError(error as Error);

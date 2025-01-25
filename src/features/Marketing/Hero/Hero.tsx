@@ -92,7 +92,8 @@ export const Hero = () => {
 
     const handleSave = async (item: HeroType) => {
         try {
-            await createHero(item);
+            const response = await createHero(item);
+            console.log(response);
             alert("Successfully Created");
         } catch (error) {
             console.error("Error adding hero item:", error);

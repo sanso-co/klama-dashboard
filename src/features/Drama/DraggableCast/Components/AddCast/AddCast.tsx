@@ -21,6 +21,7 @@ interface Props {
 
 export const AddCast = ({ showId, existingCasts }: Props) => {
     const formattedId = formatShowId(showId);
+    // const formattedId = showId;
     const { cast, isLoading, error } = useTMDBCast(formattedId);
     const [additionalCast, setAdditionalCast] = useState<TMDBCastType[]>([]);
 

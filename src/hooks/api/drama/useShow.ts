@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { apiService } from "@/services/api";
 import { ShowType } from "@/interfaces/show";
 
@@ -34,6 +34,7 @@ export const useGetShowDetails = (id: number) => {
     const [show, setShow] = useState<ShowType>();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
+    const previousId = useRef(id);
 
     const getShowDetails = useCallback(async () => {
         if (!id) return;
@@ -42,6 +43,7 @@ export const useGetShowDetails = (id: number) => {
 
         try {
             const dramaDetails = await apiService.getShowDetails(id);
+            console.log(dramaDetails);
             setShow(dramaDetails);
             return dramaDetails;
         } catch (err) {
@@ -50,7 +52,15 @@ export const useGetShowDetails = (id: number) => {
         } finally {
             setIsLoading(false);
         }
-    }, [setShow, setIsLoading, setError]);
+    }, [setShow, setIsLoading, setError, id]);
+
+    useEffect(() => {
+        // Check if id has changed (and it's not the initial render)
+        if (previousId.current !== id && previousId.current !== undefined) {
+            window.location.reload();
+        }
+        previousId.current = id;
+    }, [id]);
 
     useEffect(() => {
         getShowDetails();

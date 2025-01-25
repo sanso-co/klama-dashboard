@@ -25,7 +25,7 @@ export const Genres = ({ id, genres }: Props) => {
         if (searchQuery.length > 0) {
             try {
                 const response = await axios.get(
-                    `http://localhost:3500/genre/search?query=${searchQuery}`
+                    `http://localhost:4500/genre/search?query=${searchQuery}`
                 );
                 setSuggestions(response.data);
             } catch (error) {
