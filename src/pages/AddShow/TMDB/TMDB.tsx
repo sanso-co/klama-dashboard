@@ -39,14 +39,13 @@ const TMDB = () => {
             production_companies: data?.production_companies ?? [],
             created_by: data?.created_by ?? [],
         };
-        console.log(show);
-        // try {
-        //     await addShow(show);
-        //     alert("successfully added");
-        // } catch (error) {
-        //     console.error(error);
-        //     alert("already added");
-        // }
+        try {
+            await addShow(show);
+            alert("successfully added");
+        } catch (error) {
+            console.error(error);
+            alert("already added");
+        }
     };
 
     if (isLoading) return <div>Loading Show...</div>;
