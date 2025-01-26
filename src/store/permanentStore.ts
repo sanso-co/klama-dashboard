@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { PermanentType } from "@/interfaces/permanent";
+import { PermanentType } from "@/types/permanent";
 
 interface PermanentProps {
     collections: PermanentType[];

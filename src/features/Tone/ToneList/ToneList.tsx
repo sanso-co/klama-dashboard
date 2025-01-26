@@ -6,7 +6,7 @@ import { useGetAllTone } from "@/hooks/api/tone/useTone";
 import { TextInput } from "@/components/global/TextInput";
 import { Button } from "@/components/global/Button";
 
-import { KeywordType } from "@/interfaces/keyword";
+import { KeywordType } from "@/types/keyword";
 
 import styles from "./tonelist.module.scss";
 

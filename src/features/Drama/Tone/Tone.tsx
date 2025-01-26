@@ -7,7 +7,7 @@ import { useUpdateShow } from "@/hooks/api/drama/useShow";
 import { Chip } from "@/components/global/Chip";
 import { Button } from "@/components/global/Button";
 
-import { ToneType } from "@/interfaces/tone";
+import { ToneType } from "@/types/tone";
 
 import styles from "./tone.module.scss";
 

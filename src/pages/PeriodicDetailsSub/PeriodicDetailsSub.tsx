@@ -7,8 +7,8 @@ import {
     useRemoveShowFromPeriodicList,
 } from "@/hooks/api/collection/usePeriodicCollection.ts";
 
-import { formatMonth } from "@/helper/date";
-import { isAxiosError } from "@/helper/axiosError";
+import { formatMonth } from "@/helpers/date";
+import { isAxiosError } from "@/helpers/axiosError";
 
 import { AddShow } from "@/features/AddShow";
 import { DramaCard } from "@/components/global/cards/DramaCard";

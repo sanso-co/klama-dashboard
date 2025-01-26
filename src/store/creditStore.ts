@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import { CreditType } from "@/interfaces/credit";
+import { CreditType } from "@/types/credit";
 
 interface CollectionProps {
     credits: CreditType[];

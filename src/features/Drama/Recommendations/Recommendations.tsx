@@ -11,7 +11,7 @@ import {
 
 import { DramaCard } from "@/components/global/cards/DramaCard";
 
-import { LeanShowType } from "@/interfaces/show";
+import { LeanShowType } from "@/types/show";
 
 import styles from "./reco.module.scss";
 

@@ -6,7 +6,7 @@ import {
     useAddShowToPermanentCollection,
     useRemoveShowFromPermanentCollection,
 } from "@/hooks/api/collection/usePermanentCollection.ts";
-import { isAxiosError } from "@/helper/axiosError";
+import { isAxiosError } from "@/helpers/axiosError";
 
 import { Header } from "@/components/global/Header/Header.tsx";
 import { AddShow } from "@/features/PermanentCollection/AddShow/AddShow.tsx";

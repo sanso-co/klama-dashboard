@@ -1,0 +1,109 @@
+@use "../../../assets//styles/animation.scss";
+
+.wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.container {
+    position: fixed;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    min-height: 200px;
+    max-height: 85vh;
+    border-radius: 1rem 1rem 0 0;
+    animation: slideUp 0.3s ease-out;
+
+    @media (min-width: 768px) {
+        top: 50%;
+        left: 50%;
+        bottom: auto;
+        right: auto;
+        transform: translate(-50%, -50%);
+        border-radius: 1rem;
+        animation: modalIn 0.3s ease-out;
+        width: 50%;
+    }
+}
+
+.sm {
+    @media (min-width: 768px) {
+        width: 30%;
+    }
+}
+
+.md {
+    @media (min-width: 768px) {
+        width: 60%;
+    }
+}
+
+.lg {
+    height: 85vh;
+
+    @media (min-width: 768px) {
+        width: 100%;
+        max-width: 1200px;
+        height: auto;
+    }
+}
+
+.fs {
+    height: 100vh;
+    border-radius: 0;
+
+    @media (min-width: 768px) {
+        width: 100%;
+        max-width: 1200px;
+        height: auto;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+
+    h2 {
+        font-size: 1.25rem;
+    }
+}
+
+.closeButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    border: none;
+    background: var(--gray-2);
+    padding: 0.35rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background: var(--gray-5);
+    }
+}
+
+.content {
+    padding: 0.875rem 1rem;
+    overflow-y: auto;
+}
+
+.lockScroll {
+    overflow: hidden;
+}

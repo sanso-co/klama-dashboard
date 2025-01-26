@@ -1,16 +1,16 @@
-import { CastType } from "@/interfaces/cast";
-import { CreditType } from "@/interfaces/credit";
-import { KeywordType } from "@/interfaces/keyword";
-import { ToneType } from "@/interfaces/tone";
-import { HeroType } from "@/interfaces/marketing";
-import { CollectionListType, PeriodicType } from "@/interfaces/periodic";
-import { PermanentType } from "@/interfaces/permanent";
-import { ProviderType } from "@/interfaces/provider";
-import { ShowType } from "@/interfaces/show";
+import { CastType } from "@/types/cast";
+import { CreditType } from "@/types/credit";
+import { KeywordType } from "@/types/keyword";
+import { ToneType } from "@/types/tone";
+import { HeroType } from "@/types/marketing";
+import { CollectionListType, PeriodicType } from "@/types/periodic";
+import { PermanentType } from "@/types/permanent";
+import { ProviderType } from "@/types/provider";
+import { ShowType } from "@/types/show";
 import axios, { AxiosInstance } from "axios";
-import { LoginType } from "@/interfaces/auth";
+import { LoginType } from "@/types/auth";
 import { useAuthStore } from "@/store/authStore";
-import { GenreType } from "@/interfaces/genre";
+import { GenreType } from "@/types/genre";
 
 class ApiService {
     private api: AxiosInstance;
@@ -22,32 +22,45 @@ class ApiService {
             baseURL: LOCALURL,
         });
 
-        // validate token
+        // Refresh token interceptor
         this.api.interceptors.response.use(
             (response) => response,
-            (error) => {
-                if (error.response?.status === 401) {
-                    // Clear user data and redirect to login
-                    useAuthStore.getState().logout();
-                    window.location.href = "/login";
+            async (error) => {
+                const originalRequest = error.config;
+
+                if (error.response?.status === 401 && !originalRequest._retry) {
+                    originalRequest._retry = true;
+
+                    try {
+                        const refreshToken = useAuthStore.getState().refreshToken;
+                        const response = await this.api.post("auth/refresh", { refreshToken });
+                        const { accessToken, refreshToken: newRefreshToken } = response.data;
+
+                        useAuthStore.getState().setTokens(accessToken, newRefreshToken);
+                        originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+
+                        return this.api(originalRequest);
+                    } catch {
+                        useAuthStore.getState().logout();
+                        window.location.href = "/login";
+                        return Promise.reject(error);
+                    }
                 }
                 return Promise.reject(error);
             }
         );
 
-        // attach token
+        // Attach token interceptor
         this.api.interceptors.request.use(
             (config) => {
-                const token = useAuthStore.getState().user?.token;
+                const accessToken = useAuthStore.getState().accessToken;
 
-                if (token) {
-                    config.headers.Authorization = `Bearer ${token}`;
+                if (accessToken) {
+                    config.headers.Authorization = `Bearer ${accessToken}`;
                 }
                 return config;
             },
-            (error) => {
-                return Promise.reject(error);
-            }
+            (error) => Promise.reject(error)
         );
     }
 
@@ -555,6 +568,9 @@ class ApiService {
     async login({ username, password }: LoginType) {
         try {
             const response = await this.api.post("auth/login", { username, password });
+            const { accessToken, refreshToken, ...userData } = response.data;
+            useAuthStore.getState().setTokens(accessToken, refreshToken);
+            useAuthStore.getState().setUser(userData);
             return response.data;
         } catch (error) {
             console.error("Error loggin in", error);

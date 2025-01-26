@@ -5,7 +5,7 @@ import { useGetAllGenre, useUpdateGenre } from "@/hooks/api/genre/useGenre";
 import { TextInput } from "@/components/global/TextInput";
 import { Button } from "@/components/global/Button";
 
-import { GenreType } from "@/interfaces/genre";
+import { GenreType } from "@/types/genre";
 
 import styles from "./genrelist.module.scss";
 

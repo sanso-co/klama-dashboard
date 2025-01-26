@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useKeywordsStore } from "@/store/keywordsStore";
 import { apiService } from "@/services/api";
-import { KeywordType } from "@/interfaces/keyword";
+import { KeywordType } from "@/types/keyword";
 
 export const useCreateKeyword = () => {
     const [isLoading, setIsLoading] = useState(false);

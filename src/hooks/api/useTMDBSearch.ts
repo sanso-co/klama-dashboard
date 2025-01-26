@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { apiService } from "@/services/tmdbApi";
-import { TMDBSearchResults } from "@/interfaces/tmdb";
+import { TMDBSearchResults } from "@/types/tmdb";
 
 export const useTMDBSearch = () => {
     const [searchResults, setSearchResults] = useState<TMDBSearchResults>();

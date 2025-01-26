@@ -1,6 +1,6 @@
 import { useCallback, useState, useEffect } from "react";
 import { apiService } from "@/services/api";
-import { HeroType } from "@/interfaces/marketing";
+import { HeroType } from "@/types/marketing";
 
 export const useCreateHero = () => {
     const [isLoading, setIsLoading] = useState(false);

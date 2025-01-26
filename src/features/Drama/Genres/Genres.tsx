@@ -7,7 +7,7 @@ import { useUpdateShow } from "@/hooks/api/drama/useShow";
 import { Button } from "@/components/global/Button";
 import { Chip } from "@/components/global/Chip";
 
-import { GenreType } from "@/interfaces/genre";
+import { GenreType } from "@/types/genre";
 
 import styles from "./genres.module.scss";
 

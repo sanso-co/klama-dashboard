@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { useGetProvidersForShow, useAddShowToProvider } from "@/hooks/api/provider/useProvider";
 
-import { ProviderType } from "@/interfaces/provider";
+import { ProviderType } from "@/types/provider";
 
 import styles from "./provider.module.scss";
 

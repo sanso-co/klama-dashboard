@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { apiService } from "@/services/api";
-import { LeanShowType } from "@/interfaces/show";
+import { LeanShowType } from "@/types/show";
 
 export const useGetSimilarRecommendations = (showId: number) => {
     const [similar, setSimilar] = useState<LeanShowType[]>();

@@ -6,7 +6,7 @@ import { RadioInput } from "@/components/global/RadioInput";
 import { Button } from "@/components/global/Button";
 import { TextInput } from "@/components/global/TextInput";
 
-import { CreditType } from "@/interfaces/credit";
+import { CreditType } from "@/types/credit";
 
 import styles from "./creditlist.module.scss";
 
@@ -57,12 +57,7 @@ export const CreditList = () => {
                                 <div className={styles.action}>
                                     <RadioInput
                                         name={`${credit._id}_job`}
-                                        options={[
-                                            "Director",
-                                            "Screenwriter",
-                                            "Producer",
-                                            "Original Story",
-                                        ]}
+                                        options={["Director", "Screenwriter", "Producer"]}
                                         defaultValue={credit.job}
                                         register={register}
                                     />

@@ -2,7 +2,7 @@ import { useSearch } from "@/hooks/api/search/useSearch";
 
 import Search from "@/components/pages/collection/Search";
 import { DramaCard } from "@/components/global/cards/DramaCard";
-import { LeanShowType } from "@/interfaces/show";
+import { LeanShowType } from "@/types/show";
 
 interface Props {
     onSubmit: (showObjId: string) => void;

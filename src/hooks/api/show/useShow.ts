@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { apiService } from "@/services/api";
-import { ShowResponseType } from "@/interfaces/show";
+import { ShowResponseType } from "@/types/show";
 
 export const useGetAllShow = (page: number, sort: string) => {
     const [shows, setShows] = useState<ShowResponseType>();

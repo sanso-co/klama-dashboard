@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { apiService } from "@/services/api";
-import { ToneType } from "@/interfaces/tone";
+import { ToneType } from "@/types/tone";
 
 export const useCreateTone = () => {
     const [isLoading, setIsLoading] = useState(false);

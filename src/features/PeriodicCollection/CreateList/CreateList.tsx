@@ -8,7 +8,7 @@ import Search from "@/components/pages/collection/Search";
 import { DramaCard } from "@/components/global/cards/DramaCard";
 import { Button } from "@/components/global/Button";
 
-import { LeanShowType } from "@/interfaces/show";
+import { LeanShowType } from "@/types/show";
 
 import styles from "./createlist.module.scss";
 

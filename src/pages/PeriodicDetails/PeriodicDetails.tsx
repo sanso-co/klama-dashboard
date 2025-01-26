@@ -5,7 +5,7 @@ import {
     useGetPeriodicDetails,
     useAddListToPeriodicCollection,
 } from "@/hooks/api/collection/usePeriodicCollection.ts";
-import { formatDate } from "@/helper/date";
+import { formatDate } from "@/helpers/date";
 
 import { CreateList } from "@/features/PeriodicCollection/CreateList";
 import { Modal } from "@/components/global/modal";
@@ -13,7 +13,7 @@ import { Header } from "@/components/global/Header";
 import { IconButton } from "@/components/global/IconButton";
 import { PlusIcon } from "@/assets/icons/PlusIcon";
 
-import { CollectionListType } from "@/interfaces/periodic";
+import { CollectionListType } from "@/types/periodic";
 
 import styles from "./periodicdetails.module.scss";
 
