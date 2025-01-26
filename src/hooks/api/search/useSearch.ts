@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { debounce } from "lodash";
 import axios from "axios";
 
-import { LeanShowType } from "@/interfaces/show";
+import { LeanShowType } from "@/types/show";
 
 export const useSearch = () => {
     const [query, setQuery] = useState("");

@@ -1,0 +1,56 @@
+.mobile {
+    @media (min-width: 1024px) {
+        display: none;
+    }
+}
+
+.desktop {
+    display: none;
+
+    @media (min-width: 1024px) {
+        display: block;
+    }
+}
+
+.sortButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid var(--primary-purple-faint);
+    border-radius: 2rem;
+    padding: 0.35rem 0.75rem;
+
+    span {
+        font-size: 0.875rem;
+        margin-left: 0.25rem;
+        color: var(-100);
+    }
+
+    &:hover {
+        background-color: var(--gray-5);
+        cursor: pointer;
+    }
+}
+
+.options {
+    font-size: 0.875rem;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--gray-70);
+    padding-bottom: 0.875rem;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--gray-100);
+    }
+}
+
+.selected {
+    font-weight: 700;
+    color: #000;
+}

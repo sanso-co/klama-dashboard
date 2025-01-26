@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { MENU } from "@/helper/constants/menu";
+import { MENU } from "@/helpers/constants/menu";
 
 import styles from "./sidenav.module.scss";
 import { useSearch } from "@/hooks/api/search/useSearch";

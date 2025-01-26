@@ -8,7 +8,7 @@ import { getCroppedImageUrl } from "@/services/image-url";
 import { Provider } from "@/features/TMDB/Provider";
 import { Button } from "@/components/global/Button";
 import { ImageContainer } from "@/components/global/containers/ImageContainer";
-import { ShowType } from "@/interfaces/show";
+import { ShowType } from "@/types/show";
 import { ratio } from "@/components/global/token";
 
 import styles from "./tmdb.module.scss";

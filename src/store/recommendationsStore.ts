@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { RecommendationsResponse } from "@/interfaces/recommendations";
+import { RecommendationsResponse } from "@/types/recommendations";
 
 interface RecommendationsProps {
     details: RecommendationsResponse | null;

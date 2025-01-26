@@ -6,7 +6,7 @@ import { useAddShowToCredit, useGetCreditForShow } from "@/hooks/api/credit/useC
 
 import { Chip } from "@/components/global/Chip";
 
-import { CreditType } from "@/interfaces/credit";
+import { CreditType } from "@/types/credit";
 
 import styles from "./credit.module.scss";
 

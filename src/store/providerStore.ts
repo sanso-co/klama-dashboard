@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { ProviderType } from "@/interfaces/provider";
+import { ProviderType } from "@/types/provider";
 
 interface ProviderProps {
     collections: ProviderType[];

@@ -2,7 +2,7 @@ import { getCroppedImageUrl } from "../../../services/image-url";
 import { Card } from "./Card/Card";
 import { Body } from "../Typography";
 import { ratio } from "../token";
-import { TMDBShowLean } from "@/interfaces/tmdb";
+import { TMDBShowLean } from "@/types/tmdb";
 import { DismissIcon } from "@/assets/icons/DismissIcon";
 
 import styles from "./dramacard.module.scss";

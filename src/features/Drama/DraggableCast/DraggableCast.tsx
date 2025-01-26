@@ -9,7 +9,7 @@ import { AddCast } from "./Components/AddCast";
 import { Avatar } from "@/components/global/Avatar";
 import { Button } from "@/components/global/Button";
 
-import { CastType } from "@/interfaces/cast";
+import { CastType } from "@/types/cast";
 
 import styles from "./draggable.module.scss";
 

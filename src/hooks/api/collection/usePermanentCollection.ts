@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from "react";
-import { PermanentType } from "@/interfaces/permanent";
+import { PermanentType } from "@/types/permanent";
 import { usePermanentStore } from "@/store/permanentStore";
 import { apiService } from "@/services/api";
 

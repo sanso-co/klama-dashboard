@@ -45,7 +45,7 @@ const Credit = () => {
                         <div className={styles.radio}>
                             <RadioInput
                                 name="job"
-                                options={["Director", "Screenwriter", "Producer", "Original Story"]}
+                                options={["Director", "Screenwriter", "Producer"]}
                                 register={register}
                             />
                         </div>

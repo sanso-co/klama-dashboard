@@ -5,7 +5,7 @@ import { useGetAllKeywords, useUpdateKeyword } from "@/hooks/api/keywords/useKey
 import { TextInput } from "@/components/global/TextInput";
 import { Button } from "@/components/global/Button";
 
-import { KeywordType } from "@/interfaces/keyword";
+import { KeywordType } from "@/types/keyword";
 
 import styles from "./keywordslist.module.scss";
 

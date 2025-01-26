@@ -9,7 +9,7 @@ import { DismissIcon } from "@/assets/icons/DismissIcon";
 import { useUpdateShow } from "@/hooks/api/drama/useShow";
 import { useSearch } from "@/hooks/api/search/useSearch";
 
-import { MinimalShowType, LeanShowType, ShowType } from "@/interfaces/show";
+import { MinimalShowType, LeanShowType, ShowType } from "@/types/show";
 
 import styles from "./info.module.scss";
 

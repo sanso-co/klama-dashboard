@@ -7,7 +7,7 @@ import { useUpdateShow } from "@/hooks/api/drama/useShow";
 import { Chip } from "@/components/global/Chip";
 import { Button } from "@/components/global/Button";
 
-import { KeywordType } from "@/interfaces/keyword";
+import { KeywordType } from "@/types/keyword";
 
 import styles from "./keywords.module.scss";
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { getProfileImage } from "@/services/image-url";
-import { formatShowId } from "@/helper/showId";
+import { formatShowId } from "@/helpers/showId";
 
 import { useTMDBCast } from "@/hooks/api/cast/useTMDBCast";
 import { useAddAdditionalCasts } from "@/hooks/api/cast/useCast";
@@ -9,8 +9,8 @@ import { useAddAdditionalCasts } from "@/hooks/api/cast/useCast";
 import { Avatar } from "@/components/global/Avatar";
 import { Button } from "@/components/global/Button";
 
-import { TMDBCastType } from "@/interfaces/tmdb";
-import { CastType } from "@/interfaces/cast";
+import { TMDBCastType } from "@/types/tmdb";
+import { CastType } from "@/types/cast";
 
 import styles from "./addcast.module.scss";
 

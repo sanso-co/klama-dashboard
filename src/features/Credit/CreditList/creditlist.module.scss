@@ -38,7 +38,7 @@
     @media (min-width: 740px) {
         flex-direction: row;
         align-items: center;
-        gap: 1rem;
+        gap: 2rem;
     }
 }
 
@@ -46,11 +46,6 @@
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    flex: 1;
-
-    // div:first-of-type {
-    //     width: 300px;
-    // }
 
     input {
         font-size: 0.875rem;
@@ -60,6 +55,7 @@
     @media (min-width: 740px) {
         flex-direction: row;
         align-items: center;
+        width: 320px;
     }
 }
 
@@ -70,18 +66,22 @@
 }
 
 .originalName {
+    @media (min-width: 740px) {
+        flex: 1;
+    }
 }
 
 .action {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 0.75rem;
     margin-top: 0.75rem;
 
     @media (min-width: 740px) {
+        flex: 1;
         flex-direction: row;
         align-items: center;
-        flex: 2;
         margin-top: 0;
     }
 }

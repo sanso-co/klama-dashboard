@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { apiService } from "@/services/api";
-import { ProviderType } from "@/interfaces/provider";
+import { ProviderType } from "@/types/provider";
 
 export const useAddProvider = () => {
     const [isLoading, setIsLoading] = useState(false);

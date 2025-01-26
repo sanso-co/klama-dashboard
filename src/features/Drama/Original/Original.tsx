@@ -5,7 +5,7 @@ import { useUpdateShow } from "@/hooks/api/drama/useShow";
 import { Input } from "@/components/global/Input";
 import { Button } from "@/components/global/Button";
 
-import { ShowType } from "@/interfaces/show";
+import { ShowType } from "@/types/show";
 
 import styles from "./original.module.scss";
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { apiService } from "@/services/tmdbApi";
-import { TMDBShowDetails } from "@/interfaces/tmdb";
+import { TMDBShowDetails } from "@/types/tmdb";
 
 export const useGetShowDetails = (id: string) => {
     const [data, setData] = useState<TMDBShowDetails>();

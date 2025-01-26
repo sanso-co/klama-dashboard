@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { PeriodicType } from "@/interfaces/periodic";
+import { PeriodicType } from "@/types/periodic";
 
 interface PeriodicProps {
     collections: PeriodicType[];

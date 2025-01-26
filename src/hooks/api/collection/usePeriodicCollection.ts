@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { CollectionListType, PeriodicType } from "@/interfaces/periodic";
+import { CollectionListType, PeriodicType } from "@/types/periodic";
 import { usePeriodicStore } from "@/store/periodicStore";
 import { apiService } from "@/services/api";
 

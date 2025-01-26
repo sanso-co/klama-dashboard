@@ -4,7 +4,7 @@ import { ratio } from "../token";
 import { DismissIcon } from "@/assets/icons/DismissIcon";
 
 import styles from "./dramacard.module.scss";
-import { LeanShowType } from "@/interfaces/show";
+import { LeanShowType } from "@/types/show";
 
 interface Props {
     show: LeanShowType;

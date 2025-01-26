@@ -3,7 +3,7 @@ import { useAddShowToProvider } from "@/hooks/api/provider/useProvider";
 
 import { Button } from "@/components/global/Button";
 
-import { TMDBProviderType } from "@/interfaces/tmdb";
+import { TMDBProviderType } from "@/types/tmdb";
 
 import styles from "./provider.module.scss";
 

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { apiService } from "@/services/api";
-import { ShowType } from "@/interfaces/show";
+import { ShowType } from "@/types/show";
 
 export const useUpdateShow = (id: number) => {
     const [show, setShow] = useState();

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { apiService as tmdbService } from "@/services/tmdbApi";
-import { ProviderResponse } from "@/interfaces/tmdb";
+import { ProviderResponse } from "@/types/tmdb";
 
 export const useProviders = (id: number) => {
     const [providers, setProviders] = useState<ProviderResponse | null>(null);

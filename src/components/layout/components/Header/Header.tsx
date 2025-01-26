@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { MENU } from "@/helper/constants/menu";
+import { useEffect, useRef, useState } from "react";
+import { MENU } from "@/helpers/constants/menu";
 
 import styles from "./header.module.scss";
+import { User } from "./components/User";
+import { HeaderSearch } from "./components/Search";
 
 export const Header = () => {
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+    const userRef = useRef<HTMLDivElement | null>(null);
+
     const [isOpen, setIsOpen] = useState(false);
     const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
 
@@ -16,15 +21,36 @@ export const Header = () => {
         setIsFlyoutOpen(false);
     };
 
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (userRef.current && !userRef.current.contains(event.target as Node)) {
+                setIsUserMenuOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [userRef, isUserMenuOpen]);
+
     return (
         <header className={styles.header}>
             <div className={styles.container}>
-                <div className="logo">K:</div>
-                <div className={styles.avatarContainer} onClick={toggleFlyout}>
-                    <div className={styles.user}>A</div>
-                    <div className={`${styles.flyout} ${isFlyoutOpen ? styles.flyoutOpen : ""}`}>
+                <div className={styles.logoContainer}>
+                    <div className={styles.logo}></div>
+                </div>
+                <HeaderSearch />
+                <div className={styles.avatarContainer}>
+                    <User
+                        isUserMenuOpen={isUserMenuOpen}
+                        setIsUserMenuOpen={setIsUserMenuOpen}
+                        userRef={userRef}
+                    />
+                    {/* <div className={`${styles.flyout} ${isFlyoutOpen ? styles.flyoutOpen : ""}`}>
                         <button onClick={closeFlyout}>Logout</button>
-                    </div>
+                    </div> */}
                 </div>
                 <div className={styles.hamburger}>
                     <button

@@ -10,7 +10,7 @@ import {
 import { ImageUpload } from "@/components/global/ImageUpload";
 import { Button } from "@/components/global/Button";
 
-import { HeroType } from "@/interfaces/marketing";
+import { HeroType } from "@/types/marketing";
 
 import styles from "./hero.module.scss";
 

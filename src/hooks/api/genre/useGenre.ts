@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { apiService } from "@/services/api";
-import { GenreType } from "@/interfaces/genre";
+import { GenreType } from "@/types/genre";
 
 export const useCreateGenre = () => {
     const [isLoading, setIsLoading] = useState(false);

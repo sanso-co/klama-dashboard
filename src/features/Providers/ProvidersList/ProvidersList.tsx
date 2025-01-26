@@ -5,7 +5,7 @@ import { useGetAllProviders, useUpdateProvider } from "@/hooks/api/provider/useP
 import { TextInput } from "@/components/global/TextInput";
 import { Button } from "@/components/global/Button";
 
-import { ProviderType } from "@/interfaces/provider";
+import { ProviderType } from "@/types/provider";
 
 import styles from "./providerslist.module.scss";
 

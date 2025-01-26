@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import { KeywordType } from "@/interfaces/keyword";
+import { KeywordType } from "@/types/keyword";
 
 interface CollectionProps {
     keywords: KeywordType[];

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { apiService } from "@/services/api";
-import { CastType } from "@/interfaces/cast";
+import { CastType } from "@/types/cast";
 
 export const useGetCastForShow = (showId: number) => {
     const [cast, setCast] = useState<CastType[] | null>(null);
