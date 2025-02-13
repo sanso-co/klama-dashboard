@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { FieldValues, FormProvider, useForm, UseFormReturn } from "react-hook-form";
 
 import { Input } from "@/components/global/Input";
 import { TextArea } from "@/components/global/TextArea";
@@ -12,6 +12,7 @@ import { useSearch } from "@/hooks/api/search/useSearch";
 import { MinimalShowType, LeanShowType, ShowType } from "@/types/show";
 
 import styles from "./info.module.scss";
+import { RadioInput } from "@/components/global/RadioInput";
 
 interface Props {
     id: number;
@@ -23,6 +24,7 @@ export const Info = ({ id, show }: Props) => {
         name: show.name || "",
         overview: show.overview || "",
         original_overview: show.original_overview || "",
+        is_custom_content: show.is_custom_content || false,
         poster_path: {
             US: { path: show.poster_path?.US?.path || "" },
             KR: { path: show.poster_path?.KR?.path || "" },
@@ -38,6 +40,7 @@ export const Info = ({ id, show }: Props) => {
     };
 
     const methods = useForm({ defaultValues });
+    const { register } = methods as unknown as UseFormReturn<FieldValues>;
 
     // SEARCH RELATED SEASONS
     const { query, setQuery, suggestions, setSuggestions } = useSearch();
@@ -90,6 +93,7 @@ export const Info = ({ id, show }: Props) => {
         }));
         const newData = {
             ...data,
+            is_custom_content: data.is_custom_content === "Custom",
             related_seasons: otherSeasons,
         };
 
@@ -109,6 +113,13 @@ export const Info = ({ id, show }: Props) => {
             <FormProvider {...methods}>
                 <form className={styles.form} onSubmit={methods.handleSubmit(onSubmit)}>
                     <Input name="name" label="Name" />
+                    <RadioInput
+                        label="Overview Type"
+                        name="is_custom_content"
+                        options={["Custom", "TMDB"]}
+                        defaultValue={show.is_custom_content ? "Custom" : "TMDB"}
+                        register={register}
+                    />
                     <TextArea name="overview" label="Overview" />
                     <TextArea name="original_overview" label="Original Overview" />
                     <div className={styles.flex}>

@@ -1,13 +1,6 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { sortOptions } from "@/helpers/constants/options";
 
-import {
-    useGetPermanentDetails,
-    useAddShowToPermanentCollection,
-    useRemoveShowFromPermanentCollection,
-} from "@/hooks/api/collection/usePermanentCollection.ts";
-import { isAxiosError } from "@/helpers/axiosError";
-
+import { Sort } from "@/features/Shows/Sort";
 import { Header } from "@/components/global/Header/Header.tsx";
 import { AddShow } from "@/features/PermanentCollection/AddShow/AddShow.tsx";
 import { IconButton } from "@/components/global/IconButton";
@@ -16,53 +9,45 @@ import { Modal } from "@/components/global/modal";
 import { DramaCard } from "@/components/global/cards/DramaCard";
 
 import styles from "./permanentdetails.module.scss";
+import { usePermanentDetailsData } from "./hook/usePermanentDetailsData";
+import { Pagination } from "@/components/global/Pagination";
 
 const PermanentDetails = () => {
-    const { id } = useParams<{ id: string }>();
-    const [showModal, setShowModal] = useState(false);
+    const {
+        isLoading,
+        page,
+        sort,
+        showModal,
+        details,
+        refetch,
+        setPage,
+        handleSort,
+        setShowModal,
+        onShowSubmit,
+    } = usePermanentDetailsData();
 
-    if (!id) {
-        return <p>Error: ID is required.</p>;
+    // const { removeShowFromPermanent } = useRemoveShowFromPermanentCollection(Number(id));
+
+    // const onRemove = async (id: number) => {
+    //     try {
+    //         await removeShowFromPermanent(id);
+    //         await refetch();
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // };
+    console.log("details", details);
+    if (isLoading) {
+        return <div>Loading...</div>;
     }
 
-    const { details, refetch } = useGetPermanentDetails(id);
-    const { addShowToPermanent } = useAddShowToPermanentCollection(id);
-    const { removeShowFromPermanent } = useRemoveShowFromPermanentCollection(Number(id));
-
-    const onShowSubmit = async (showObjId: string) => {
-        try {
-            await addShowToPermanent(showObjId);
-            setShowModal(false);
-            await refetch();
-        } catch (error: unknown) {
-            if (isAxiosError(error)) {
-                alert(error.response?.data?.message || "An error occurred");
-            } else if (error instanceof Error) {
-                alert(error.message);
-            } else {
-                alert("An unknown error occurred");
-            }
-            console.error("front error", error);
-        }
-    };
-
-    const onRemove = async (id: number) => {
-        try {
-            await removeShowFromPermanent(id);
-            await refetch();
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
     return (
-        <div className="w-full">
+        <div className={styles.container}>
             <Header title={details?.name || ""} description={details?.description || ""}>
                 <IconButton label="Add Show" onClick={() => setShowModal!(true)}>
                     <PlusIcon />
                 </IconButton>
             </Header>
-
             <Modal
                 header="Add a show to the collection"
                 open={showModal}
@@ -74,19 +59,36 @@ const PermanentDetails = () => {
                 <AddShow onSubmit={onShowSubmit} />
             </Modal>
             <div className={styles.list}>
-                <h2 className={styles.listHeader}>Shows</h2>
-                <div className={styles.showList}>
-                    {details?.results.map((show) => (
-                        <DramaCard
-                            key={show.id}
-                            show={show}
-                            showRemoveButton
-                            overlayclick={() => onRemove(show.id)}
+                <div className={styles.subHeader}>
+                    <div className={styles.subTop}>
+                        <h2 className={styles.listHeader}>Shows</h2>
+                        <Sort
+                            options={sortOptions}
+                            selected={sort}
+                            onSortSelect={(option) => handleSort(option)}
                         />
-                    ))}
+                    </div>
                 </div>
-                <div>pagination</div>
+                <div className={styles.showList}>
+                    {details?.results && details.results.length > 0 ? (
+                        details.results.map((show) => (
+                            <DramaCard
+                                key={show.id}
+                                show={show}
+                                showRemoveButton
+                                // overlayclick={() => onRemove(show.id)}
+                            />
+                        ))
+                    ) : (
+                        <p>No shows found</p>
+                    )}
+                </div>
             </div>
+            <Pagination
+                currentPage={page}
+                totalPages={details?.totalPages || 0}
+                onPageChange={(page) => setPage(page)}
+            />
         </div>
     );
 };

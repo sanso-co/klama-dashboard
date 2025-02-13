@@ -1,7 +1,6 @@
 .main {
     display: flex;
     padding: 2rem var(--mobile-mx) 0;
-
     margin-left: auto;
     margin-right: auto;
 
@@ -11,7 +10,8 @@
     }
 
     @media (min-width: 1024px) {
-        padding-left: var(--tablet-lg-mx);
+        // padding-left: 1.5rem;
+        padding-left: calc(var(--tablet-lg-mx) - 1.5rem);
         padding-right: var(--tablet-lg-mx);
     }
 }

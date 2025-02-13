@@ -1,3 +1,7 @@
+import axios, { AxiosInstance } from "axios";
+
+import { useAuthStore } from "@/store/authStore";
+
 import { CastType } from "@/types/cast";
 import { CreditType } from "@/types/credit";
 import { KeywordType } from "@/types/keyword";
@@ -7,9 +11,7 @@ import { CollectionListType, PeriodicType } from "@/types/periodic";
 import { PermanentType } from "@/types/permanent";
 import { ProviderType } from "@/types/provider";
 import { ShowType } from "@/types/show";
-import axios, { AxiosInstance } from "axios";
 import { LoginType } from "@/types/auth";
-import { useAuthStore } from "@/store/authStore";
 import { GenreType } from "@/types/genre";
 
 class ApiService {
@@ -28,22 +30,37 @@ class ApiService {
             async (error) => {
                 const originalRequest = error.config;
 
-                if (error.response?.status === 401 && !originalRequest._retry) {
+                // Add checks to prevent infinite loops
+                if (
+                    error.response?.status === 401 &&
+                    !originalRequest._retry &&
+                    originalRequest.url !== "auth/refresh" // Prevent refresh attempts on the refresh endpoint
+                ) {
                     originalRequest._retry = true;
 
                     try {
                         const refreshToken = useAuthStore.getState().refreshToken;
-                        const response = await this.api.post("auth/refresh", { refreshToken });
+
+                        // Check if we have a refresh token before attempting refresh
+                        if (!refreshToken) {
+                            useAuthStore.getState().logout();
+                            window.location.href = "/login";
+                            return Promise.reject(error);
+                        }
+
+                        const response = await axios.post(`${LOCALURL}/auth/refresh`, {
+                            refreshToken,
+                        });
                         const { accessToken, refreshToken: newRefreshToken } = response.data;
 
                         useAuthStore.getState().setTokens(accessToken, newRefreshToken);
                         originalRequest.headers.Authorization = `Bearer ${accessToken}`;
 
                         return this.api(originalRequest);
-                    } catch {
+                    } catch (refreshError) {
                         useAuthStore.getState().logout();
                         window.location.href = "/login";
-                        return Promise.reject(error);
+                        return Promise.reject(refreshError);
                     }
                 }
                 return Promise.reject(error);
@@ -53,8 +70,12 @@ class ApiService {
         // Attach token interceptor
         this.api.interceptors.request.use(
             (config) => {
-                const accessToken = useAuthStore.getState().accessToken;
+                // Don't attach token for refresh requests
+                if (config.url === "auth/refresh") {
+                    return config;
+                }
 
+                const accessToken = useAuthStore.getState().accessToken;
                 if (accessToken) {
                     config.headers.Authorization = `Bearer ${accessToken}`;
                 }
@@ -183,10 +204,11 @@ class ApiService {
         collectionId: string;
         page: number;
         limit: number;
+        sort: string;
     }) {
         try {
             const response = await this.api.get(
-                `permanent-collection/${payload.collectionId}?page=${payload.page}&limit=${payload.limit}`
+                `permanent-collection/${payload.collectionId}?page=${payload.page}&limit=${payload.limit}&sort=${payload.sort}`
             );
             return response.data;
         } catch (error) {
@@ -575,6 +597,15 @@ class ApiService {
         } catch (error) {
             console.error("Error loggin in", error);
             throw error;
+        }
+    }
+
+    async validateToken() {
+        try {
+            const response = await this.api.get("auth/validate");
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching heroes", error);
         }
     }
 }

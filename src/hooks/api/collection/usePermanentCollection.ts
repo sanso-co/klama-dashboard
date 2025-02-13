@@ -54,7 +54,7 @@ export const useGetAllPermanent = () => {
     return { getAllPermanent, isLoading, error, collections };
 };
 
-export const useGetPermanentDetails = (collectionId: string) => {
+export const useGetPermanentDetails = (collectionId: string, page: number, sort: string) => {
     const { setPermanentDetails, setIsLoading, setError, isLoading, error, details } =
         usePermanentStore();
 
@@ -65,8 +65,9 @@ export const useGetPermanentDetails = (collectionId: string) => {
         try {
             const fetchedDetails = await apiService.getPermanentCollectionDetails({
                 collectionId,
-                page: 1,
+                page,
                 limit: 40,
+                sort,
             });
             setPermanentDetails(fetchedDetails);
             return fetchedDetails;
@@ -76,7 +77,7 @@ export const useGetPermanentDetails = (collectionId: string) => {
         } finally {
             setIsLoading(false);
         }
-    }, [collectionId, setPermanentDetails, setIsLoading, setError]);
+    }, [collectionId, setPermanentDetails, setIsLoading, setError, page, sort]);
 
     useEffect(() => {
         getPermanentDetails();

@@ -15,7 +15,7 @@ export const HeaderSearch = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
 
     const handleClick = (id: number) => {
-        navigate(`/details/${id}`);
+        navigate(`/dramas/${id}`);
         setIsSearchOpen(false);
     };
 

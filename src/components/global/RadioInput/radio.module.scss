@@ -1,18 +1,8 @@
-.container {
-    label {
-        display: block;
-        font-size: 0.875rem;
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-    }
-
-    input {
-        width: 100%;
-        font-size: 0.875rem;
-        padding: 0.5rem 1rem;
-        border: 1px solid #e8e8e8;
-        border-radius: 0.375rem;
-    }
+.label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
 }
 
 .options {
@@ -27,9 +17,11 @@
 }
 
 .option {
+    display: flex;
     cursor: pointer;
 
     label {
+        font-size: 0.875rem;
         margin-left: 0.25rem;
         cursor: pointer;
     }

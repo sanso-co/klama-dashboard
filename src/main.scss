@@ -28,8 +28,12 @@
     --tomato-bg: #f6eeec;
     --tangerine: #feac00;
     --tangerine-bg: #fcefe1;
+    --tangerine-faint: #fcf6f0;
     // HEADER
     --z-header: 50;
+    // Z-INDEX
+    --z-dropdown: 100;
+    --z-overlay: 200;
 }
 
 * {
@@ -60,15 +64,6 @@ a {
     font-weight: 500;
     color: var(--gray-90);
     text-decoration: none;
-
-    &:visited {
-        color: var(--gray-90);
-    }
-
-    &:hover {
-        color: var(--gray-60);
-        text-decoration: underline;
-    }
 }
 
 ul {

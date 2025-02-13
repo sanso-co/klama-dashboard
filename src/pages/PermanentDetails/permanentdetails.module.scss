@@ -1,19 +1,38 @@
+.container {
+    padding-bottom: 5rem;
+}
+
+.subHeader {
+    input {
+        width: 100%;
+        border: 1px solid var(--gray-20);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        margin-top: 0.5rem;
+    }
+}
+
+.subTop {
+    display: flex;
+    justify-content: space-between;
+}
+
 .list {
     display: flex;
     flex-direction: column;
 }
 
 .listHeader {
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 600;
     text-transform: capitalize;
-    margin-bottom: 1rem;
 }
 
 .showList {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1rem;
+    margin-top: 1rem;
 
     @media (min-width: 640px) {
         grid-template-columns: repeat(6, 1fr);

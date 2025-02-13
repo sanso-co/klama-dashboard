@@ -41,8 +41,9 @@ export const GenreList = () => {
                             <div className={styles.id}>{item.id}</div>
                             <div className={styles.main}>
                                 <div className={styles.names}>
-                                    <div className={styles.name}>{item.name}</div>
-                                    <div className={styles.name}>{item.original_name}</div>
+                                    <div
+                                        className={styles.name}
+                                    >{`${item.name} (${item.original_name})`}</div>
                                 </div>
 
                                 <div className={styles.action}>
