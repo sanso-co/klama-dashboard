@@ -45,7 +45,8 @@ export const DesktopSearch = ({ open, handleClose, handleClick }: Props) => {
                 {suggestions.map((drama) => (
                     <div
                         key={drama.id}
-                        // onClick={() => handleShowClick(drama.id)}
+                        className={styles.suggestion}
+                        onClick={() => handleClick(drama.id)}
                     >
                         {drama.name} ({drama.original_name})
                     </div>

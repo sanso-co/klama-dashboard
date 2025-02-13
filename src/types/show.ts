@@ -44,6 +44,7 @@ export interface ShowType {
     tones: ToneType[];
     overview: string;
     original_overview?: string;
+    is_custom_content?: boolean;
     first_air_date: string;
     number_of_episodes: number;
     season_number: number;

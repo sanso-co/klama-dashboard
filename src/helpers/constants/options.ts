@@ -17,7 +17,7 @@ export const sortOptions: OptionType[] = [
         name: "Release Date (Oldest)",
     },
     {
-        value: SortEnum.NameAsc,
+        value: SortEnum.OriginalNameAsc,
         name: "Alphabetical",
     },
 ];

@@ -1,0 +1,26 @@
+.container {
+    position: relative;
+}
+
+.options {
+    position: absolute;
+    top: calc(34px + 0.5rem);
+    left: var(--position-left);
+    right: var(--position-right);
+    min-width: max-content;
+    border-radius: 0.75rem;
+    background-color: #fff;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 1rem;
+    z-index: var(--z-dropdown);
+}
+
+.option {
+    font-size: 0.875rem;
+    padding: 0.5rem 0;
+    cursor: pointer;
+}
+
+.selected {
+    font-weight: 700;
+}

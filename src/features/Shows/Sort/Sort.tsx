@@ -1,15 +1,14 @@
 import { useState } from "react";
 
-import { useGeneralStore } from "@/store/useStore";
 import { SortEnum } from "@/helpers/constants/options";
 import { OptionType, SortType } from "@/types/sort";
 
 import { Dropdown } from "@/components/global/Dropdown";
-import { Modal } from "@/components/global/Modal";
+import { NewModal } from "@/components/global/NewModal";
 import { SortIcon } from "@/assets/icons/SortIcon";
+import { CheckmarkIcon } from "@/assets/icons/CheckmarkIcon";
 
 import styles from "./sort.module.scss";
-import { CheckmarkIcon } from "@/assets/icons/CheckmarkIcon";
 
 interface ButtonProps {
     onClick?: () => void;
@@ -32,12 +31,10 @@ interface Props {
 
 export const Sort = ({ selected, options, onSortSelect }: Props) => {
     const [showModal, setShowModal] = useState(false);
-    const language = useGeneralStore((state) => state.language);
 
     const handleSortSelect = (value: SortType) => {
         if (value === SortEnum.NameAsc) {
-            const sortValue = language === "kr" ? SortEnum.OriginalNameAsc : SortEnum.NameAsc;
-            onSortSelect(sortValue);
+            onSortSelect(SortEnum.NameAsc);
         } else {
             onSortSelect(value);
         }
@@ -58,7 +55,7 @@ export const Sort = ({ selected, options, onSortSelect }: Props) => {
             </div>
             <div className={styles.mobile}>
                 <SortButton onClick={() => setShowModal!(true)} />
-                <Modal
+                <NewModal
                     header="Sort by"
                     open={showModal}
                     handleClose={() => {
@@ -79,7 +76,7 @@ export const Sort = ({ selected, options, onSortSelect }: Props) => {
                             </li>
                         ))}
                     </ul>
-                </Modal>
+                </NewModal>
             </div>
         </>
     );

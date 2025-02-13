@@ -12,8 +12,8 @@ interface Props {
 
 export const RadioInput: React.FC<Props> = ({ label, name, options, defaultValue, register }) => {
     return (
-        <div>
-            <label>{label}</label>
+        <div className={styles.container}>
+            <label className={styles.label}>{label}</label>
             <div className={styles.options}>
                 {options.map((option) => (
                     <div key={option} className={styles.option}>
