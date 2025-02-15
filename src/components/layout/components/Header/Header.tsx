@@ -1,25 +1,18 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+
+import { HeaderSearch } from "./components/Search";
+
 import { MENU } from "@/helpers/constants/menu";
 
 import styles from "./header.module.scss";
 import { User } from "./components/User";
-import { HeaderSearch } from "./components/Search";
 
 export const Header = () => {
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const userRef = useRef<HTMLDivElement | null>(null);
 
     const [isOpen, setIsOpen] = useState(false);
-    const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
-
-    const toggleFlyout = () => {
-        setIsFlyoutOpen((prev) => !prev);
-    };
-
-    const closeFlyout = () => {
-        setIsFlyoutOpen(false);
-    };
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -38,7 +31,7 @@ export const Header = () => {
     return (
         <header className={styles.header}>
             <div className={styles.container}>
-                <div className={styles.logoContainer}>
+                <div>
                     <div className={styles.logo}></div>
                 </div>
                 <HeaderSearch />
@@ -48,9 +41,6 @@ export const Header = () => {
                         setIsUserMenuOpen={setIsUserMenuOpen}
                         userRef={userRef}
                     />
-                    {/* <div className={`${styles.flyout} ${isFlyoutOpen ? styles.flyoutOpen : ""}`}>
-                        <button onClick={closeFlyout}>Logout</button>
-                    </div> */}
                 </div>
                 <div className={styles.hamburger}>
                     <button

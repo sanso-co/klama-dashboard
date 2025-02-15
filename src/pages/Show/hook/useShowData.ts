@@ -13,7 +13,7 @@ export const useShowData = () => {
         setSort(option);
         setIsDrawerOpen(false);
     };
-    console.log("show", page);
+
     return {
         page,
         sort,

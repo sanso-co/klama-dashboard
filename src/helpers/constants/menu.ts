@@ -1,3 +1,5 @@
+import { SortType } from "@/types/sort";
+
 export const MENU = [
     {
         name: "Periodic Collection",
@@ -41,13 +43,13 @@ export const MENU = [
     },
 ];
 
-export const SORT = [
+export const SORT: { name: string; value: SortType }[] = [
     {
         name: "Alphabetical",
-        value: "alphabetical",
+        value: "name_asc",
     },
     {
         name: "Newest",
-        value: "newest",
+        value: "date_desc",
     },
 ];

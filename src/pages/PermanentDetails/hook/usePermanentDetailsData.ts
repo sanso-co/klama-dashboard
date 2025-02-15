@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import {
     useGetPermanentDetails,
     useAddShowToPermanentCollection,
-    useRemoveShowFromPermanentCollection,
 } from "@/hooks/api/collection/usePermanentCollection.ts";
 import { isAxiosError } from "@/helpers/axiosError";
 import { SortType } from "@/types/sort";
@@ -42,8 +41,9 @@ export const usePermanentDetailsData = () => {
             console.error("front error", error);
         }
     };
-    console.log("permanent", page);
+
     return {
+        id,
         isLoading,
         page,
         sort,
