@@ -1,4 +1,6 @@
 import { sortOptions } from "@/helpers/constants/options";
+import { useRemoveShowFromPermanentCollection } from "@/hooks/api/collection/usePermanentCollection";
+import { usePermanentDetailsData } from "./hook/usePermanentDetailsData";
 
 import { Sort } from "@/features/Shows/Sort";
 import { Header } from "@/components/global/Header/Header.tsx";
@@ -7,13 +9,13 @@ import { IconButton } from "@/components/global/IconButton";
 import { PlusIcon } from "@/assets/icons/PlusIcon";
 import { Modal } from "@/components/global/modal";
 import { DramaCard } from "@/components/global/cards/DramaCard";
+import { Pagination } from "@/components/global/Pagination";
 
 import styles from "./permanentdetails.module.scss";
-import { usePermanentDetailsData } from "./hook/usePermanentDetailsData";
-import { Pagination } from "@/components/global/Pagination";
 
 const PermanentDetails = () => {
     const {
+        id,
         isLoading,
         page,
         sort,
@@ -26,17 +28,17 @@ const PermanentDetails = () => {
         onShowSubmit,
     } = usePermanentDetailsData();
 
-    // const { removeShowFromPermanent } = useRemoveShowFromPermanentCollection(Number(id));
+    const { removeShowFromPermanent } = useRemoveShowFromPermanentCollection(Number(id));
 
-    // const onRemove = async (id: number) => {
-    //     try {
-    //         await removeShowFromPermanent(id);
-    //         await refetch();
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
-    console.log("details", details);
+    const onRemove = async (id: number) => {
+        try {
+            await removeShowFromPermanent(id);
+            await refetch();
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     if (isLoading) {
         return <div>Loading...</div>;
     }
@@ -76,7 +78,7 @@ const PermanentDetails = () => {
                                 key={show.id}
                                 show={show}
                                 showRemoveButton
-                                // overlayclick={() => onRemove(show.id)}
+                                overlayclick={() => onRemove(show.id)}
                             />
                         ))
                     ) : (

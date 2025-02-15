@@ -79,17 +79,13 @@ export const MobileSearch = ({ open, handleClose, handleClick }: Props) => {
                     <button onClick={handleClose}>Cancel</button>
                 </div>
             </div>
-
-            <div className={styles.viewContainer}>
+            <ul className={styles.viewContainer}>
                 {suggestions.map((drama) => (
-                    <div
-                        key={drama.id}
-                        // onClick={() => handleShowClick(drama.id)}
-                    >
+                    <li key={drama.id} onClick={() => handleClick(drama.id)}>
                         {drama.name} ({drama.original_name})
-                    </div>
+                    </li>
                 ))}
-            </div>
+            </ul>
         </div>
     );
 };
