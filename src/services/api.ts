@@ -608,6 +608,25 @@ class ApiService {
             console.error("Error fetching heroes", error);
         }
     }
+
+    // PROFILE
+    async getProfile() {
+        try {
+            const response = await this.api.get("profile");
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching profile", error);
+        }
+    }
+
+    async updateProfile(about: string) {
+        try {
+            const response = await this.api.patch("profile", { about });
+            return response.data;
+        } catch (error) {
+            console.error("Error updateing profile", error);
+        }
+    }
 }
 
 export const apiService = new ApiService();
