@@ -19,6 +19,7 @@ import Marketing from "@/pages/Marketing";
 import Auth from "@/pages/Auth";
 import AdminRoute from "./AdminRoute";
 import Genre from "@/pages/Genre";
+import Profile from "@/pages/Profile";
 
 const router = createBrowserRouter([
     {
@@ -53,6 +54,7 @@ const router = createBrowserRouter([
             { path: "/add/new", element: <AddNew /> },
             { path: "/tmdb/:id", element: <TMDB /> },
             { path: "/marketing", element: <Marketing /> },
+            { path: "/profile", element: <Profile /> },
         ],
     },
 ]);

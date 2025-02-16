@@ -41,6 +41,10 @@ export const MENU = [
         name: "Marketing",
         url: "/marketing",
     },
+    {
+        name: "About Company",
+        url: "/profile",
+    },
 ];
 
 export const SORT: { name: string; value: SortType }[] = [
