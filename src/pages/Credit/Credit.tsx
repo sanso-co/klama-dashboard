@@ -4,6 +4,8 @@ import _ from "lodash";
 
 import { useCreateCredit } from "@/hooks/api/credit/useCredit";
 
+import { creditJobOptions } from "@/helpers/constants/options";
+
 import { CreditList } from "@/features/Credit/CreditList";
 import { TextInput } from "@/components/global/TextInput";
 import { RadioInput } from "@/components/global/RadioInput";
@@ -35,19 +37,18 @@ const Credit = () => {
                 <h2 className={styles.listHeader}>Create New</h2>
                 <form onSubmit={handleSubmit(handleCreate)}>
                     <div className={styles.input}>
-                        <TextInput placeholder="Id" name="id" register={register} />
-                        <TextInput placeholder="Name" name="name" register={register} />
-                        <TextInput
-                            placeholder="Original Name"
-                            name="original_name"
-                            register={register}
-                        />
-                        <div className={styles.radio}>
-                            <RadioInput
-                                name="job"
-                                options={["Director", "Screenwriter", "Producer"]}
+                        <div className={styles.textinput}>
+                            <TextInput placeholder="Id" name="id" register={register} />
+                            <TextInput placeholder="Name" name="name" register={register} />
+                            <TextInput
+                                placeholder="Original Name"
+                                name="original_name"
                                 register={register}
                             />
+                        </div>
+
+                        <div className={styles.radio}>
+                            <RadioInput name="job" options={creditJobOptions} register={register} />
                         </div>
                     </div>
                     <Button label="Create" variant="primary" disabled={isLoading} />

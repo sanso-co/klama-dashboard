@@ -21,3 +21,5 @@ export const sortOptions: OptionType[] = [
         name: "Alphabetical",
     },
 ];
+
+export const creditJobOptions = ["Director", "Screenwriter", "Producer", "Original Author"];

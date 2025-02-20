@@ -1,1 +1,1 @@
-export { Original } from "./Original";
+export { OriginalWork } from "./OriginalWork";

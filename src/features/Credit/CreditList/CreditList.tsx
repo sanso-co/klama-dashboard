@@ -57,7 +57,12 @@ export const CreditList = () => {
                                 <div className={styles.action}>
                                     <RadioInput
                                         name={`${credit._id}_job`}
-                                        options={["Director", "Screenwriter", "Producer"]}
+                                        options={[
+                                            "Director",
+                                            "Screenwriter",
+                                            "Producer",
+                                            "Original Author",
+                                        ]}
                                         defaultValue={credit.job}
                                         register={register}
                                     />

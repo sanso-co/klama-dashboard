@@ -55,6 +55,18 @@
     }
 }
 
+.textinput {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+
+    @media (min-width: 740px) {
+        flex-direction: row;
+        max-width: 500px;
+    }
+}
+
 .listHeader {
     font-size: 0.875rem;
     font-weight: 600;

@@ -13,6 +13,7 @@ import { ProviderType } from "@/types/provider";
 import { ShowType } from "@/types/show";
 import { LoginType } from "@/types/auth";
 import { GenreType } from "@/types/genre";
+import { OriginalWorkType } from "@/types/originalWork";
 
 class ApiService {
     private api: AxiosInstance;
@@ -625,6 +626,37 @@ class ApiService {
             return response.data;
         } catch (error) {
             console.error("Error updateing profile", error);
+        }
+    }
+
+    // ORIGINAL WORK
+    async getOriginalWorkForShow(showId: number) {
+        try {
+            const response = await this.api.get(`original/show/${showId}`);
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching original work", error);
+        }
+    }
+
+    async createOriginalWork(data: OriginalWorkType) {
+        try {
+            const response = await this.api.post(`original`, data);
+            return response.data;
+        } catch (error) {
+            console.error("Error creating original work", error);
+        }
+    }
+
+    async addShowToOriginalWork(id: string, showId: number) {
+        try {
+            const response = await this.api.patch(`original/add/${id}`, {
+                showId,
+            });
+            return response.data;
+        } catch (error) {
+            console.error("Error adding a show to original work", error);
+            throw error;
         }
     }
 }
