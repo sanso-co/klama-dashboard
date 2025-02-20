@@ -1,10 +1,10 @@
 import { apiService } from "@/services/api";
 import { useCallback, useEffect, useState } from "react";
 
-import { OriginalWorkType } from "@/types/originalWork";
+import { OriginalWorkResponseType, OriginalWorkType } from "@/types/originalWork";
 
 export const useGetOriginalWorkForShow = (showId: number) => {
-    const [original, setOriginal] = useState<OriginalWorkType>();
+    const [original, setOriginal] = useState<OriginalWorkResponseType>();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
 

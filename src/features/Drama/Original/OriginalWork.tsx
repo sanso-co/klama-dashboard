@@ -24,7 +24,7 @@ export const OriginalWork = ({ id }: Props) => {
     const { original } = useGetOriginalWorkForShow(id);
     const [query, setQuery] = useState("");
     const [suggestions, setSuggestions] = useState<CreditType[]>([]);
-    console.log(original);
+
     const defaultValues = {
         title: "",
         original_title: "",
