@@ -5,7 +5,7 @@ import { useGetShowDetails } from "@/hooks/api/drama/useShow";
 
 import { Header } from "@/components/global/Header";
 import { Info } from "@/features/Drama/Info";
-import { Original } from "@/features/Drama/Original";
+import { OriginalWork } from "@/features/Drama/Original";
 import { Genres } from "@/features/Drama/Genres";
 import { Keywords } from "@/features/Drama/Keywords";
 import { Tone } from "@/features/Drama/Tone";
@@ -29,7 +29,7 @@ const ShowDetails = () => {
             </Helmet>
             <Header title={show.original_name || ""} description={show.id.toString()} />
             <Info id={Number(id)} show={show} />
-            <Original id={Number(id)} show={show} />
+            <OriginalWork id={Number(id)} />
             <Genres id={Number(id)} genres={show?.genres} />
             <Keywords showId={Number(id)} keywords={show?.keywords} />
             <Tone showId={Number(id)} tones={show?.tones} />
