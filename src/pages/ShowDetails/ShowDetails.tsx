@@ -27,7 +27,7 @@ const ShowDetails = () => {
             <Helmet>
                 <title>{show.original_name}</title>
             </Helmet>
-            <Header title={show.original_name || ""} description={show.id.toString()} />
+            <Header title={show.original_name || ""} secondaryDescription={show.id.toString()} />
             <Info id={Number(id)} show={show} />
             <OriginalWork id={Number(id)} />
             <Genres id={Number(id)} genres={show?.genres} />

@@ -39,7 +39,7 @@ const PeriodicDetails = () => {
 
     return (
         <div className="w-full">
-            <Header title={details?.name || ""} description={details?.description}>
+            <Header title={details?.name || ""} primaryDescription={details?.description}>
                 <IconButton label="Add New List" onClick={() => setShowModal!(true)}>
                     <PlusIcon />
                 </IconButton>

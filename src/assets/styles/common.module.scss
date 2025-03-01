@@ -1,0 +1,29 @@
+.sectionTitle {
+    margin-bottom: 1.5rem;
+
+    h2 {
+        font-size: 1.125rem;
+    }
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+}
+
+.listHeader {
+    font-size: 1.125rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+}
+
+.listItem {
+    font-size: 0.9375rem;
+    border-bottom: 1px solid var(--gray-5);
+    padding: 0.875rem 0;
+
+    &:hover {
+        color: var(--gray-60);
+    }
+}

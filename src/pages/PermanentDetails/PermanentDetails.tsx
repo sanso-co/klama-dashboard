@@ -45,7 +45,7 @@ const PermanentDetails = () => {
 
     return (
         <div className={styles.container}>
-            <Header title={details?.name || ""} description={details?.description || ""}>
+            <Header title={details?.name || ""} primaryDescription={details?.description || ""}>
                 <IconButton label="Add Show" onClick={() => setShowModal!(true)}>
                     <PlusIcon />
                 </IconButton>

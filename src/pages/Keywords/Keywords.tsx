@@ -28,7 +28,7 @@ const Keywords = () => {
 
     return (
         <div className={styles.container}>
-            <Header title="Keywords" description="Keywords that describe show" />
+            <Header title="Keywords" primaryDescription="Keywords that describe show" />
             <div className={styles.create}>
                 <h2 className={styles.listHeader}>Create New</h2>
                 <form onSubmit={handleSubmit(handleCreate)}>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useGetAllPeriodic } from "@/hooks/api/collection/usePeriodicCollection";
 
@@ -8,8 +8,27 @@ import { Modal } from "@/components/global/modal";
 import { Header } from "@/components/global/Header";
 import { IconButton } from "@/components/global/IconButton";
 import { PlusIcon } from "@/assets/icons/PlusIcon";
+import { Table } from "@/components/global/Table";
 
-import styles from "./periodiccollection.module.scss";
+import common from "@/assets/styles/common.module.scss";
+
+const serviceColumns = [
+    {
+        key: "id",
+        header: "Id",
+        width: 1,
+    },
+    {
+        key: "name",
+        header: "Name",
+        width: 3,
+    },
+    {
+        key: "frequency",
+        header: "Frequency",
+        width: 2,
+    },
+];
 
 const PeriodicCollection = () => {
     const navigate = useNavigate();
@@ -21,6 +40,19 @@ const PeriodicCollection = () => {
         navigate(`/periodic-collection/${id}`);
     };
 
+    const tableData = collections.map((c) => {
+        return {
+            _id: c._id,
+            id: `...${c._id.slice(-5)}`,
+            name: c.name,
+            frequency: c.frequency,
+        };
+    });
+
+    const handleRowClick = (row: { _id: string }) => {
+        navigate(`/periodic-collection/${row._id}`);
+    };
+
     if (isLoading) return <div>Loading ...</div>;
     if (error) return <div>Failed to load</div>;
     if (!collections || collections.length === 0) return null;
@@ -29,10 +61,10 @@ const PeriodicCollection = () => {
         <div>
             <Header
                 title="Periodic Collections"
-                description="
+                primaryDescription="
                         Regularly updated content, weekly, quarterly, or on your own schedule."
             >
-                <IconButton label="New Collection" onClick={() => setShowModal!(true)}>
+                <IconButton label="Create New Collection" onClick={() => setShowModal!(true)}>
                     <PlusIcon />
                 </IconButton>
                 <Modal
@@ -45,18 +77,8 @@ const PeriodicCollection = () => {
                     <CreateNew onSuccess={(id) => onGroupSubmit(id)} />
                 </Modal>
             </Header>
-            <div className={styles.list}>
-                <h2 className={styles.listHeader}>Collections</h2>
-                <ul>
-                    {collections.map((collection) => (
-                        <li key={collection._id} className={styles.item}>
-                            <Link to={`/periodic-collection/${collection._id}`}>
-                                {collection.name}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            <h2 className={common.listHeader}>Collection List</h2>
+            <Table columns={serviceColumns} data={tableData} onRowClick={handleRowClick} />
         </div>
     );
 };

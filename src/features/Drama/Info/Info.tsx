@@ -4,6 +4,7 @@ import { FieldValues, FormProvider, useForm, UseFormReturn } from "react-hook-fo
 import { Input } from "@/components/global/Input";
 import { TextArea } from "@/components/global/TextArea";
 import { Button } from "@/components/global/Button";
+import { RadioInput } from "@/components/global/RadioInput";
 import { DismissIcon } from "@/assets/icons/DismissIcon";
 
 import { useUpdateShow } from "@/hooks/api/drama/useShow";
@@ -12,7 +13,7 @@ import { useSearch } from "@/hooks/api/search/useSearch";
 import { MinimalShowType, LeanShowType, ShowType } from "@/types/show";
 
 import styles from "./info.module.scss";
-import { RadioInput } from "@/components/global/RadioInput";
+import common from "@/assets/styles/common.module.scss";
 
 interface Props {
     id: number;
@@ -107,7 +108,7 @@ export const Info = ({ id, show }: Props) => {
 
     return (
         <section className={styles.section}>
-            <div className={styles.sectionTitle}>
+            <div className={common.sectionTitle}>
                 <h2>Primary Info</h2>
             </div>
             <FormProvider {...methods}>

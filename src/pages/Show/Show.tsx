@@ -23,7 +23,7 @@ const Show = () => {
             <Helmet>
                 <title>Shows</title>
             </Helmet>
-            <Header title="Shows" description="Add show to the local list" />
+            <Header title="Shows" primaryDescription="Add show to the local list" />
             <div className={styles.list}>
                 <div className={styles.subHeader}>
                     <div className={styles.subTop}>

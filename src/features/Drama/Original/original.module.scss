@@ -4,32 +4,35 @@
     margin-bottom: 2rem;
 }
 
-.sectionTitle {
-    margin-bottom: 1.5rem;
-
-    h2 {
-        font-size: 1rem;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-    }
-}
-
 .display {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     background-color: var(--gray-2);
+    border: 1px solid var(--gray-10);
     border-radius: 0.75rem;
-    padding: 1rem;
-    margin-bottom: 1rem;
-}
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
 
-.subtitle {
-    font-size: 0.75rem;
+    p {
+        &:first-child {
+            font-weight: 600;
+        }
+
+        &:last-child {
+            font-size: 0.875rem;
+        }
+    }
 }
 
 .content {
     font-size: 0.875rem;
+}
+
+.authorLabel {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
 }
 
 .input {
@@ -61,10 +64,11 @@
     padding: 0.25rem 0;
 }
 
-.flex {
+.title {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
+    margin-bottom: 1.5rem;
 
     div {
         flex: 1;

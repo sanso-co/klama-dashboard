@@ -1,0 +1,1 @@
+export { InputTable } from "./InputTable";
