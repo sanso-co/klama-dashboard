@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { useAuth } from "@/hooks/api/auth/useAuth";
 
-import { Header } from "@/components/global/Header";
 import { Input } from "@/components/global/Input";
 import { Button } from "@/components/global/Button";
 
@@ -36,20 +35,18 @@ const Auth = () => {
     };
 
     return (
-        <div className={styles.container}>
-            <div className={styles.auth}>
-                <Header
-                    title="Login"
-                    description="If you are an authorized content manager, please sign in here"
-                />
-                <FormProvider {...methods}>
-                    <form className={styles.form} onSubmit={methods.handleSubmit(onSubmit)}>
-                        <Input label="Username" name="username" />
-                        <Input label="Password" name="password" type="password" />
-                        <Button type="submit" label="Save" variant="primary" />
-                    </form>
-                </FormProvider>
+        <div className={styles.auth}>
+            <div className={styles.header}>
+                <h1>Welcome Back</h1>
+                <p>If you are an authorized content manager, please log in here</p>
             </div>
+            <FormProvider {...methods}>
+                <form className={styles.form} onSubmit={methods.handleSubmit(onSubmit)}>
+                    <Input label="Username" name="username" />
+                    <Input label="Password" name="password" type="password" />
+                    <Button type="submit" label="Login" variant="primary" />
+                </form>
+            </FormProvider>
         </div>
     );
 };

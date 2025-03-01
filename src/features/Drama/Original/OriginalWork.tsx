@@ -3,18 +3,19 @@ import { FieldValues, FormProvider, useForm, UseFormReturn } from "react-hook-fo
 import { debounce } from "lodash";
 import axios from "axios";
 
-import { Button } from "@/components/global/Button";
-import { Chip } from "@/components/global/Chip";
-
-import { CreditType } from "@/types/credit";
-
-import styles from "./original.module.scss";
-import { Input } from "@/components/global/Input";
-import { RadioInput } from "@/components/global/RadioInput";
 import {
     useCreateOriginalWorkAndLink,
     useGetOriginalWorkForShow,
 } from "@/hooks/api/originalWork/useOriginalWork";
+import { CreditType } from "@/types/credit";
+
+import { Button } from "@/components/global/Button";
+import { Chip } from "@/components/global/Chip";
+import { Input } from "@/components/global/Input";
+import { RadioInput } from "@/components/global/RadioInput";
+
+import styles from "./original.module.scss";
+import common from "@/assets/styles/common.module.scss";
 
 interface Props {
     id: number;
@@ -86,25 +87,16 @@ export const OriginalWork = ({ id }: Props) => {
 
     return (
         <section className={styles.section}>
-            <div className={styles.sectionTitle}>
+            <div className={common.sectionTitle}>
                 <h2>Original Story</h2>
             </div>
             {original && original.hasOriginalWork && (
                 <div className={styles.display}>
-                    <div>
-                        <p className={styles.subtitle}>Title</p>
-                        <p
-                            className={styles.content}
-                        >{`${original.title} (${original.original_title})`}</p>
-                    </div>
-                    <div className={styles.author}>
-                        <p className={styles.subtitle}>Author</p>
-                        <p
-                            className={styles.content}
-                        >{`${original.author.name} (${original.author.original_name})`}</p>
-                    </div>
+                    <p>{`${original.title} (${original.original_title})`}</p>
+                    <p>{`by ${original.author.name} (${original.author.original_name})`}</p>
                 </div>
             )}
+            <div className={styles.authorLabel}>Original Story Author</div>
             <input
                 id="search"
                 type="text"
@@ -134,7 +126,7 @@ export const OriginalWork = ({ id }: Props) => {
             </div>
             <FormProvider {...methods}>
                 <form className={styles.form} onSubmit={methods.handleSubmit(onSubmit)}>
-                    <div className={styles.flex}>
+                    <div className={styles.title}>
                         <Input name="title" label="Title" />
                         <Input name="original_title" label="Original Title" />
                     </div>

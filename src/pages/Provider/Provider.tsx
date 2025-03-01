@@ -37,7 +37,7 @@ const Provider = () => {
 
     return (
         <div className={styles.container}>
-            <Header title="Provider" description="List of providers" />
+            <Header title="Provider" primaryDescription="List of providers" />
             <div className={styles.create}>
                 <h2 className={styles.listHeader}>Create New</h2>
                 <form onSubmit={handleSubmit(handleCreate)}>

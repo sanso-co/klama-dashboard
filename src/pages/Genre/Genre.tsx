@@ -28,9 +28,11 @@ const Genre = () => {
 
     return (
         <div className={styles.container}>
-            <Header title="Genre" description="Genre of the show" />
-            <div className={styles.create}>
-                <h2 className={styles.listHeader}>Create New</h2>
+            <Header title="Genre" primaryDescription="View, update or create genres">
+                <Button label="Create" variant="secondary" />
+            </Header>
+            {/* <div className={styles.create}>
+                <h2 className={styles.listHeader}>Create New Genre</h2>
                 <form onSubmit={handleSubmit(handleCreate)}>
                     <div className={styles.input}>
                         <TextInput placeholder="Id" name="id" register={register} />
@@ -43,7 +45,7 @@ const Genre = () => {
                     </div>
                     <Button label="Create" variant="primary" disabled={isLoading} />
                 </form>
-            </div>
+            </div> */}
             <GenreList />
         </div>
     );

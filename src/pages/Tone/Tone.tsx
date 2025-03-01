@@ -28,7 +28,7 @@ const Tone = () => {
 
     return (
         <div className={styles.container}>
-            <Header title="Tone" description="Tone that describes the mood of the show" />
+            <Header title="Tone" primaryDescription="Tone that describes the mood of the show" />
             <div className={styles.create}>
                 <h2 className={styles.listHeader}>Create New</h2>
                 <form onSubmit={handleSubmit(handleCreate)}>

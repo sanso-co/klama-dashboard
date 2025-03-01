@@ -1,8 +1,15 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+}
+
 .main {
     display: flex;
+}
+
+.outlet {
+    width: 100%;
     padding: 2rem var(--mobile-mx) 0;
-    margin-left: auto;
-    margin-right: auto;
 
     @media (min-width: 768px) {
         padding-left: var(--tablet-mx);
@@ -10,18 +17,9 @@
     }
 
     @media (min-width: 1024px) {
-        // padding-left: 1.5rem;
-        padding-left: calc(var(--tablet-lg-mx) - 1.5rem);
+        padding-left: var(--tablet-lg-mx);
         padding-right: var(--tablet-lg-mx);
-    }
-}
-
-.outlet {
-    width: 100%;
-    padding: 64px 1rem 0;
-
-    @media (min-width: 1024px) {
-        margin-left: 250px;
+        margin-left: 240px;
     }
 
     @media (min-width: 1440px) {

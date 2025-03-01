@@ -6,7 +6,7 @@ import styles from "./layout.module.scss";
 
 export const Layout = () => {
     return (
-        <>
+        <div className={styles.layout}>
             <Header />
             <main className={styles.main}>
                 <Sidenav />
@@ -14,6 +14,6 @@ export const Layout = () => {
                     <Outlet />
                 </div>
             </main>
-        </>
+        </div>
     );
 };
