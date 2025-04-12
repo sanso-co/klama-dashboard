@@ -3,69 +3,132 @@
     justify-content: center;
     align-items: center;
     border: none;
-    font-size: 15px;
-    font-weight: 400;
-    color: var(--gray-90);
-    background-color: var(--gray-5);
-    border-radius: 0.35rem;
-    padding: 0.35rem 0.5rem;
+    height: 56px;
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: 700;
+    background-color: var(--c-moonshadow);
+    color: var(--c-moonshadow-tint);
+    border-radius: var(--radius-l);
+    padding: 0 1.25rem;
+    transition: background-color 0.2s ease;
     cursor: pointer;
 
-    span {
-        margin-left: 0.25rem;
+    &:hover {
+        background-color: var(--c-moonshadow-hover);
     }
 
-    &:hover {
-        background-color: var(--gray-10);
+    &:focus {
+        outline: 4px solid var(--c-moonshadow-disabled);
+    }
+
+    &:focus:not(:focus-visible) {
+        outline: none;
+    }
+
+    &:active {
+        background-color: var(--c-moonshadow-pressed);
     }
 
     &:disabled {
-        background-color: #888888;
+        background-color: var(--c-moonshadow-disabled);
         cursor: not-allowed;
     }
 
     &[data-variant="primary"] {
-        display: flex;
-        justify-content: center;
-        font-weight: 600;
-        background-color: var(--gray-90);
-        color: #fff;
-        padding: 0.75rem;
+        &:hover {
+            background-color: var(--c-moonshadow-hover);
+        }
+
+        &:focus {
+            outline: 4px solid var(--c-moonshadow-disabled);
+        }
+
+        &:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        &:active {
+            background-color: var(--c-moonshadow-pressed);
+        }
+
+        &:disabled {
+            background-color: var(--c-moonshadow-disabled);
+            cursor: not-allowed;
+        }
     }
 
     &[data-variant="secondary"] {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 0.875rem;
-        font-weight: 600;
-        letter-spacing: -0.15px;
-        border: 1px solid var(--gray-10);
-        background-color: transparent;
-        padding: 0.75rem;
-        white-space: nowrap;
+        background-color: var(--c-moonshadow-tint);
+        color: var(--c-moonshadow);
 
         &:hover {
-            border: 1px solid var(--gray-2);
-            background-color: var(--gray-2);
+            background-color: var(--c-moonshadow-tint-hover);
+        }
+
+        &:focus {
+            outline: 4px solid var(--c-moonshadow-tint-hover);
+        }
+
+        &:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        &:active {
+            background-color: var(--c-moonshadow-tint-pressed);
+        }
+
+        &:disabled {
+            background-color: var(--c-moonshadow-tint-disabled);
+            cursor: not-allowed;
         }
     }
 
     &[data-variant="tertiary"] {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        width: fit-content;
-        font-size: 0.875rem;
-        font-weight: 600;
-        letter-spacing: -0.15px;
-        background-color: var(--gray-2);
-        padding: 0.35rem 0.5rem;
-        white-space: nowrap;
+        position: relative;
+        background-color: transparent;
+        color: var(--c-moonshadow);
+
+        &:after {
+            content: "";
+            position: absolute;
+            left: 1.25rem;
+            right: 1.25rem;
+            height: 1px;
+            bottom: 1rem;
+            background-color: var(--c-moonshadow);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
 
         &:hover {
-            text-decoration: underline;
+            &:after {
+                opacity: 1;
+            }
         }
+
+        &:focus {
+            outline: 4px solid var(--c-moonshadow-tint-hover);
+        }
+
+        &:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        &:active {
+            color: var(--c-moonshadow-pressed);
+        }
+
+        &:disabled {
+            color: var(--c-moonshadow-disabled);
+            cursor: not-allowed;
+        }
+    }
+
+    &[data-size="sm"] {
+        height: 46px;
+        font-size: 0.875rem;
+        border-radius: var(--radius-m);
     }
 
     &[data-width="full"] {

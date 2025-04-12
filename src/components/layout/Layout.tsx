@@ -11,7 +11,9 @@ export const Layout = () => {
             <main className={styles.main}>
                 <Sidenav />
                 <div className={styles.outlet}>
-                    <Outlet />
+                    <div className={styles.content}>
+                        <Outlet />
+                    </div>
                 </div>
             </main>
         </div>

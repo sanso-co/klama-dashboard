@@ -51,7 +51,9 @@ const Credit = () => {
                             <RadioInput name="job" options={creditJobOptions} register={register} />
                         </div>
                     </div>
-                    <Button label="Create" variant="primary" disabled={isLoading} />
+                    <Button variant="secondary" disabled={isLoading}>
+                        Create
+                    </Button>
                 </form>
             </div>
             <CreditList />

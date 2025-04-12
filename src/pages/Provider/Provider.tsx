@@ -51,7 +51,9 @@ const Provider = () => {
                         <TextInput placeholder="Id" name="id" register={register} />
                         <TextInput placeholder="Name" name="name" register={register} />
                     </div>
-                    <Button label="Create" variant="primary" disabled={isLoading} />
+                    <Button variant="secondary" disabled={isLoading}>
+                        Create
+                    </Button>
                 </form>
             </div>
             <ProvidersList />

@@ -32,7 +32,7 @@ export const Modal = ({ open, header, size = "md", children, handleClose }: Prop
             <div className={styles.overlay} onClick={handleClose} />
             <div className={containerClassName}>
                 <div className={styles.header}>
-                    <h1>{header}</h1>
+                    <h2>{header}</h2>
                     <button className={styles.button} onClick={handleClose}>
                         <DismissIcon width={16} height={16} />
                     </button>

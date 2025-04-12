@@ -49,7 +49,13 @@ export const ProvidersList = () => {
                                     register={register}
                                     defaultValue={provider.display_priority}
                                 />
-                                <Button label="Update" onClick={handleSubmit(onSubmit(provider))} />
+                                <Button
+                                    variant="primary"
+                                    size="sm"
+                                    onClick={handleSubmit(onSubmit(provider))}
+                                >
+                                    Update
+                                </Button>
                             </div>
                         </div>
                     </div>

@@ -98,7 +98,9 @@ export const Tone = ({ showId, tones }: Props) => {
                     />
                 ))}
             </div>
-            <Button label="Save Tone" variant="primary" onClick={handleSave} />
+            <Button variant="primary" size="sm" onClick={handleSave}>
+                Save Tone
+            </Button>
         </section>
     );
 };

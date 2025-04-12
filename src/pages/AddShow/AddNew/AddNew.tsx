@@ -76,7 +76,9 @@ const AddNew = () => {
                     </div>
 
                     <div className={styles.buttonContainer}>
-                        <Button type="submit" label="Save" variant="primary" />
+                        <Button type="submit" variant="primary">
+                            Save
+                        </Button>
                     </div>
                 </form>
             </FormProvider>

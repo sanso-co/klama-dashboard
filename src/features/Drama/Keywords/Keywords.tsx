@@ -98,7 +98,9 @@ export const Keywords = ({ showId, keywords }: Props) => {
                     />
                 ))}
             </div>
-            <Button label="Save Keywords" variant="primary" onClick={handleSave} />
+            <Button variant="primary" size="sm" onClick={handleSave}>
+                Save Keywords
+            </Button>
         </section>
     );
 };

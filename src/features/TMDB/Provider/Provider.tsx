@@ -40,7 +40,7 @@ export const Provider = ({ showId }: Props) => {
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-                <h3>Providers</h3>
+                <h2>Providers</h2>
             </div>
             <div className={styles.list}>
                 {filteredProviders.map((provider: TMDBProviderType) => {
@@ -60,7 +60,13 @@ export const Provider = ({ showId }: Props) => {
                                 )}
                                 {providerName && <p>{providerName}</p>}
                             </div>
-                            <Button label="Add" onClick={() => handleProviderAdd(provider)} />
+                            <Button
+                                variant="secondary"
+                                size="sm"
+                                onClick={() => handleProviderAdd(provider)}
+                            >
+                                Add
+                            </Button>
                         </div>
                     );
                 })}

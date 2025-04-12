@@ -75,7 +75,9 @@ export const CreateList = ({ onSubmit }: Props) => {
                     </div>
                 )}
             </div>
-            <Button label="Submit" variant="primary" onClick={handleSubmit(handleListSubmit)} />
+            <Button variant="primary" onClick={handleSubmit(handleListSubmit)}>
+                Submit
+            </Button>
         </div>
     );
 };

@@ -29,7 +29,7 @@ const Genre = () => {
     return (
         <div className={styles.container}>
             <Header title="Genre" primaryDescription="View, update or create genres">
-                <Button label="Create" variant="secondary" />
+                <Button variant="secondary">Create</Button>
             </Header>
             {/* <div className={styles.create}>
                 <h2 className={styles.listHeader}>Create New Genre</h2>

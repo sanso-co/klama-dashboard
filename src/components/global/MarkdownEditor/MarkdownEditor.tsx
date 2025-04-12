@@ -82,11 +82,12 @@ export const MarkdownEditor = ({ initialValue = "", onChange, onSubmit }: Props)
                         dangerouslySetInnerHTML={{ __html: convertMarkdownToHtml(markdown) }}
                     />
                 )}
-                <Button
-                    label={isPreviewMode ? "Edit" : "Preview"}
-                    onClick={() => setIsPreviewMode(!isPreviewMode)}
-                />
-                <Button label="Submit" onClick={handleSubmit} />
+                <div className={styles.buttons}>
+                    <Button variant="secondary" onClick={() => setIsPreviewMode(!isPreviewMode)}>
+                        {isPreviewMode ? "Edit" : "Preview"}
+                    </Button>
+                    <Button onClick={handleSubmit}>Submit</Button>
+                </div>
             </div>
         </div>
     );

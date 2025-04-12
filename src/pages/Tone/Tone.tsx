@@ -41,7 +41,9 @@ const Tone = () => {
                             register={register}
                         />
                     </div>
-                    <Button label="Create" variant="primary" disabled={isLoading} />
+                    <Button variant="secondary" disabled={isLoading}>
+                        Create
+                    </Button>
                 </form>
             </div>
             <ToneList />

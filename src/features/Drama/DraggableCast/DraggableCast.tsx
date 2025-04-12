@@ -79,8 +79,12 @@ export const DraggableCast = ({ showId }: Props) => {
         <div className={styles.section}>
             <div className={styles.sectionTitle}>
                 <h2>Casts</h2>
-                <Button label="Add Cast" onClick={() => setShowModal!(true)} />
-                <Button label="Update Order" onClick={handleOrderUpdate} />
+                <Button variant="primary" size="sm" onClick={() => setShowModal!(true)}>
+                    Add Cast
+                </Button>
+                <Button variant="primary" size="sm" onClick={handleOrderUpdate}>
+                    Update Order
+                </Button>
             </div>
             <Modal
                 header="Add a new cast"

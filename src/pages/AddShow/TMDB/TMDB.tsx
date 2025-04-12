@@ -44,7 +44,7 @@ const TMDB = () => {
             alert("successfully added");
         } catch (error) {
             console.error(error);
-            alert("already added");
+            alert("An error occured");
         }
     };
 
@@ -64,7 +64,9 @@ const TMDB = () => {
                 />
                 <div className={styles.info}>
                     <div className={styles.name}>{data.original_name}</div>
-                    <Button label="Add Show" variant="primary" onClick={handleDramaAdd} />
+                    <Button variant="primary" onClick={handleDramaAdd}>
+                        Add Show
+                    </Button>
                 </div>
             </div>
             <Provider showId={data.id} />

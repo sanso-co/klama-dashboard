@@ -27,10 +27,6 @@
         font-size: 0.875rem;
     }
 
-    button {
-        width: 100%;
-    }
-
     @media (min-width: 740px) {
         padding: 1.5rem;
 
@@ -40,11 +36,6 @@
 
         .input {
             flex-direction: row;
-        }
-
-        button {
-            width: 200px;
-            height: 36px;
         }
     }
 }

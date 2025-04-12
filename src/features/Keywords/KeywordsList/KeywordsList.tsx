@@ -52,9 +52,12 @@ export const KeywordsList = () => {
                                         defaultValue={keyword.rank}
                                     />
                                     <Button
-                                        label="Update"
+                                        variant="primary"
+                                        size="sm"
                                         onClick={handleSubmit(onUpdateSubmit(keyword))}
-                                    />
+                                    >
+                                        Update
+                                    </Button>
                                 </div>
                             </div>
                         </div>

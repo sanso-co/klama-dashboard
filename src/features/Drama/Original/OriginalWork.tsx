@@ -138,7 +138,9 @@ export const OriginalWork = ({ id }: Props) => {
                         register={register}
                     />
                     <div className={styles.buttonContainer}>
-                        <Button label="Save Original Work" variant="primary" />
+                        <Button variant="primary" size="sm">
+                            Save Original Work
+                        </Button>
                     </div>
                 </form>
             </FormProvider>
