@@ -2,6 +2,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { useAuth } from "@/hooks/api/auth/useAuth";
+import { useAuthStore } from "@/store/authStore";
 
 import { Input } from "@/components/global/Input";
 import { Button } from "@/components/global/Button";
@@ -22,6 +23,7 @@ const Auth = () => {
     const methods = useForm({ defaultValues });
 
     const { loginAdmin } = useAuth();
+    const { error } = useAuthStore();
 
     const onSubmit = async (data: any) => {
         try {
@@ -44,9 +46,12 @@ const Auth = () => {
                 <form className={styles.form} onSubmit={methods.handleSubmit(onSubmit)}>
                     <Input label="Username" name="username" />
                     <Input label="Password" name="password" type="password" />
-                    <Button type="submit" label="Login" variant="primary" />
+                    <Button type="submit" variant="primary">
+                        Login
+                    </Button>
                 </form>
             </FormProvider>
+            {error && <p>{error.message}</p>}
         </div>
     );
 };

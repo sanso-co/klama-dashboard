@@ -154,9 +154,9 @@ export const Info = ({ id, show }: Props) => {
                                         onClick={() => handleShowClick(show)}
                                         className={styles.suggestedItem}
                                     >
-                                        <h3>
+                                        <p>
                                             {show.name} ({show.original_name})
-                                        </h3>
+                                        </p>
                                     </li>
                                 ))}
                             </ul>
@@ -191,7 +191,9 @@ export const Info = ({ id, show }: Props) => {
                     </div>
 
                     <div className={styles.buttonContainer}>
-                        <Button type="submit" label="Save" variant="primary" />
+                        <Button type="submit" variant="primary" size="sm">
+                            Save
+                        </Button>
                     </div>
                 </form>
             </FormProvider>

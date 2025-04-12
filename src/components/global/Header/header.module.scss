@@ -5,9 +5,6 @@
     margin-bottom: 2rem;
 
     h1 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        text-transform: capitalize;
         margin-bottom: 0.5rem;
     }
 
@@ -19,9 +16,7 @@
 }
 
 .primary {
-    font-size: 1rem;
-    line-height: 1.5;
-    font-weight: 500;
+    font-weight: var(--fw-medium);
     color: var(--gray-70);
 }
 

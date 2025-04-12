@@ -1,15 +1,73 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
 
 :root {
+    // FONT SIZE
+    --fz-hl-lg: 1.75rem;
+    --fz-hl-sm: 1.5rem;
+    --fz-hm-lg: 1.25rem;
+    --fz-hm-sm: 1.125rem;
+    --fz-body-m: 1rem;
+    --fw-light: 300;
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semi-bold: 600;
+    --fw-bold: 700;
+    --fw-extra-bold: 800;
+    // COLOR
+    --c-moonshadow: #1c2d48;
+    --c-moonshadow-hover: #243856;
+    --c-moonshadow-pressed: #152035;
+    --c-moonshadow-disabled: #9ca3af;
+    --c-moonshadow-tint: #e6e9ee;
+    --c-moonshadow-tint-hover: #d8dde4;
+    --c-moonshadow-tint-pressed: #c3c9d2;
+    --c-moonshadow-tint-disabled: #f2f3f5;
+    --c-autumn: #b3650b;
+    --c-autumn-hover: #c3751a;
+    --c-autumn-pressed: #8a4c06;
+    --c-autumn-disabled: #d6c5b2;
+    --c-autumn-tint: #fcf6f0;
+    --c-neutral-50: #fafaf9;
+    --c-neutral-100: #f5f4f2;
+    --c-neutral-200: #edebe8;
+    --c-neutral-300: #e2e0dc;
+    --c-neutral-400: #d3d1cd;
+    --c-neutral-500: #bab8b2;
+    --c-neutral-600: #999790;
+    --c-neutral-700: #77756f;
+    --c-neutral-800: #54524d;
+    --c-neutral-900: #33312e;
+    // SPACING
+    --space-xxs: 4;
+    --space-xs: 8;
+    --space-s: 12;
+    --space-m: 16;
+    --space-l: 24;
+    --space-xl: 32;
+    --space-2xl: 48;
+    --space-3xl: 64;
+    // SECTION SPACING
+    --px-mobile: 1rem;
+    --px-tablet: 1.5rem;
+    --px-tablet-l: 2.5rem;
+    --px-desktop: 3.25rem;
+    // BREAKPOINTS
+    --bp-sm-mobile: 375px;
+    --bp-mobile: 430px;
+    --bp-sm-tablet: 768px;
+    // BORDER
+    --radius-none: 0;
+    --radius-s: 0.25rem;
+    --radius-m: 0.5rem;
+    --radius-l: 0.75rem;
+    --radius-full: 9999px;
+    --border-100: 1px;
+    --border-200: 2px;
     --neutral-100: #010b12;
     --neutral-90: #1a2329;
     --neutral-80: #323a3f;
     --neutral-70: #4b5257;
     --neutral-60: #63696d;
-    --mobile-mx: 1rem;
-    --tablet-mx: 1.5rem;
-    --tablet-lg-mx: 2.5rem;
-    --desktop-mx: 3.25rem;
     --gray-100: #0e0f12;
     --gray-90: #26272a;
     --gray-80: #3e3f41;
@@ -30,8 +88,7 @@
     --tangerine-bg: #fcefe1;
     --tangerine-faint: #fcf6f0;
     --tangerine-selected: #b3650b;
-    --navy: #070663;
-    --cool-blue: #e3e7f7;
+
     // HEADER
     --z-header: 50;
     // Z-INDEX
@@ -50,6 +107,8 @@ html {
 }
 
 body {
+    font-size: var(--fz-body-m);
+    line-height: 1.5;
     margin: 0;
     color: var(--neutral-100);
     -webkit-font-smoothing: antialiased;
@@ -61,6 +120,26 @@ input,
 select,
 textarea {
     font-family: inherit;
+}
+
+h1 {
+    font-size: var(--fz-hl-sm);
+    font-weight: var(--fw-bold);
+    line-height: 1.25;
+
+    @media (min-width: 1024px) {
+        font-size: var(--fz-hl-lg);
+    }
+}
+
+h2 {
+    font-size: var(--fz-hm-sm);
+    font-weight: var(--fw-semi-bold);
+    line-height: 1.35;
+
+    @media (min-width: 1024px) {
+        font-size: var(--fz-hm-lg);
+    }
 }
 
 a {

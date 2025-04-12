@@ -33,8 +33,14 @@
     margin-top: 1rem;
 
     a {
-        background-color: var(--gray-5);
-        padding: 0.35rem 0.75rem;
+        display: inline-flex;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: 700;
+        height: 48px;
+        background-color: var(--c-moonshadow);
+        color: var(--c-moonshadow-tint);
+        padding: 0 1.25rem;
         border-radius: 0.5rem;
 
         &:hover {

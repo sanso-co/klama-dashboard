@@ -9,7 +9,6 @@
     textarea {
         border: 1px solid var(--gray-10);
         border-radius: 0.5rem;
-        margin-bottom: 1rem;
     }
 }
 
@@ -51,6 +50,12 @@
 
 .preview {
     overflow: auto;
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
 /* Markdown styles */

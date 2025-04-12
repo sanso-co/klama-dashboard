@@ -22,12 +22,6 @@
     flex-direction: column;
 }
 
-.listHeader {
-    font-size: 1rem;
-    font-weight: 600;
-    text-transform: capitalize;
-}
-
 .showList {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

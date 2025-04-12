@@ -81,7 +81,7 @@ export const AddCast = ({ showId, existingCasts }: Props) => {
 
     return (
         <div>
-            <Button label="Add Additional Casts" onClick={hanldeAdditionalCastsSubmit} />
+            <Button onClick={hanldeAdditionalCastsSubmit}>Add Additional Casts</Button>
             <div className={styles.casts}>
                 {cast.map((item) => (
                     <div key={item.id} onClick={() => onShowClick(item)} className={styles.item}>

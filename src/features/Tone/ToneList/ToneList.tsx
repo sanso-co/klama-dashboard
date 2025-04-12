@@ -53,9 +53,12 @@ export const ToneList = () => {
                                         defaultValue={item.rank}
                                     />
                                     <Button
-                                        label="Update"
+                                        variant="primary"
+                                        size="sm"
                                         onClick={handleSubmit(onUpdateSubmit(item))}
-                                    />
+                                    >
+                                        Update
+                                    </Button>
                                 </div>
                             </div>
                         </div>

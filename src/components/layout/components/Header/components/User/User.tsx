@@ -37,7 +37,7 @@ export const User = ({ userRef, isUserMenuOpen, setIsUserMenuOpen }: Props) => {
     return (
         <div className={styles.avatar} ref={userRef}>
             <div className={styles.user} onClick={handleUserClick}>
-                <div className={styles.avatar}></div>
+                <div className={styles.avatar}>A</div>
             </div>
 
             <div className={`${styles.dropdown} ${isUserMenuOpen ? styles.dropdownOpen : ""}`}>

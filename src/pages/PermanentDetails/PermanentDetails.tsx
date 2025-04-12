@@ -63,7 +63,7 @@ const PermanentDetails = () => {
             <div className={styles.list}>
                 <div className={styles.subHeader}>
                     <div className={styles.subTop}>
-                        <h2 className={styles.listHeader}>Shows</h2>
+                        <h2>Shows</h2>
                         <Sort
                             options={sortOptions}
                             selected={sort}

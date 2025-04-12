@@ -2,22 +2,24 @@ import { ButtonHTMLAttributes } from "react";
 import styles from "./button.module.scss";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-    label: string;
+    children: React.ReactNode;
     variant?: string;
+    size?: "sm";
     width?: string;
 }
 
-export const Button = ({ label, disabled, variant, width, onClick, ...rest }: Props) => {
+export const Button = ({ children, disabled, variant, size, width, onClick, ...rest }: Props) => {
     return (
         <button
             className={styles.button}
             onClick={onClick}
             disabled={disabled}
             data-variant={variant}
+            data-size={size}
             data-width={width}
             {...rest}
         >
-            {label}
+            {children}
         </button>
     );
 };

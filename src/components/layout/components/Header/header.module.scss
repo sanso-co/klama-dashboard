@@ -13,17 +13,17 @@
     align-items: center;
     gap: 1rem;
     height: 100%;
-    padding: 0 var(--mobile-mx);
+    padding: 0 var(--px-mobile);
     margin: 0 auto;
 
     @media (min-width: 768px) {
-        padding-left: var(--tablet-mx);
-        padding-right: var(--tablet-mx);
+        padding-left: var(--px-tablet);
+        padding-right: var(--px-tablet);
     }
 
     @media (min-width: 1024px) {
-        padding-left: var(--tablet-lg-mx);
-        padding-right: var(--tablet-lg-mx);
+        padding-left: var(--px-tablet-l);
+        padding-right: var(--px-tablet-l);
     }
 }
 

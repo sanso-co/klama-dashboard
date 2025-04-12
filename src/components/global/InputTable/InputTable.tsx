@@ -69,7 +69,9 @@ export const InputTable = <T extends TableProps>({
                 if (column.type === "button")
                     return (
                         <div key={index} className={cellClass}>
-                            <Button label="Update" onClick={() => handleClick(item)} />
+                            <Button size="sm" onClick={() => handleClick(item)}>
+                                Update
+                            </Button>
                         </div>
                     );
 

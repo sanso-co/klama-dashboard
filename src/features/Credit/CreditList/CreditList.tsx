@@ -67,9 +67,12 @@ export const CreditList = () => {
                                         register={register}
                                     />
                                     <Button
-                                        label="Update"
+                                        variant="primary"
+                                        size="sm"
                                         onClick={handleSubmit(() => handleUpdate(credit))}
-                                    />
+                                    >
+                                        Update
+                                    </Button>
                                 </div>
                             </div>
                         </div>

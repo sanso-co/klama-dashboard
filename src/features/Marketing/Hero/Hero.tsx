@@ -192,29 +192,31 @@ export const Hero = () => {
                                 placeholder="Tagline"
                             />
                         </div>
-                        {item.order > 1 && (
+                        <div>
+                            {item.order > 1 && (
+                                <Button
+                                    type="button"
+                                    variant="tertiary"
+                                    size="sm"
+                                    onClick={() => removeItem(item)}
+                                >
+                                    Remove
+                                </Button>
+                            )}
                             <Button
                                 type="button"
-                                label="Remove"
-                                variant="tertiary"
-                                onClick={() => removeItem(item)}
-                            />
-                        )}
-                        <Button
-                            type="button"
-                            label={item._id ? "Update" : "Save"}
-                            variant="primary"
-                            onClick={() => (item._id ? handleUpdate(item) : handleSave(item))}
-                        />
+                                variant="secondary"
+                                onClick={() => (item._id ? handleUpdate(item) : handleSave(item))}
+                            >
+                                {item._id ? "Update" : "Save"}
+                            </Button>
+                        </div>
                     </div>
                 </div>
             ))}
-            <Button
-                type="button"
-                label="+ Add Another Item"
-                variant="secondary"
-                onClick={addItem}
-            />
+            <Button type="button" variant="primary" onClick={addItem}>
+                + Add Another Item
+            </Button>
         </section>
     );
 };

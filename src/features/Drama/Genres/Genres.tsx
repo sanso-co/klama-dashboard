@@ -98,7 +98,9 @@ export const Genres = ({ id, genres }: Props) => {
                     />
                 ))}
             </div>
-            <Button label="Save Genres" variant="primary" onClick={handleSave} />
+            <Button variant="primary" size="sm" onClick={handleSave}>
+                Save Genres
+            </Button>
         </section>
     );
 };
