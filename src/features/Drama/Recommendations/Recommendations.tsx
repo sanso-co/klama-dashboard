@@ -10,6 +10,7 @@ import {
 } from "@/hooks/api/recommendations/useRecommendations";
 
 import { DramaCard } from "@/components/global/cards/DramaCard";
+import { SearchInput } from "@/components/global/SearchInput";
 
 import { LeanShowType } from "@/types/show";
 
@@ -79,16 +80,13 @@ export const Recommendations = ({ showId }: Props) => {
             <div className={styles.sectionTitle}>
                 <h2>Recommendations</h2>
             </div>
-
-            <input
-                id="search"
-                type="text"
+            <SearchInput
+                name="search"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={setQuery}
                 placeholder="Search shows"
-                className={styles.input}
+                variant="sm"
             />
-
             <div className={styles.suggestions}>
                 {suggestions.map((show) => (
                     <div key={show.id} onClick={() => onShowClick(show)}>

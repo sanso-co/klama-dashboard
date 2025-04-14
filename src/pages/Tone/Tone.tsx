@@ -33,12 +33,18 @@ const Tone = () => {
                 <h2 className={styles.listHeader}>Create New</h2>
                 <form onSubmit={handleSubmit(handleCreate)}>
                     <div className={styles.input}>
-                        <TextInput placeholder="Id" name="id" register={register} />
-                        <TextInput placeholder="Name" name="name" register={register} />
+                        <TextInput placeholder="Id" name="id" variant="sm" register={register} />
+                        <TextInput
+                            placeholder="Name"
+                            name="name"
+                            variant="sm"
+                            register={register}
+                        />
                         <TextInput
                             placeholder="Original Name"
                             name="original_name"
                             register={register}
+                            variant="sm"
                         />
                     </div>
                     <Button variant="secondary" disabled={isLoading}>

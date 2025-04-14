@@ -9,6 +9,7 @@ import { Chip } from "@/components/global/Chip";
 import { CreditType } from "@/types/credit";
 
 import styles from "./credit.module.scss";
+import { SearchInput } from "@/components/global/SearchInput";
 
 interface Props {
     showId: number;
@@ -74,13 +75,12 @@ export const Credits = ({ showId }: Props) => {
             <div className={styles.sectionTitle}>
                 <h2>Credit</h2>
             </div>
-            <input
-                id="search"
-                type="text"
+            <SearchInput
+                name="search"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={setQuery}
                 placeholder="Search credits"
-                className={styles.input}
+                variant="sm"
             />
             {suggestions.length > 0 && (
                 <ul className={styles.suggestedList}>

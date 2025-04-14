@@ -51,6 +51,7 @@ export const ToneList = () => {
                                         name={item.id.toString()}
                                         register={register}
                                         defaultValue={item.rank}
+                                        variant="sm"
                                     />
                                     <Button
                                         variant="primary"

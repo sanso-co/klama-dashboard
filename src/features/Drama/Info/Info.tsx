@@ -113,7 +113,7 @@ export const Info = ({ id, show }: Props) => {
             </div>
             <FormProvider {...methods}>
                 <form className={styles.form} onSubmit={methods.handleSubmit(onSubmit)}>
-                    <Input name="name" label="Name" />
+                    <Input name="name" label="Name" variant="sm" />
                     <RadioInput
                         label="Overview Type"
                         name="is_custom_content"
@@ -121,21 +121,21 @@ export const Info = ({ id, show }: Props) => {
                         defaultValue={show.is_custom_content ? "Custom" : "TMDB"}
                         register={register}
                     />
-                    <TextArea name="overview" label="Overview" />
-                    <TextArea name="original_overview" label="Original Overview" />
+                    <TextArea name="overview" label="Overview" variant="sm" />
+                    <TextArea name="original_overview" label="Original Overview" variant="sm" />
                     <div className={styles.flex}>
-                        <Input name="poster_path.US.path" label="US Poster Path" />
-                        <Input name="poster_path.KR.path" label="KR Poster Path" />
+                        <Input name="poster_path.US.path" label="US Poster Path" variant="sm" />
+                        <Input name="poster_path.KR.path" label="KR Poster Path" variant="sm" />
                     </div>
                     <div className={styles.flex}>
-                        <Input name="trailer.site" label="Trailer Site" />
-                        <Input name="trailer.key" label="Trailer Key" />
+                        <Input name="trailer.site" label="Trailer Site" variant="sm" />
+                        <Input name="trailer.key" label="Trailer Key" variant="sm" />
                     </div>
-                    <Input name="homepage" label="Homepage" />
+                    <Input name="homepage" label="Homepage" variant="sm" />
                     <div className={styles.flex}>
-                        <Input name="season_number" label="Season" />
-                        <Input name="number_of_episodes" label="Episodes" />
-                        <Input name="first_air_date" label="First Air Date" />
+                        <Input name="season_number" label="Season" variant="sm" />
+                        <Input name="number_of_episodes" label="Episodes" variant="sm" />
+                        <Input name="first_air_date" label="First Air Date" variant="sm" />
                     </div>
                     <div className={styles.related}>
                         <label htmlFor="related">Related Seasons</label>

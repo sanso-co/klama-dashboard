@@ -50,6 +50,7 @@ export const CreditList = () => {
                                             name={`${credit._id}_original_name`}
                                             register={register}
                                             defaultValue={credit.original_name}
+                                            variant="sm"
                                         />
                                     </div>
                                 </div>

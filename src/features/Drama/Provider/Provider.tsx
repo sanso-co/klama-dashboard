@@ -6,6 +6,8 @@ import { useGetProvidersForShow, useAddShowToProvider } from "@/hooks/api/provid
 
 import { ProviderType } from "@/types/provider";
 
+import { SearchInput } from "@/components/global/SearchInput";
+
 import styles from "./provider.module.scss";
 
 interface Props {
@@ -68,13 +70,12 @@ export const Provider = ({ showId }: Props) => {
             <div className={styles.sectionTitle}>
                 <h2>Providers</h2>
             </div>
-            <input
-                id="search"
-                type="text"
+            <SearchInput
+                name="search"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={setQuery}
                 placeholder="Search providers"
-                className={styles.input}
+                variant="sm"
             />
             {suggestions.length > 0 && (
                 <ul className={styles.suggestedList}>

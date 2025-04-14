@@ -6,6 +6,7 @@ import { useUpdateShow } from "@/hooks/api/drama/useShow";
 
 import { Chip } from "@/components/global/Chip";
 import { Button } from "@/components/global/Button";
+import { SearchInput } from "@/components/global/SearchInput";
 
 import { KeywordType } from "@/types/keyword";
 
@@ -70,13 +71,12 @@ export const Keywords = ({ showId, keywords }: Props) => {
             <div className={styles.sectionTitle}>
                 <h2>Keywords</h2>
             </div>
-            <input
-                id="search"
-                type="text"
+            <SearchInput
+                name="search"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={setQuery}
                 placeholder="Search keywords"
-                className={styles.input}
+                variant="sm"
             />
             {suggestions.length > 0 && (
                 <ul className={styles.suggestedList}>

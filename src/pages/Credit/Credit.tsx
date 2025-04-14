@@ -38,11 +38,22 @@ const Credit = () => {
                 <form onSubmit={handleSubmit(handleCreate)}>
                     <div className={styles.input}>
                         <div className={styles.textinput}>
-                            <TextInput placeholder="Id" name="id" register={register} />
-                            <TextInput placeholder="Name" name="name" register={register} />
+                            <TextInput
+                                placeholder="Id"
+                                name="id"
+                                variant="sm"
+                                register={register}
+                            />
+                            <TextInput
+                                placeholder="Name"
+                                name="name"
+                                variant="sm"
+                                register={register}
+                            />
                             <TextInput
                                 placeholder="Original Name"
                                 name="original_name"
+                                variant="sm"
                                 register={register}
                             />
                         </div>
