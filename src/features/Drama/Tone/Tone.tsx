@@ -4,6 +4,7 @@ import axios from "axios";
 
 import { useUpdateShow } from "@/hooks/api/drama/useShow";
 
+import { SearchInput } from "@/components/global/SearchInput";
 import { Chip } from "@/components/global/Chip";
 import { Button } from "@/components/global/Button";
 
@@ -70,13 +71,12 @@ export const Tone = ({ showId, tones }: Props) => {
             <div className={styles.sectionTitle}>
                 <h2>Tone</h2>
             </div>
-            <input
-                id="search"
-                type="text"
+            <SearchInput
+                name="search"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={setQuery}
                 placeholder="Search tones"
-                className={styles.input}
+                variant="sm"
             />
             {suggestions.length > 0 && (
                 <ul className={styles.suggestedList}>

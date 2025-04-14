@@ -7,13 +7,26 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
     name: string;
     register: UseFormRegister<FieldValues>;
     defaultValue?: string | number;
+    variant?: "default" | "sm";
 }
 
-export const TextInput = ({ label, name, register, defaultValue, ...inputParams }: Props) => {
+export const TextInput = ({
+    label,
+    name,
+    variant = "default",
+    register,
+    defaultValue,
+    ...inputParams
+}: Props) => {
     return (
         <div className={styles.container}>
-            {label && <label>{label}</label>}
-            <input {...register(name)} defaultValue={defaultValue} {...inputParams} />
+            {label && <label data-variant={variant}>{label}</label>}
+            <input
+                {...register(name)}
+                defaultValue={defaultValue}
+                data-variant={variant}
+                {...inputParams}
+            />
         </div>
     );
 };

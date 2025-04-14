@@ -48,8 +48,13 @@ const Provider = () => {
                             image={logo}
                             onImageSelect={(image) => setLogo(image)}
                         />
-                        <TextInput placeholder="Id" name="id" register={register} />
-                        <TextInput placeholder="Name" name="name" register={register} />
+                        <TextInput placeholder="Id" name="id" variant="sm" register={register} />
+                        <TextInput
+                            placeholder="Name"
+                            name="name"
+                            variant="sm"
+                            register={register}
+                        />
                     </div>
                     <Button variant="secondary" disabled={isLoading}>
                         Create

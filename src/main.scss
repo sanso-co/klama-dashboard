@@ -37,15 +37,17 @@
     --c-neutral-700: #77756f;
     --c-neutral-800: #54524d;
     --c-neutral-900: #33312e;
+    --c-active: #3f6dcb;
+    --c-active-tint: #e3ecf8;
     // SPACING
-    --space-xxs: 4;
-    --space-xs: 8;
-    --space-s: 12;
-    --space-m: 16;
-    --space-l: 24;
-    --space-xl: 32;
-    --space-2xl: 48;
-    --space-3xl: 64;
+    --space-xxs: 4px;
+    --space-xs: 8px;
+    --space-s: 0.75rem;
+    --space-m: 1rem;
+    --space-l: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+    --space-3xl: 64px;
     // SECTION SPACING
     --px-mobile: 1rem;
     --px-tablet: 1.5rem;

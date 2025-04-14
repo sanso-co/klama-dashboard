@@ -1,18 +1,33 @@
 .container {
     label {
         display: block;
-        font-size: 0.875rem;
+        font-size: 1rem;
         font-weight: 600;
         margin-bottom: 0.5rem;
+
+        &[data-variant="sm"] {
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
     }
 
     textarea {
-        font-family: inherit;
-        font-size: 0.875rem;
-        line-height: 1.4;
         width: 100%;
-        padding: 0.5rem 1rem;
-        border: 1px solid #e8e8e8;
-        border-radius: 0.375rem;
+        font-family: inherit;
+        font-size: 1rem;
+        line-height: 1.4;
+        color: #000;
+        border: 1px solid var(--c-neutral-400);
+        border-radius: var(--radius-l);
+        padding: var(--space-m) var(--space-s);
+
+        &:focus {
+            border: 1px solid var(--c-active);
+        }
+
+        &[data-variant="sm"] {
+            font-size: 0.875rem;
+            border-radius: var(--radius-m);
+        }
     }
 }

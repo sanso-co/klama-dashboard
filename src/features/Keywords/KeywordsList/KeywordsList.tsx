@@ -50,6 +50,7 @@ export const KeywordsList = () => {
                                         name={keyword.id.toString()}
                                         register={register}
                                         defaultValue={keyword.rank}
+                                        variant="sm"
                                     />
                                     <Button
                                         variant="primary"

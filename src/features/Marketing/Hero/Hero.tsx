@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useFieldArray, FormProvider, useForm } from "react-hook-form";
 
 import {
     useCreateHero,
@@ -9,34 +10,55 @@ import {
 
 import { ImageUpload } from "@/components/global/ImageUpload";
 import { Button } from "@/components/global/Button";
+import { Input } from "@/components/global/Input";
 
 import { HeroType } from "@/types/marketing";
 
 import styles from "./hero.module.scss";
 
+// Define a type specifically for the form values
+interface HeroFormValues {
+    heroItems: (HeroType & { id?: string })[];
+}
+
 export const Hero = () => {
     const { heroes } = useGetAllHero();
+    const { createHero } = useCreateHero();
+    const { removeHero } = useRemoveHero();
+    const { updateHero } = useUpdateHero();
 
-    const [heroItems, setHeroItems] = useState<HeroType[]>([
-        {
-            img: null,
-            title: "",
-            tagline: "",
-            tag: {
-                label: "",
-                color: "#000000",
-            },
-            url: "",
-            order: 1,
+    const methods = useForm<HeroFormValues>({
+        defaultValues: {
+            heroItems: [
+                {
+                    img: null,
+                    title: "",
+                    tagline: "",
+                    tag: {
+                        label: "",
+                        color: "#000000",
+                    },
+                    url: "",
+                    order: 1,
+                    _id: undefined,
+                },
+            ],
         },
-    ]);
+    });
+
+    const { control, reset } = methods;
+    const { fields, append, remove, update } = useFieldArray({
+        control,
+        name: "heroItems",
+        keyName: "fieldId", // Use a different key name to avoid conflicts with _id
+    });
 
     useEffect(() => {
         if (heroes && heroes.length > 0) {
             const existingHeroes = heroes.map((hero) => ({
                 img: hero.img,
                 title: hero.title,
-                tagline: hero.tagline,
+                tagline: hero.tagline || "",
                 tag: hero.tag || {
                     label: "",
                     color: "#000000",
@@ -45,55 +67,32 @@ export const Hero = () => {
                 order: hero.order,
                 _id: hero._id,
             }));
-            setHeroItems(existingHeroes);
-        }
-    }, [heroes]);
 
-    const handleInputChange = (order: number, field: string, value: any) => {
-        setHeroItems((prevItems) =>
-            prevItems.map((item): HeroType => {
-                if (item.order === order) {
-                    if (field === "tagLabel" || field === "tagColor") {
-                        const updatedTag = {
-                            label: field === "tagLabel" ? value : item.tag?.label || "",
-                            color: field === "tagColor" ? value : item.tag?.color || "#000000",
-                        };
-                        return {
-                            ...item,
-                            tag: updatedTag,
-                        };
-                    }
-                    return { ...item, [field]: value };
-                }
-                return item;
-            })
-        );
-    };
+            // Use type assertion to match the expected types
+            reset({ heroItems: existingHeroes as HeroFormValues["heroItems"] });
+        }
+    }, [heroes, reset]);
 
     const addItem = () => {
-        const newOrder = heroItems.length + 1;
-        setHeroItems([
-            ...heroItems,
-            {
-                img: null,
-                title: "",
-                tagline: "",
-                tag: {
-                    label: "",
-                    color: "#000000",
-                },
-                url: "",
-                order: newOrder,
+        const newOrder = fields.length + 1;
+        append({
+            img: null,
+            title: "",
+            tagline: "",
+            tag: {
+                label: "",
+                color: "#000000",
             },
-        ]);
+            url: "",
+            order: newOrder,
+            _id: undefined,
+        });
     };
 
-    const { createHero } = useCreateHero();
-
-    const handleSave = async (item: HeroType) => {
+    const handleSave = async (item: HeroType, index: number) => {
         try {
             const response = await createHero(item);
-            console.log(response);
+            update(index, { ...item, _id: response._id });
             alert("Successfully Created");
         } catch (error) {
             console.error("Error adding hero item:", error);
@@ -101,32 +100,41 @@ export const Hero = () => {
         }
     };
 
-    const { removeHero } = useRemoveHero();
-
-    const removeItem = async (heroItem: HeroType) => {
+    const removeItem = async (index: number, heroId?: string) => {
         try {
-            setHeroItems((prevItems) => {
-                const newItems = prevItems.filter((item) => item.order !== heroItem.order);
-                return newItems.map((item, index) => ({ ...item, order: index + 1 }));
+            remove(index);
+
+            if (heroId) {
+                await removeHero(heroId);
+                alert("Hero item removed successfully");
+            }
+
+            // Reorder remaining items
+            const updatedFields = methods.getValues().heroItems.filter((_, i) => i !== index);
+            updatedFields.forEach((item, i) => {
+                update(i, { ...item, order: i + 1 });
             });
-            await removeHero(heroItem._id || "");
-            alert("Hero item removed succesfully");
         } catch (error) {
             console.error("Error removing hero item:", error);
             alert("Error removing hero item");
         }
     };
 
-    const { updateHero } = useUpdateHero();
-
     const handleUpdate = async (item: HeroType) => {
         try {
-            await updateHero(item._id || "", item);
-            alert("Successfully Updated");
+            if (item._id) {
+                await updateHero(item._id, item);
+                alert("Successfully Updated");
+            }
         } catch (error) {
             console.error("Error updating hero item:", error);
             alert("Error updating hero item");
         }
+    };
+
+    const handleImageSelect = (index: number, image: any) => {
+        const currentItem = methods.getValues().heroItems[index];
+        update(index, { ...currentItem, img: image });
     };
 
     return (
@@ -135,88 +143,82 @@ export const Hero = () => {
                 <h2>Hero</h2>
             </div>
 
-            {heroItems.map((item) => (
-                <div key={item.order} className={styles.heroItem}>
-                    <ImageUpload
-                        image={item.img}
-                        onImageSelect={(image) => handleInputChange(item.order, "img", image)}
-                    />
-                    <div className={styles.details}>
-                        <input
-                            type="text"
-                            value={item.order}
-                            onChange={(e) => handleInputChange(item.order, "order", e.target.value)}
-                            placeholder="Order"
+            <FormProvider {...methods}>
+                {fields.map((field, index) => (
+                    <div key={field.fieldId} className={styles.heroItem}>
+                        <ImageUpload
+                            image={field.img}
+                            onImageSelect={(image) => handleImageSelect(index, image)}
                         />
-                        <input
-                            type="text"
-                            value={item.title}
-                            onChange={(e) => handleInputChange(item.order, "title", e.target.value)}
-                            placeholder="Title"
-                        />
-                        <div className={styles.flex}>
-                            <div className={styles.tagInputs}>
-                                <input
-                                    type="color"
-                                    value={item.tag?.color || "#000000"}
-                                    onChange={(e) =>
-                                        handleInputChange(item.order, "tagColor", e.target.value)
-                                    }
-                                />
-                                <input
-                                    type="text"
-                                    value={item.tag?.label || ""}
-                                    onChange={(e) =>
-                                        handleInputChange(item.order, "tagLabel", e.target.value)
-                                    }
-                                    placeholder="Tag Label"
+                        <div className={styles.details}>
+                            <Input
+                                name={`heroItems.${index}.order`}
+                                label="Order"
+                                variant="sm"
+                                type="number"
+                            />
+                            <Input name={`heroItems.${index}.title`} label="Title" variant="sm" />
+                            <div className={styles.flex}>
+                                <div className={styles.tagInputs}>
+                                    <Input
+                                        name={`heroItems.${index}.tag.color`}
+                                        label="Tag Color"
+                                        variant="sm"
+                                        type="color"
+                                    />
+                                    <Input
+                                        name={`heroItems.${index}.tag.label`}
+                                        label="Tag Label"
+                                        variant="sm"
+                                    />
+                                </div>
+                                <Input
+                                    name={`heroItems.${index}.url`}
+                                    label="URL"
+                                    variant="sm"
+                                    className={styles.url}
                                 />
                             </div>
-                            <input
-                                type="text"
-                                value={item.url}
-                                onChange={(e) =>
-                                    handleInputChange(item.order, "url", e.target.value)
-                                }
-                                placeholder="URL"
-                                className={styles.url}
-                            />
-                        </div>
-                        <div>
-                            <input
-                                type="text"
-                                value={item.tagline}
-                                onChange={(e) =>
-                                    handleInputChange(item.order, "tagline", e.target.value)
-                                }
-                                placeholder="Tagline"
-                            />
-                        </div>
-                        <div>
-                            {item.order > 1 && (
+                            <div>
+                                <Input
+                                    name={`heroItems.${index}.tagline`}
+                                    label="Tagline"
+                                    variant="sm"
+                                />
+                            </div>
+                            <div>
+                                {index > 0 && (
+                                    <Button
+                                        type="button"
+                                        variant="tertiary"
+                                        size="sm"
+                                        onClick={() => removeItem(index, field._id)}
+                                    >
+                                        Remove
+                                    </Button>
+                                )}
                                 <Button
                                     type="button"
-                                    variant="tertiary"
-                                    size="sm"
-                                    onClick={() => removeItem(item)}
+                                    variant="secondary"
+                                    onClick={() =>
+                                        field._id
+                                            ? handleUpdate(methods.getValues().heroItems[index])
+                                            : handleSave(
+                                                  methods.getValues().heroItems[index],
+                                                  index
+                                              )
+                                    }
                                 >
-                                    Remove
+                                    {field._id ? "Update" : "Save"}
                                 </Button>
-                            )}
-                            <Button
-                                type="button"
-                                variant="secondary"
-                                onClick={() => (item._id ? handleUpdate(item) : handleSave(item))}
-                            >
-                                {item._id ? "Update" : "Save"}
-                            </Button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            ))}
-            <Button type="button" variant="primary" onClick={addItem}>
-                + Add Another Item
-            </Button>
+                ))}
+                <Button type="button" variant="primary" onClick={addItem}>
+                    + Add Another Item
+                </Button>
+            </FormProvider>
         </section>
     );
 };

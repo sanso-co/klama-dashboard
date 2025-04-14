@@ -103,7 +103,7 @@ export const OriginalWork = ({ id }: Props) => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search for original story author"
-                className={styles.input}
+                className={styles.author}
             />
             {suggestions.length > 0 && (
                 <ul className={styles.suggestedList}>
@@ -127,8 +127,8 @@ export const OriginalWork = ({ id }: Props) => {
             <FormProvider {...methods}>
                 <form className={styles.form} onSubmit={methods.handleSubmit(onSubmit)}>
                     <div className={styles.title}>
-                        <Input name="title" label="Title" />
-                        <Input name="original_title" label="Original Title" />
+                        <Input name="title" label="Title" variant="sm" />
+                        <Input name="original_title" label="Original Title" variant="sm" />
                     </div>
                     <RadioInput
                         label="Original Work Type"

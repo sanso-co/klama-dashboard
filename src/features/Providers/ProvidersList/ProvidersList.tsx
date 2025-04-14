@@ -48,6 +48,7 @@ export const ProvidersList = () => {
                                     name={provider.id.toString()}
                                     register={register}
                                     defaultValue={provider.display_priority}
+                                    variant="sm"
                                 />
                                 <Button
                                     variant="primary"
