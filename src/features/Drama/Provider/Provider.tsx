@@ -92,12 +92,6 @@ export const Provider = ({ showId }: Props) => {
             <div className={styles.genre}>
                 {selectedProviders.map((provider) => (
                     <Chip key={provider.id} label={provider.name} imgSrc={provider.logo_path} />
-                    // <div key={provider.id} className={styles.logo}>
-                    //     <div className={styles.logoContainer}>
-                    //         <img src={provider.logo_path} alt="" />
-                    //     </div>
-                    //     <span>{provider.name}</span>
-                    // </div>
                 ))}
             </div>
         </section>
