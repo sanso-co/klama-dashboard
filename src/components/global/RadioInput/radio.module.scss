@@ -1,32 +1,82 @@
-.label {
-    display: block;
-    font-size: 0.875rem;
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.groupLabel {
+    font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+
+    &[data-size="sm"] {
+        font-size: 0.875rem;
+    }
 }
 
 .options {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-
-    @media (min-width: 740px) {
-        flex-direction: row;
-        gap: 0.5rem;
-    }
+    gap: 1rem;
 }
 
 .option {
     display: flex;
+    align-items: center;
+    gap: 0.75rem;
     cursor: pointer;
+    position: relative;
 
-    label {
+    &:hover .customRadio {
+        border-color: var(--c-active);
+    }
+}
+
+.radioInput {
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.customRadio {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--c-neutral-500);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.radioInput {
+    &:checked + .customRadio {
+        border: 1px solid var(--c-active);
+
+        &:before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            background-color: var(--c-active);
+            border-radius: 50%;
+        }
+    }
+
+    &:focus-visible + .customRadio {
+        box-shadow: 0 0 0 4px var(--c-active-tint);
+    }
+}
+
+.optionLabel {
+    font-size: 1rem;
+    color: var(--c-neutral-900);
+
+    &[data-size="sm"] {
         font-size: 0.875rem;
-        margin-left: 0.25rem;
-        cursor: pointer;
     }
+}
 
-    input {
-        cursor: pointer;
-    }
+.helperText {
+    font-size: 0.875rem;
+    color: var(--c-neutral-800);
+    margin-top: 1rem;
 }

@@ -65,6 +65,7 @@ export const CreditList = () => {
                                             "Original Author",
                                         ]}
                                         defaultValue={credit.job}
+                                        size="sm"
                                         register={register}
                                     />
                                     <Button
