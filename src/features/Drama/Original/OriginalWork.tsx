@@ -131,7 +131,8 @@ export const OriginalWork = ({ id }: Props) => {
                         <Input name="original_title" label="Original Title" variant="sm" />
                     </div>
                     <RadioInput
-                        label="Original Work Type"
+                        groupLabel="Original Work Type"
+                        size="sm"
                         name="type"
                         options={["Webtoon", "Novel", "Other"]}
                         defaultValue={defaultValues.type}

@@ -115,7 +115,8 @@ export const Info = ({ id, show }: Props) => {
                 <form className={styles.form} onSubmit={methods.handleSubmit(onSubmit)}>
                     <Input name="name" label="Name" variant="sm" />
                     <RadioInput
-                        label="Overview Type"
+                        groupLabel="Overview Type"
+                        size="sm"
                         name="is_custom_content"
                         options={["Custom", "TMDB"]}
                         defaultValue={show.is_custom_content ? "Custom" : "TMDB"}
