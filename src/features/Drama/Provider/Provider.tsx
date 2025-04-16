@@ -9,6 +9,7 @@ import { ProviderType } from "@/types/provider";
 import { SearchInput } from "@/components/global/SearchInput";
 
 import styles from "./provider.module.scss";
+import { Chip } from "@/components/global/Chip";
 
 interface Props {
     showId: number;
@@ -90,12 +91,13 @@ export const Provider = ({ showId }: Props) => {
             )}
             <div className={styles.genre}>
                 {selectedProviders.map((provider) => (
-                    <div key={provider.id} className={styles.logo}>
-                        <div className={styles.logoContainer}>
-                            <img src={provider.logo_path} alt="" />
-                        </div>
-                        <span>{provider.name}</span>
-                    </div>
+                    <Chip key={provider.id} label={provider.name} imgSrc={provider.logo_path} />
+                    // <div key={provider.id} className={styles.logo}>
+                    //     <div className={styles.logoContainer}>
+                    //         <img src={provider.logo_path} alt="" />
+                    //     </div>
+                    //     <span>{provider.name}</span>
+                    // </div>
                 ))}
             </div>
         </section>
