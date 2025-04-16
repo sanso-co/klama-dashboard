@@ -3,15 +3,21 @@ import styles from "./chip.module.scss";
 
 interface Props {
     label: string;
-    onRemove: () => void;
+    imgSrc?: string;
+    onRemove?: () => void;
 }
 
-export const Chip = ({ label, onRemove }: Props) => {
+export const Chip = ({ label, imgSrc, onRemove }: Props) => {
     return (
-        <div className={styles.container}>
-            <div className={styles.flex}>{label}</div>
+        <div data-image={Boolean(imgSrc)} className={styles.container}>
+            {imgSrc && (
+                <div className={styles.image}>
+                    <img src={imgSrc} />
+                </div>
+            )}
+            <span>{label}</span>
             <button className={styles.dismiss} onClick={onRemove}>
-                <DismissIcon width={16} height={16} />
+                <DismissIcon width={16} height={16} stroke={1.5} />
             </button>
         </div>
     );

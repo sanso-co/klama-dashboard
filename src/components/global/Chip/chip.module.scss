@@ -1,19 +1,32 @@
 .container {
     display: inline-flex;
+    align-items: center;
     gap: 0.5rem;
+    height: 40px;
     border-radius: 2rem;
-    background-color: var(--gray-10);
+    background-color: var(--c-moonshadow-tint);
     font-size: 0.75rem;
     letter-spacing: 0.015rem;
     text-transform: capitalize;
     white-space: nowrap;
-    padding: 0.5rem 0.75rem;
+    padding: 0 0.5rem 0 0.875rem;
+
+    &[data-image="true"] {
+        padding: 0 0.5rem;
+    }
 }
 
-.flex {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.image {
+    width: 26px;
+    height: 26px;
+    border-radius: 100%;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
 }
 
 .dismiss {
@@ -21,14 +34,18 @@
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    width: 20px;
-    height: 20px;
+    width: 26px;
+    height: 26px;
     border: none;
     border-radius: 100%;
-    background-color: var(--gray-30);
+    background-color: transparent;
     cursor: pointer;
 
     &:hover {
-        background-color: var(--gray-20);
+        background-color: rgba(28, 45, 72, 0.1);
+    }
+
+    &:active {
+        background-color: rgba(28, 45, 72, 0.2);
     }
 }
