@@ -1,5 +1,7 @@
-import { useEffect } from "react";
+import { createPortal } from "react-dom";
+import { useScrollLock } from "@/hooks/useScrollLock";
 import { DismissIcon } from "@/assets/icons/DismissIcon";
+
 import styles from "./modal.module.scss";
 
 interface Props {
@@ -11,34 +13,35 @@ interface Props {
 }
 
 export const Modal = ({ open, header, size = "md", children, handleClose }: Props) => {
-    useEffect(() => {
-        if (open) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "";
-        }
+    useScrollLock(open);
 
-        return () => {
-            document.body.style.overflow = "";
-        };
-    }, [open]);
+    const mountElement = document.getElementById("portal-root");
+    if (!mountElement) return null;
 
-    if (!open) return null;
+    const containerClassName = `${styles.container} ${styles[size]} ${open ? styles.open : ""}`;
 
-    const containerClassName = `${styles.container} ${size ? styles[size] : ""}`;
-
-    return (
+    return createPortal(
         <>
-            <div className={styles.overlay} onClick={handleClose} />
-            <div className={containerClassName}>
-                <div className={styles.header}>
-                    <h2>{header}</h2>
-                    <button className={styles.button} onClick={handleClose}>
-                        <DismissIcon width={16} height={16} />
-                    </button>
+            {open && (
+                <div className={styles.wrapper}>
+                    <div
+                        className={`${styles.overlay} ${open ? styles.open : ""}`}
+                        onClick={handleClose}
+                    />
+                    <div className={containerClassName}>
+                        {header && (
+                            <div className={styles.header}>
+                                <h2>{header}</h2>
+                                <button className={styles.closeButton} onClick={handleClose}>
+                                    <DismissIcon width={21} height={21} />
+                                </button>
+                            </div>
+                        )}
+                        <div className={styles.content}>{children}</div>
+                    </div>
                 </div>
-                <div className={styles.content}>{children}</div>
-            </div>
-        </>
+            )}
+        </>,
+        mountElement
     );
 };
