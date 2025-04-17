@@ -50,9 +50,11 @@ export const CreateNew = ({ onSuccess }: Props) => {
                 name="frequency-select"
             />
             {error && <p>{error.message}</p>}
-            <Button variant="primary" disabled={isLoading}>
-                Create
-            </Button>
+            <div className={styles.button}>
+                <Button variant="primary" size="sm" disabled={isLoading}>
+                    Create
+                </Button>
+            </div>
         </form>
     );
 };
